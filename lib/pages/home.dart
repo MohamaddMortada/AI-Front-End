@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/widgets/button.dart';
 
 class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Text(
-          'Hello, Flutter!',
-          style: TextStyle(color: Colors.white),
-        ),
+        child: Main_Button(text: 'hello',)
       ),
     );
   }
