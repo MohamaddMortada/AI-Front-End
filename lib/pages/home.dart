@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/widgets/button.dart';
+import 'package:front_end/widgets/input.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -7,7 +8,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Main_Button(text: 'hello',)
+        
       ),
     );
   }
