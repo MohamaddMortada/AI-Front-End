@@ -9,7 +9,7 @@ class Main_Button extends StatelessWidget {
    
    return ElevatedButton(
     style: ElevatedButton.styleFrom(
-            
+            fixedSize:Size(270, 45),
             backgroundColor: Theme.of(context).primaryColor,
             foregroundColor: Colors.white, 
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
