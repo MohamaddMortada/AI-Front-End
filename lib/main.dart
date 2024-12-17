@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/pages/home.dart';
 
 void main() {
   runApp(const MainApp());
@@ -18,6 +19,9 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFB2C8D0),
 
       ),
+      home:HomePage(),
+      
     );
   }
 }
+
