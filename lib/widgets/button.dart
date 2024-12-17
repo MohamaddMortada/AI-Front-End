@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 class Main_Button extends StatelessWidget {
   final String text;
 
@@ -7,22 +8,37 @@ class Main_Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    
-   return ElevatedButton(
-    style: ElevatedButton.styleFrom(
-            fixedSize:Size(270, 45),
-            backgroundColor: Theme.of(context).primaryColor,
-            foregroundColor: Colors.white, 
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-            textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold), 
-            elevation: 5,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-          ),
+   return GestureDetector(
+            onTap: () {
+              print('Clicked');
+            },
+            child:Container(
+      decoration: BoxDecoration(
+      color: Theme.of(context).primaryColor,
+      borderRadius: BorderRadius.circular(10)
     ),
-    onPressed: () {
-            print("Styled Button Pressed!");
-          }, 
-    child: Text(text),
-    );
+    width:270,
+    height: 45,
+      child: Row(
+        mainAxisAlignment : MainAxisAlignment.spaceBetween,
+        crossAxisAlignment : CrossAxisAlignment.center,
+        children: [
+            const Icon(
+                Icons.upload, 
+                size: 30, 
+                color: Colors.white, 
+              ),
+            
+            Text(
+              text, 
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              ),),
+              const SizedBox(width: 30,),
+          ],
+      ),));
+  
   }
 } 
