@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 class ImageButton extends StatelessWidget {
-
-  const ImageButton({super.key});
+  final String imagePath;
+  final String text;
+  const ImageButton({super.key, required this.imagePath, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +24,13 @@ class ImageButton extends StatelessWidget {
         mainAxisAlignment : MainAxisAlignment.spaceBetween,
         children: [
             Image.asset(
-                'assets/Detect-Image.webp',
+                imagePath,
                 width:double.infinity,
                 height: 140,
                 fit: BoxFit.cover,
               ),
 
-            Text('Detect', 
+            Text(text, 
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
