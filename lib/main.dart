@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/pages/analyze.dart';
+import 'package:front_end/pages/calculate.dart';
 import 'package:front_end/pages/change_password.dart';
 import 'package:front_end/pages/detect.dart';
 import 'package:front_end/pages/main_page.dart';
@@ -23,7 +24,7 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFB2C8D0),
 
       ),
-      home:Analyze(),
+      home:Calculate(),
       
     );
   }
