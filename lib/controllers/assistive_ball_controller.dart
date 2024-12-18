@@ -8,4 +8,9 @@ class AssistiveBallController extends GetxController {
     isExpanded.value = !isExpanded.value;
   }
 
+  void collapseBall() {
+    if (isExpanded.value) {
+      isExpanded.value = false;
+    }
+  }
 }
