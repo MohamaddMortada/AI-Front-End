@@ -7,6 +7,7 @@ import 'package:front_end/pages/detect.dart';
 import 'package:front_end/pages/detecting.dart';
 import 'package:front_end/pages/main_page.dart';
 import 'package:front_end/pages/predict.dart';
+import 'package:front_end/pages/predicting.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
 
 void main() {
@@ -27,7 +28,7 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFB2C8D0),
 
       ),
-      home:Analyzing(),
+      home:Predicting(),
       
     );
   }
