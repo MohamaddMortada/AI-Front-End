@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/pages/analyze.dart';
 import 'package:front_end/pages/change_password.dart';
 import 'package:front_end/pages/detect.dart';
 import 'package:front_end/pages/main_page.dart';
+import 'package:front_end/widgets/assistive_ball.dart';
 
 void main() {
   runApp(const MainApp());
@@ -21,7 +23,7 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFB2C8D0),
 
       ),
-      home:Detect(),
+      home:Analyze(),
       
     );
   }
