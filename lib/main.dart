@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/pages/forget_password.dart';
 import 'package:front_end/pages/home.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFB2C8D0),
 
       ),
-      home:HomePage(),
+      home:ForgetPassword(),
       
     );
   }
