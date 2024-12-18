@@ -8,7 +8,7 @@ class Voice extends StatelessWidget {
    
    return Container(
             width: 270,
-            child: Align(
+            child: const Align(
               alignment: Alignment.centerLeft,
               child: Icon(Icons.voice_chat),
             
