@@ -8,11 +8,11 @@ class ImageContainer extends StatelessWidget {
   Widget build(BuildContext context) {
    
    return Container(
+    color: Theme.of(context).primaryColor,
     width: 270,
     height: 270,
-    child: Image(
-       image: NetworkImage(imageUrl),
-   ));
+    child: Image.network(imageUrl),
+   );
 
   }
 }
