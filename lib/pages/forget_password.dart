@@ -24,6 +24,7 @@ class ForgetPassword extends StatelessWidget {
               SizedBox(height: 10),
               Main_Button(text: 'Send New Password', icon: Icon(Icons.password)),
               Spacer(),
+              Spacer(),
             ]
           )
         )
