@@ -13,6 +13,17 @@ class AssistiveBall extends StatelessWidget {
     );
   }
   
+    Widget _buildIconsColumn() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconItem(Icons.home, "Home"),
+        IconItem(Icons.chat, "AI Chatbot"),
+        IconItem(Icons.person, "Profile"),
+        IconItem(Icons.email_outlined, "Contact Us"),
+      ],
+    );
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
