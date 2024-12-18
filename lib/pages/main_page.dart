@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:front_end/widgets/image_button.dart';
+import 'package:front_end/widgets/profile_bar.dart';
 import 'package:front_end/widgets/profile_widget.dart';
 import 'package:front_end/widgets/text_field.dart';
 
@@ -12,14 +13,7 @@ class MainPage extends StatelessWidget {
           
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Align(
-                alignment: Alignment.topRight,
-                  child:Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                    child: ProfileIcon(imageUrl: 'https://pics.craiyon.com/2023-10-20/ff5136d14c0f415faa9cd7e7b654a277.webp', rad: 24),
-
-              ),),
-              
+              ProfileBar(), 
               Text_Field(text: 'Welcome Nabiha \n to AP', fontSize: 24, fontWeight: FontWeight.bold),
               Spacer(),
               Row(

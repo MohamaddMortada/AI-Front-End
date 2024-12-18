@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/pages/change_password.dart';
+import 'package:front_end/pages/detect.dart';
 import 'package:front_end/pages/main_page.dart';
 
 void main() {
@@ -11,7 +12,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+   
     return  MaterialApp(
       
       theme: ThemeData(
@@ -20,7 +21,7 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFB2C8D0),
 
       ),
-      home:MainPage(),
+      home:Detect(),
       
     );
   }
