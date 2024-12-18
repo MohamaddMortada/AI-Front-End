@@ -7,7 +7,7 @@ class MainLogo extends StatelessWidget {
   Widget build(BuildContext context) {
    
    return CircleAvatar(
-    radius: 60,
+    radius: 120,
     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     backgroundImage: const AssetImage('assets/Logo.png'),
    );

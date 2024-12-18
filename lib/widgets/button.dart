@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 class Main_Button extends StatelessWidget {
   final String text;
+  final Icon icon;
 
-  const Main_Button({super.key, required this.text});
+  const Main_Button({super.key, required this.text, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +24,7 @@ class Main_Button extends StatelessWidget {
         mainAxisAlignment : MainAxisAlignment.spaceBetween,
         crossAxisAlignment : CrossAxisAlignment.center,
         children: [
-            const Icon(
-                Icons.upload, 
-                size: 30, 
-                color: Colors.white, 
-              ),
-            
+            icon,
             Text(
               text, 
             style: const TextStyle(
