@@ -56,6 +56,12 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "get",
+      "rootUri": "file:///Users/mohamadmortada/.pub-cache/hosted/pub.dev/get-4.6.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "leak_tracker",
       "rootUri": "file:///Users/mohamadmortada/.pub-cache/hosted/pub.dev/leak_tracker-10.0.4",
       "packageUri": "lib/",
@@ -164,7 +170,7 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-12-18T09:34:07.920420Z",
+  "generated": "2024-12-18T10:03:48.702118Z",
   "generator": "pub",
   "generatorVersion": "3.4.0-282.2.beta",
   "flutterRoot": "file:///Users/mohamadmortada/Developer/SDKs/flutter",
