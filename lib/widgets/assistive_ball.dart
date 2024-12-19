@@ -54,9 +54,9 @@ class AssistiveBall extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
          IconItem(route: '/main', icon: Icons.home,),
-         IconItem(route: '/main', icon: Icons.chat,),
-         IconItem(route: '/main', icon: Icons.person,),
-         IconItem(route: '/main', icon: Icons.email,),
+         IconItem(route: '/chatbot', icon: Icons.chat,),
+         IconItem(route: '/profile', icon: Icons.person,),
+         IconItem(route: '/contact', icon: Icons.email,),
       ],
     );
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class ProfileIcon extends StatelessWidget {
   final String imageUrl;
@@ -9,10 +11,14 @@ class ProfileIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    
-   return CircleAvatar(
+   return GestureDetector(
+            onTap: () {
+              Get.toNamed('/profile');
+            },
+            child:CircleAvatar(
       radius: rad,
       backgroundColor: Theme.of(context).primaryColor,
       backgroundImage: NetworkImage(imageUrl),
-    );
+    ));
   }
 }
