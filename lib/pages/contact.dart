@@ -10,7 +10,7 @@ class Contact extends StatelessWidget {
     return   Scaffold(
         body: Stack(
           children: [
-            Center(
+            const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center, children: [
           ProfileBar(),

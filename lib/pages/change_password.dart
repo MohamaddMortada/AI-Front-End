@@ -28,7 +28,8 @@ class ChangePassword extends StatelessWidget {
               Spacer(),
             ]
           )
-        ),AssistiveBall()])
+        ),
+        AssistiveBall()])
     );
   }
 }

@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/widgets/text_field.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 class ImageButton extends StatelessWidget {
   final String imagePath;
   final String text;
   final String discription;
-  const ImageButton({super.key, required this.imagePath, required this.text, required this.discription});
+  final Widget navigated;
+
+  const ImageButton({super.key, required this.imagePath, required this.text, required this.discription,required this.navigated});
 
   @override
   Widget build(BuildContext context) {
    
    return GestureDetector(
             onTap: () {
-              print('Clicked');
+              Get.to(() => navigated);
             },
             child:
             Container(

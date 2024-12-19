@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/pages/analyze.dart';
+import 'package:front_end/pages/calculate.dart';
+import 'package:front_end/pages/detect.dart';
+import 'package:front_end/pages/predict.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/image_button.dart';
 import 'package:front_end/widgets/profile_bar.dart';
@@ -10,29 +14,29 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          const Column(
+           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ProfileBar(), 
-              Text_Field(text: 'Welcome Nabiha \n to AP', fontSize: 24, fontWeight: FontWeight.bold),
-              Spacer(),
+              const ProfileBar(), 
+              const Text_Field(text: 'Welcome Nabiha \n to AP', fontSize: 24, fontWeight: FontWeight.bold),
+              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ImageButton(imagePath: 'assets/Detect-Image.webp', text: 'DETECT', discription: 'DETECT & FIX \nERRORS',),
-                  ImageButton(imagePath: 'assets/Analyze-Image.webp', text: 'ANALYZE', discription: 'ANALYZE YOUR PERFORMANCE',),
+                  ImageButton(imagePath: 'assets/Detect-Image.webp', text: 'DETECT', discription: 'DETECT & FIX \nERRORS', navigated: Detect(),),
+                  ImageButton(imagePath: 'assets/Analyze-Image.webp', text: 'ANALYZE', discription: 'ANALYZE YOUR PERFORMANCE',navigated: Analyze()),
                 ],
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ImageButton(imagePath: 'assets/Predict-Image.webp', text: 'PREDICT', discription: 'PREDICT FUTURE PERFORMANCES',),
-                  ImageButton(imagePath: 'assets/Calculate-Image.webp', text: 'CALCULATE', discription: 'CALCULATE YOUR \nPOINTS',),
+                  ImageButton(imagePath: 'assets/Predict-Image.webp', text: 'PREDICT', discription: 'PREDICT FUTURE PERFORMANCES',navigated: Predict()),
+                  ImageButton(imagePath: 'assets/Calculate-Image.webp', text: 'CALCULATE', discription: 'CALCULATE YOUR \nPOINTS',navigated: Calculate()),
                 ],
               ),
-              Spacer(),
-              Spacer(),
+              const Spacer(),
+              const Spacer(),
             ]
           ),
           AssistiveBall(),
