@@ -11,16 +11,16 @@ class Detect extends StatelessWidget {
     return   Scaffold(
         body:Stack(
           children: [
-              Center(
+              const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center, children: [
-            const ProfileBar(),
-            const Spacer(),
-            const Upload(),
-            const SizedBox(height: 10,),
-            Main_Button(text: 'Detect', icon: const Icon(Icons.error), navigated: Detecting(),),
-            const Spacer(),
-            const Spacer(),
+            ProfileBar(),
+            Spacer(),
+            Upload(),
+            SizedBox(height: 10,),
+            Main_Button(text: 'Detect', icon: Icon(Icons.error), route: '/detecting',),
+            Spacer(),
+            Spacer(),
           ]),
         
       ),

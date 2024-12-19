@@ -5,16 +5,17 @@ import 'package:get/get_core/src/get_main.dart';
 class Main_Button extends StatelessWidget {
   final String text;
   final Icon icon;
-  final Widget navigated;
+ 
+  final String route;
 
-  const Main_Button({super.key, required this.text, required this.icon, required this.navigated});
+  const Main_Button({super.key, required this.text, required this.icon, required this.route});
 
   @override
   Widget build(BuildContext context) {
    
    return GestureDetector(
             onTap: () {
-               Get.to(() => navigated);
+              Get.toNamed(route);
             },
             child:Container(
       decoration: BoxDecoration(
