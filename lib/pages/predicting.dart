@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/button.dart';
 import 'package:front_end/widgets/image_container.dart';
 import 'package:front_end/widgets/profile_bar.dart';
@@ -8,7 +9,9 @@ class Predicting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return    Scaffold(
-        body: Center(
+        body: Stack(
+        children: [
+           Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center, children: [
           const ProfileBar(),
@@ -23,4 +26,6 @@ class Predicting extends StatelessWidget {
           const SizedBox(height: 10,),
           const Main_Button(text: 'Analyze Another', icon: Icon(Icons.analytics)),
           const Spacer(),
-        ])));}}
+        ])),
+        AssistiveBall(),
+        ]));}}

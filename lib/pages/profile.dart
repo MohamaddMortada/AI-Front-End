@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/profile_widget.dart';
 
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Center(
+    return  Scaffold(
+        body: Stack(
+        children: [
+          const Center(
           
           child:Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -25,7 +28,8 @@ class Profile extends StatelessWidget {
               Spacer(),Spacer(),
             ]
           )
-        )
+        ),
+        AssistiveBall()])
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/button.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/text_field.dart';
@@ -6,8 +7,10 @@ import 'package:front_end/widgets/text_field.dart';
 class ChangePassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Center(
+    return  Scaffold(
+        body: Stack(
+          children: [
+            const Center(
           
           child:Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -25,7 +28,7 @@ class ChangePassword extends StatelessWidget {
               Spacer(),
             ]
           )
-        )
+        ),AssistiveBall()])
     );
   }
 }

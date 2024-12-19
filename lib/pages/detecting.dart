@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/image_container.dart';
 import 'package:front_end/widgets/profile_bar.dart';
 import 'package:front_end/widgets/voice.dart';
@@ -8,8 +9,10 @@ import 'package:front_end/widgets/voice.dart';
 class Detecting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return   const Scaffold(
-        body: Center(
+    return    Scaffold(
+        body: Stack(
+          children: [
+            const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center, children: [
           ProfileBar(),
@@ -19,4 +22,6 @@ class Detecting extends StatelessWidget {
           Voice(),
           ImageContainer(imageUrl: 'https://pics.craiyon.com/2023-10-20/ff5136d14c0f415faa9cd7e7b654a277.webp'),
           Spacer(),
-        ])));}}
+        ])),
+        AssistiveBall(),
+        ]));}}

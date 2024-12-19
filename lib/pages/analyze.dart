@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/button.dart';
 import 'package:front_end/widgets/profile_bar.dart';
 import 'package:front_end/widgets/upload.dart';
@@ -6,9 +7,11 @@ import 'package:front_end/widgets/upload.dart';
 class Analyze extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  const Scaffold(
-        body: Center(
-      child: Column(
+    return   Scaffold(
+        body: Stack(
+          children: [
+            const Center(
+        child: Column(
         mainAxisAlignment: MainAxisAlignment.center, children: [
             ProfileBar(),
             Spacer(),
@@ -17,9 +20,9 @@ class Analyze extends StatelessWidget {
             Main_Button(text: 'Analyze', icon: Icon(Icons.analytics)),
             Spacer(),
             Spacer(),
-          ]),
-        
-      ),
+          ]),),
+          AssistiveBall(),
+      ])
     );
   }
 }

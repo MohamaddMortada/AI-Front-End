@@ -28,6 +28,7 @@ class OnBoarding extends StatelessWidget {
           SizedBox(height: 10),
           Main_Button(text: 'Login',icon: Icon(Icons.login)),
           Spacer(),
+          Spacer(),
         ],
       ),
     ));

@@ -1,16 +1,16 @@
-
 import 'package:flutter/material.dart';
+import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/image_button.dart';
 import 'package:front_end/widgets/profile_bar.dart';
-import 'package:front_end/widgets/profile_widget.dart';
 import 'package:front_end/widgets/text_field.dart';
 
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Column(
-          
+    return Scaffold(
+      body: Stack(
+        children: [
+          const Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ProfileBar(), 
@@ -34,8 +34,11 @@ class MainPage extends StatelessWidget {
               Spacer(),
               Spacer(),
             ]
-          )
-        );
-    
+          ),
+          AssistiveBall(),
+         
+        ],
+      ),
+    );
   }
 }
