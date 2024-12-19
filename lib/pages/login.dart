@@ -7,32 +7,32 @@ import 'package:front_end/widgets/text_field.dart';
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return  const Scaffold(
         body: Center(
           
           child:Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const MainLogo(),
-              const Text_Field(
+              MainLogo(),
+              Text_Field(
                 text: 'ATHLETIC PERFORMANCE',
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
-              const Spacer(),
-              const Input(text: 'Username', icon: Icon(Icons.person), height: 45, maxLines: 1),
-              const SizedBox(height: 10),
-              const Input(text: 'Password', icon: Icon(Icons.key), height: 45, maxLines: 1),
-              const SizedBox(height: 10),
-              const Text_Field(
+              Spacer(),
+              Input(text: 'Username', icon: Icon(Icons.person), height: 45, maxLines: 1),
+              SizedBox(height: 10),
+              Input(text: 'Password', icon: Icon(Icons.key), height: 45, maxLines: 1),
+              SizedBox(height: 10),
+              Text_Field(
                 text: 'Forgot your Password',
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
               ),
-              const SizedBox(height: 10),
-              Main_Button(text: 'Login',icon: const Icon(Icons.login), navigated: Login(),),
-              const SizedBox(height: 10),
-              const Spacer(),
+              SizedBox(height: 10),
+              Main_Button(text: 'Login',icon: Icon(Icons.login), route: '/Login',),
+              SizedBox(height: 10),
+              Spacer(),
 
             ],
           )

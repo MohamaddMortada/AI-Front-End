@@ -26,7 +26,7 @@ class Predicting extends StatelessWidget {
           const SizedBox(height: 10,),
           const ButtonSecondary(text: 'Average Speed', icon: Icon(Icons.speed)),
           const SizedBox(height: 10,),
-           Main_Button(text: 'Analyze Another', icon: Icon(Icons.analytics), navigated: Analyze(),),
+           Main_Button(text: 'Predict Another', icon: Icon(Icons.analytics), route: '/predict',),
           const Spacer(),
         ])),
         AssistiveBall(),

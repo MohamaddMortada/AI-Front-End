@@ -11,30 +11,30 @@ class Analyzing extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(children: [
-       Center(
+       const Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        const ProfileBar(),
-        const Spacer(),
-        const ButtonSecondary(text: 'Distance', icon: Icon(Icons.event)),
-        const SizedBox(
+        ProfileBar(),
+        Spacer(),
+        ButtonSecondary(text: 'Distance', icon: Icon(Icons.event)),
+        SizedBox(
           height: 10,
         ),
-        const ButtonSecondary(text: 'Result', icon: Icon(Icons.lock_clock)),
-        const SizedBox(
+        ButtonSecondary(text: 'Result', icon: Icon(Icons.lock_clock)),
+        SizedBox(
           height: 10,
         ),
-        const ImageContainer(
+        ImageContainer(
             imageUrl:
                 'https://pics.craiyon.com/2023-10-20/ff5136d14c0f415faa9cd7e7b654a277.webp'),
-        const SizedBox(
+        SizedBox(
           height: 10,
         ),
-        const ButtonSecondary(text: 'Average Speed', icon: Icon(Icons.speed)),
-        const SizedBox(
+        ButtonSecondary(text: 'Average Speed', icon: Icon(Icons.speed)),
+        SizedBox(
           height: 10,
         ),
-        Main_Button(text: 'Analyze Another', icon: const Icon(Icons.analytics), navigated: Analyze(),),
-        const Spacer(),
+        Main_Button(text: 'Analyze Another', icon: Icon(Icons.analytics), route: '/Analyze',),
+        Spacer(),
       ])),
       AssistiveBall(),
     ]));
