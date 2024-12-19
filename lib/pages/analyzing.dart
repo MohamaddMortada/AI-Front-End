@@ -33,7 +33,7 @@ class Analyzing extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Main_Button(text: 'Analyze Another', icon: Icon(Icons.analytics), route: '/Analyze',),
+        Main_Button(text: 'Analyze Another', icon: Icon(Icons.analytics), route: '/analyze',),
         Spacer(),
       ])),
       AssistiveBall(),

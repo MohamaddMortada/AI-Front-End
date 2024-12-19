@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/controllers/assistive_ball_controller.dart';
+import 'package:front_end/widgets/icon_Item.dart';
 import 'package:get/get.dart';
 
 class AssistiveBall extends StatelessWidget {
@@ -47,24 +48,15 @@ class AssistiveBall extends StatelessWidget {
     );
   }
 
-  Widget _iconItem(IconData icon, String tooltip) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Tooltip(
-        message: tooltip,
-        child: Icon(icon, color: Colors.white, size: 35),
-      ),
-    );
-  }
 
   Widget _buildIconsColumn() {
-    return Column(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _iconItem(Icons.home, "Home"),
-        _iconItem(Icons.chat, "AI Chatbot"),
-        _iconItem(Icons.person, "Profile"),
-        _iconItem(Icons.email_outlined, "Contact Us"),
+         IconItem(route: '/main', icon: Icons.home,),
+         IconItem(route: '/main', icon: Icons.chat,),
+         IconItem(route: '/main', icon: Icons.person,),
+         IconItem(route: '/main', icon: Icons.email,),
       ],
     );
   }

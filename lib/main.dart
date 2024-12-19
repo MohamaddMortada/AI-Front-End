@@ -7,6 +7,7 @@ import 'package:front_end/pages/detecting.dart';
 import 'package:front_end/pages/home.dart';
 import 'package:front_end/pages/login.dart';
 import 'package:front_end/pages/main_page.dart';
+import 'package:front_end/pages/on_boarding.dart';
 import 'package:front_end/pages/predict.dart';
 import 'package:front_end/pages/predicting.dart';
 import 'package:front_end/pages/register.dart';
@@ -26,7 +27,7 @@ class MainApp extends StatelessWidget {
     return  GetMaterialApp(
       initialRoute: '/',  
       getPages: [
-        GetPage(name: '/', page: () => MainPage()),  
+        GetPage(name: '/main', page: () => MainPage()),  
         GetPage(name: '/detect', page: () => Detect()), 
         GetPage(name: '/analyze', page: () => Analyze()), 
         GetPage(name: '/predict', page: () => Predict()),

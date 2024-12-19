@@ -30,7 +30,7 @@ class Login extends StatelessWidget {
                 fontWeight: FontWeight.normal,
               ),
               SizedBox(height: 10),
-              Main_Button(text: 'Login',icon: Icon(Icons.login), route: '/Login',),
+              Main_Button(text: 'Login',icon: Icon(Icons.login), route: '/main',),
               SizedBox(height: 10),
               Spacer(),
 
