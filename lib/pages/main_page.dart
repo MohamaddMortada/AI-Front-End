@@ -24,7 +24,7 @@ class MainPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ImageButton(imagePath: 'assets/Detect-Image.webp', text: 'DETECT', discription: 'DETECT & FIX \nERRORS', route: '/detect',),
-                  ImageButton(imagePath: 'assets/Analyze-Image.webp', text: 'ANALYZE', discription: 'ANALYZE YOUR PERFORMANCE',route: '/Analyze'),
+                  ImageButton(imagePath: 'assets/Analyze-Image.webp', text: 'ANALYZE', discription: 'ANALYZE YOUR PERFORMANCE',route: '/analyze'),
                 ],
               ),
               SizedBox(height: 50),
