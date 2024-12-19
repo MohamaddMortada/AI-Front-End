@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/button.dart';
+import 'package:front_end/widgets/button_secondary.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/text_field.dart';
 
@@ -24,7 +25,7 @@ class ChangePassword extends StatelessWidget {
               SizedBox(height: 10),
               Input(text: 'Confirm Password', icon: Icon(Icons.key), height: 45, maxLines: 1),
               SizedBox(height: 30),
-              Main_Button(text: 'Update Password', icon: Icon(Icons.update)),
+              ButtonSecondary(text: 'Update Password', icon: Icon(Icons.update)),
               Spacer(),
             ]
           )

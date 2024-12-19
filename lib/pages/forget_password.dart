@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:front_end/widgets/button.dart';
+import 'package:front_end/widgets/button_secondary.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/main_logo.dart';
 import 'package:front_end/widgets/text_field.dart';
@@ -22,7 +24,7 @@ class ForgetPassword extends StatelessWidget {
               Spacer(),
               Input(text: 'Email', icon: Icon(Icons.email), height: 45, maxLines: 1),
               SizedBox(height: 10),
-              Main_Button(text: 'Send New Password', icon: Icon(Icons.password)),
+             ButtonSecondary(text: 'Send New Password', icon: Icon(Icons.password)),
               Spacer(),
               Spacer(),
             ]

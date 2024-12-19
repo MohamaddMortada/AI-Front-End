@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
-import 'package:front_end/widgets/button.dart';
+import 'package:front_end/widgets/button_secondary.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/profile_bar.dart';
 
@@ -13,7 +13,7 @@ class Calculate extends StatelessWidget {
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         ProfileBar(),
         Spacer(),
-        Main_Button(text: 'Event', icon: Icon(Icons.event)),
+        ButtonSecondary(text: 'Event', icon: Icon(Icons.event)),
         SizedBox(
           height: 10,
         ),
@@ -25,7 +25,7 @@ class Calculate extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Main_Button(text: 'Calculate', icon: Icon(Icons.calculate)),
+        ButtonSecondary(text: 'Calculate', icon: Icon(Icons.calculate)),
         SizedBox(
           height: 10,
         ),

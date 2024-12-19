@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/pages/home.dart';
+import 'package:front_end/pages/main_page.dart';
 import 'package:front_end/widgets/button.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/main_logo.dart';
@@ -7,7 +9,7 @@ import 'package:front_end/widgets/text_field.dart';
 class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
         body: Center(
           
           child:Column(
@@ -30,11 +32,11 @@ class Register extends StatelessWidget {
               SizedBox(height: 10),
               Input(text: 'Confirm Password', icon: Icon(Icons.key), height: 45, maxLines: 1),
               SizedBox(height: 20),
-              Main_Button(text: 'Register',icon: Icon(Icons.app_registration_rounded),),
+              Main_Button(text: 'Register',icon: Icon(Icons.app_registration_rounded), navigated: MainPage(),),
               SizedBox(height: 10),
               Text('OR'),
               SizedBox(height: 10),
-              Main_Button(text: 'Register with Google',icon: Icon(Icons.app_registration_rounded),),
+              Main_Button(text: 'Register with Google',icon: Icon(Icons.app_registration_rounded), navigated: MainPage(),),
               Spacer(),
             ],
           )

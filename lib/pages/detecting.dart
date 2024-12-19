@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/image_container.dart';
 import 'package:front_end/widgets/profile_bar.dart';

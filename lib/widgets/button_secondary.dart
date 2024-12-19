@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-class Main_Button extends StatelessWidget {
+class ButtonSecondary extends StatelessWidget {
   final String text;
   final Icon icon;
-  final Widget navigated;
+  
 
-  const Main_Button({super.key, required this.text, required this.icon, required this.navigated});
+  const ButtonSecondary({super.key, required this.text, required this.icon, });
 
   @override
   Widget build(BuildContext context) {
    
    return GestureDetector(
             onTap: () {
-               Get.to(() => navigated);
+               print('Clicked');
             },
             child:Container(
       decoration: BoxDecoration(

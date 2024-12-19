@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/pages/home.dart';
+import 'package:front_end/pages/predicting.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/button.dart';
+import 'package:front_end/widgets/button_secondary.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/profile_bar.dart';
 import 'package:front_end/widgets/text_field.dart';
@@ -11,7 +14,7 @@ class Predict extends StatelessWidget {
     return  Scaffold(
         body: Stack(
         children: [
-          const Center(
+           Center(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center, children: [
                   ProfileBar(),
@@ -22,9 +25,9 @@ class Predict extends StatelessWidget {
                   SizedBox(height: 10,),
                   Input(text: 'Time', icon: Icon(Icons.lock_clock), height: 45, maxLines: 1),
                   SizedBox(height: 10,),
-                  Main_Button(text: 'Add Result', icon: Icon(Icons.add)),
+                  ButtonSecondary(text: 'Add Result', icon: Icon(Icons.add),),
                   SizedBox(height: 10,),
-                  Main_Button(text: 'Predict', icon: Icon(Icons.batch_prediction)),
+                   Main_Button(text: 'Predict', icon: Icon(Icons.batch_prediction), navigated: Predicting(),),
                   Spacer(),
 
                 ]
