@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 
 class AssistiveBallController extends GetxController {
   var isExpanded = false.obs; 
-  var ballX = 0.0.obs; 
-  var ballY = 0.0.obs; 
+  var ballX = 150.0.obs;
+  var ballY = 400.0.obs;
 
   void toggleExpansion() {
     isExpanded.value = !isExpanded.value;
