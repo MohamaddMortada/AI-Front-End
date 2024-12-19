@@ -6,16 +6,16 @@ class ImageButton extends StatelessWidget {
   final String imagePath;
   final String text;
   final String discription;
-  final Widget navigated;
+  final String route;
 
-  const ImageButton({super.key, required this.imagePath, required this.text, required this.discription,required this.navigated});
+  const ImageButton({super.key, required this.imagePath, required this.text, required this.discription,required this.route});
 
   @override
   Widget build(BuildContext context) {
    
    return GestureDetector(
             onTap: () {
-              Get.to(() => navigated);
+              Get.toNamed(route);
             },
             child:
             Container(

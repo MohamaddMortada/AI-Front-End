@@ -14,29 +14,29 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-           Column(
+           const Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const ProfileBar(), 
-              const Text_Field(text: 'Welcome Nabiha \n to AP', fontSize: 24, fontWeight: FontWeight.bold),
-              const Spacer(),
+              ProfileBar(), 
+              Text_Field(text: 'Welcome Nabiha \n to AP', fontSize: 24, fontWeight: FontWeight.bold),
+              Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ImageButton(imagePath: 'assets/Detect-Image.webp', text: 'DETECT', discription: 'DETECT & FIX \nERRORS', navigated: Detect(),),
-                  ImageButton(imagePath: 'assets/Analyze-Image.webp', text: 'ANALYZE', discription: 'ANALYZE YOUR PERFORMANCE',navigated: Analyze()),
+                  ImageButton(imagePath: 'assets/Detect-Image.webp', text: 'DETECT', discription: 'DETECT & FIX \nERRORS', route: '/detect',),
+                  ImageButton(imagePath: 'assets/Analyze-Image.webp', text: 'ANALYZE', discription: 'ANALYZE YOUR PERFORMANCE',route: '/Analyze'),
                 ],
               ),
-              const SizedBox(height: 50),
+              SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ImageButton(imagePath: 'assets/Predict-Image.webp', text: 'PREDICT', discription: 'PREDICT FUTURE PERFORMANCES',navigated: Predict()),
-                  ImageButton(imagePath: 'assets/Calculate-Image.webp', text: 'CALCULATE', discription: 'CALCULATE YOUR \nPOINTS',navigated: Calculate()),
+                  ImageButton(imagePath: 'assets/Predict-Image.webp', text: 'PREDICT', discription: 'PREDICT FUTURE PERFORMANCES',route: '/predict'),
+                  ImageButton(imagePath: 'assets/Calculate-Image.webp', text: 'CALCULATE', discription: 'CALCULATE YOUR \nPOINTS',route: '/calculate'),
                 ],
               ),
-              const Spacer(),
-              const Spacer(),
+              Spacer(),
+              Spacer(),
             ]
           ),
           AssistiveBall(),

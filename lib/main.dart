@@ -33,6 +33,7 @@ class MainApp extends StatelessWidget {
         GetPage(name: '/calculate', page: () => Calculate()),
         GetPage(name: '/register', page: () => Register()),
         GetPage(name: '/login', page: () => Login()),
+        GetPage(name: '/detecting', page: () => Detecting()),
         GetPage(name: '/analyzing', page: () => Analyzing()),
         GetPage(name: '/predicting', page: () => Predicting()),
 
