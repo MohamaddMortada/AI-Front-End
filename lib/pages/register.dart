@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/controllers/register_controller.dart';
 import 'package:front_end/pages/home.dart';
 import 'package:front_end/pages/main_page.dart';
 import 'package:front_end/widgets/button.dart';
@@ -7,7 +8,13 @@ import 'package:front_end/widgets/main_logo.dart';
 import 'package:front_end/widgets/text_field.dart';
 
 class Register extends StatelessWidget {
+  final RegisterController controller = RegisterController();
+
   final TextEditingController usernameController = TextEditingController();
+  final TextEditingController numberController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +33,13 @@ class Register extends StatelessWidget {
               Spacer(),
               Input(text: 'Username', icon: Icon(Icons.person), height: 45, maxLines: 1, controller: usernameController,),
               SizedBox(height: 10),
-              Input(text: 'Email', icon: Icon(Icons.email), height: 45, maxLines: 1),
+              Input(text: 'Email', icon: Icon(Icons.email), height: 45, maxLines: 1, controller: emailController),
               SizedBox(height: 10),
-              Input(text: 'Phone Number', icon: Icon(Icons.phone), height: 45, maxLines: 1),
+              Input(text: 'Phone Number', icon: Icon(Icons.phone), height: 45, maxLines: 1, controller: numberController),
               SizedBox(height: 10),
-              Input(text: 'Password', icon: Icon(Icons.key), height: 45, maxLines: 1),
+              Input(text: 'Password', icon: Icon(Icons.key), height: 45, maxLines: 1, controller: passwordController),
               SizedBox(height: 10),
-              Input(text: 'Confirm Password', icon: Icon(Icons.key), height: 45, maxLines: 1),
+              Input(text: 'Confirm Password', icon: Icon(Icons.key), height: 45, maxLines: 1, controller: confirmPasswordController),
               SizedBox(height: 20),
               Main_Button(text: 'Register',icon: Icon(Icons.app_registration_rounded), route: '/main'),
               SizedBox(height: 10),
