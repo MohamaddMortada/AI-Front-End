@@ -5,8 +5,10 @@ class Input extends StatelessWidget {
    final Icon icon;
    final double height;
    final int maxLines;
+   final TextEditingController controller;
 
-   const Input({super.key, required this.text, required this.icon, required this.height, required this.maxLines});
+
+   const Input({super.key, required this.text, required this.icon, required this.height, required this.maxLines, required this.controller});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,6 +21,7 @@ class Input extends StatelessWidget {
         color:Theme.of(context).secondaryHeaderColor,
       ),
       child: TextFormField(
+          controller: controller,
           maxLines: maxLines,
           decoration: InputDecoration(
           filled: true,

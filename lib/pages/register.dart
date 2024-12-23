@@ -9,7 +9,7 @@ import 'package:front_end/widgets/text_field.dart';
 class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return  const Scaffold(
         body: Center(
           
           child:Column(
