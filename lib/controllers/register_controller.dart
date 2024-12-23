@@ -14,7 +14,7 @@ class RegisterController {
     String password,
     String confirmPassword,
   ) async {
-        const String apiUrl = "http://localhost:8000/api/auth/register";
+        const String apiUrl = "http://127.0.0.1:8000/api/auth/register";
         if (password != confirmPassword) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Passwords do not match!")),
@@ -34,8 +34,10 @@ class RegisterController {
           'password_confirmation': confirmPassword,
         }),
       );
+      print("Response status code: ${response.statusCode}");
+      print("Response body: ${response.body}");
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         final data = jsonDecode(response.body);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Registration successful! Welcome, ${data['user']['name']}")),
