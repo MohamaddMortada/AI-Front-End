@@ -10,14 +10,14 @@ class Analyze extends StatelessWidget {
     return   Scaffold(
         body: Stack(
           children: [
-             const Center(
+              Center(
         child: Column(
         mainAxisAlignment: MainAxisAlignment.center, children: [
             ProfileBar(),
             Spacer(),
             Upload(),
             SizedBox(height: 10,),
-            Main_Button(text: 'Analyze', icon: Icon(Icons.analytics), route: '/analyzing',),
+            Main_Button(text: 'Analyze', icon: Icon(Icons.analytics), route: '/analyzing', onTap: (){},),
             Spacer(),
             Spacer(),
           ]),),

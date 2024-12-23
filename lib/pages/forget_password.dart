@@ -7,9 +7,12 @@ import 'package:front_end/widgets/main_logo.dart';
 import 'package:front_end/widgets/text_field.dart';
 
 class ForgetPassword extends StatelessWidget {
+    
+  final TextEditingController emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
         body: Center(
           
           child:Column(
@@ -22,7 +25,7 @@ class ForgetPassword extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               Spacer(),
-              Input(text: 'Email', icon: Icon(Icons.email), height: 45, maxLines: 1),
+              Input(text: 'Email', icon: Icon(Icons.email), height: 45, maxLines: 1, controller: emailController,),
               SizedBox(height: 10),
              ButtonSecondary(text: 'Send New Password', icon: Icon(Icons.password)),
               Spacer(),

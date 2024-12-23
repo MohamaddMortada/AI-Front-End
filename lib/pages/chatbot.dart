@@ -4,9 +4,12 @@ import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/profile_widget.dart';
 
 class Chatbot extends StatelessWidget {
+    
+    final TextEditingController messageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return   const Scaffold(
+    return    Scaffold(
         body: Stack(
           
           children: [
@@ -24,7 +27,7 @@ class Chatbot extends StatelessWidget {
             alignment:Alignment.bottomCenter,
             child:Input(
               
-              text: 'Type your message here!', icon: Icon(Icons.type_specimen), height: 45, maxLines: 1,
+              text: 'Type your message here!', icon: Icon(Icons.type_specimen), height: 45, maxLines: 1, controller: messageController,
               ),
               
             ),

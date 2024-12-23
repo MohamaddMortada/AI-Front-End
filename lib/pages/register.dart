@@ -44,7 +44,7 @@ class Register extends StatelessWidget {
               Main_Button(
                 text: 'Register',icon: Icon(Icons.app_registration_rounded), route: '/main', 
                 onTap: () =>controller.registerUser(
-                  usernameController.text.trim() as BuildContext,
+                  usernameController.text.trim(),
                   emailController.text.trim(),
                   numberController.text.trim(),
                   passwordController.text.trim(),

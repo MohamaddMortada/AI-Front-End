@@ -11,7 +11,7 @@ class Analyzing extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(children: [
-       const Center(
+        Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         ProfileBar(),
         Spacer(),
@@ -33,7 +33,7 @@ class Analyzing extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Main_Button(text: 'Analyze Another', icon: Icon(Icons.analytics), route: '/analyze',),
+        Main_Button(text: 'Analyze Another', icon: Icon(Icons.analytics), route: '/analyze', onTap: () {  },),
         Spacer(),
       ])),
       AssistiveBall(),

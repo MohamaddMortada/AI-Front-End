@@ -9,6 +9,10 @@ import 'package:front_end/widgets/profile_bar.dart';
 import 'package:front_end/widgets/text_field.dart';
 
 class Predict extends StatelessWidget {
+  
+  final TextEditingController distanceController = TextEditingController();
+  final TextEditingController timeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -21,13 +25,13 @@ class Predict extends StatelessWidget {
                   Spacer(),
                   Text_Field(text: 'Input some previous Results: ', fontSize: 18, fontWeight: FontWeight.normal),
                   SizedBox(height: 10,),
-                  Input(text: 'Distance', icon: Icon(Icons.social_distance), height: 45, maxLines: 1),
+                  Input(text: 'Distance', icon: Icon(Icons.social_distance), height: 45, maxLines: 1, controller: distanceController,),
                   SizedBox(height: 10,),
-                  Input(text: 'Time', icon: Icon(Icons.lock_clock), height: 45, maxLines: 1),
+                  Input(text: 'Time', icon: Icon(Icons.lock_clock), height: 45, maxLines: 1, controller: distanceController,),
                   SizedBox(height: 10,),
                   ButtonSecondary(text: 'Add Result', icon: Icon(Icons.add),),
                   SizedBox(height: 10,),
-                   Main_Button(text: 'Predict', icon: Icon(Icons.batch_prediction), route: '/predicting',),
+                   Main_Button(text: 'Predict', icon: Icon(Icons.batch_prediction), route: '/predicting', onTap: () {  },),
                   Spacer(),
 
                 ]

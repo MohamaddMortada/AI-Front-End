@@ -5,11 +5,15 @@ import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/profile_bar.dart';
 
 class Calculate extends StatelessWidget {
+
+  final TextEditingController resultController = TextEditingController();
+  final TextEditingController scoreController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(children: [
-      const Center(
+       Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         ProfileBar(),
         Spacer(),
@@ -21,7 +25,7 @@ class Calculate extends StatelessWidget {
             text: 'Result',
             icon: Icon(Icons.lock_clock),
             height: 45,
-            maxLines: 1),
+            maxLines: 1, controller: resultController,),
         SizedBox(
           height: 10,
         ),
@@ -29,7 +33,7 @@ class Calculate extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Input(text: 'Score', icon: Icon(Icons.score), height: 45, maxLines: 1),
+        Input(text: 'Score', icon: Icon(Icons.score), height: 45, maxLines: 1, controller: scoreController,),
         Spacer(),
       ])),
       AssistiveBall()

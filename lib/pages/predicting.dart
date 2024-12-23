@@ -8,6 +8,7 @@ import 'package:front_end/widgets/image_container.dart';
 import 'package:front_end/widgets/profile_bar.dart';
 
 class Predicting extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return    Scaffold(
@@ -26,7 +27,7 @@ class Predicting extends StatelessWidget {
           const SizedBox(height: 10,),
           const ButtonSecondary(text: 'Average Speed', icon: Icon(Icons.speed)),
           const SizedBox(height: 10,),
-           Main_Button(text: 'Predict Another', icon: Icon(Icons.analytics), route: '/predict',),
+           Main_Button(text: 'Predict Another', icon: Icon(Icons.analytics), route: '/predict', onTap: () {  },),
           const Spacer(),
         ])),
         AssistiveBall(),

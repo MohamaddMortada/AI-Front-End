@@ -8,7 +8,7 @@ import 'package:front_end/widgets/text_field.dart';
 class OnBoarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  const Scaffold(
+    return  Scaffold(
         body: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -26,9 +26,9 @@ class OnBoarding extends StatelessWidget {
             fontWeight: FontWeight.w300,
           ),
           SizedBox(height: 10),
-          Main_Button(text: 'Register',icon: Icon(Icons.app_registration_rounded), route: 'register',),
+          Main_Button(text: 'Register',icon: Icon(Icons.app_registration_rounded), route: 'register', onTap: () {  },),
           SizedBox(height: 10),
-          Main_Button(text: 'Login',icon: Icon(Icons.login), route:'/login',),
+          Main_Button(text: 'Login',icon: Icon(Icons.login), route:'/login', onTap: () {  },),
           Spacer(),
           Spacer(),
         ],
