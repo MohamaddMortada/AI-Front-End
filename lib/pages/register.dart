@@ -41,11 +41,19 @@ class Register extends StatelessWidget {
               SizedBox(height: 10),
               Input(text: 'Confirm Password', icon: Icon(Icons.key), height: 45, maxLines: 1, controller: confirmPasswordController),
               SizedBox(height: 20),
-              Main_Button(text: 'Register',icon: Icon(Icons.app_registration_rounded), route: '/main'),
+              Main_Button(
+                text: 'Register',icon: Icon(Icons.app_registration_rounded), route: '/main', 
+                onTap: () =>controller.registerUser(
+                  usernameController.text.trim() as BuildContext,
+                  emailController.text.trim(),
+                  numberController.text.trim(),
+                  passwordController.text.trim(),
+                  confirmPasswordController.text.trim()
+                ),),
               SizedBox(height: 10),
               Text('OR'),
               SizedBox(height: 10),
-              Main_Button(text: 'Register with Google',icon: Icon(Icons.app_registration_rounded), route: '/main',),
+              //Main_Button(text: 'Register with Google',icon: Icon(Icons.app_registration_rounded), route: '/main',onTap: () =>controller.registerUser),
               Spacer(),
             ],
           )
