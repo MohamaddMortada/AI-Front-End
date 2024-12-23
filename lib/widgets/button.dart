@@ -5,18 +5,16 @@ import 'package:get/get_core/src/get_main.dart';
 class Main_Button extends StatelessWidget {
   final String text;
   final Icon icon;
- 
+  final VoidCallback onTap;
   final String route;
 
-  const Main_Button({super.key, required this.text, required this.icon, required this.route});
+  const Main_Button({super.key, required this.text, required this.icon, required this.route, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
    
    return GestureDetector(
-            onTap: () {
-              Get.toNamed(route);
-            },
+            onTap: onTap,
             child:Container(
       decoration: BoxDecoration(
       color: Theme.of(context).primaryColor,
