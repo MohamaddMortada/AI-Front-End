@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -38,6 +40,7 @@ class RegisterController {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Registration successful! Welcome, ${data['user']['name']}")),
         );
+        Get.toNamed('/main');
       } else {
         final error = jsonDecode(response.body);
         ScaffoldMessenger.of(context).showSnackBar(
