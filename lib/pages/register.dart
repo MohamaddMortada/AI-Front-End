@@ -7,9 +7,11 @@ import 'package:front_end/widgets/main_logo.dart';
 import 'package:front_end/widgets/text_field.dart';
 
 class Register extends StatelessWidget {
+  final TextEditingController usernameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return  const Scaffold(
+    return   Scaffold(
         body: Center(
           
           child:Column(
@@ -22,7 +24,7 @@ class Register extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               Spacer(),
-              Input(text: 'Username', icon: Icon(Icons.person), height: 45, maxLines: 1),
+              Input(text: 'Username', icon: Icon(Icons.person), height: 45, maxLines: 1, controller: usernameController,),
               SizedBox(height: 10),
               Input(text: 'Email', icon: Icon(Icons.email), height: 45, maxLines: 1),
               SizedBox(height: 10),
