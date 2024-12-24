@@ -68,5 +68,13 @@ class AuthController {
     final token = await storage.read(key: 'jwt_token');
     return token != null;
   }
-  
+
+  void checkAuthStatus() async {
+    if (await isAuthenticated()) {
+      Get.offAllNamed('/main'); 
+    } else {
+      Get.offAllNamed('/login'); 
+    }
+  }
+
 }
