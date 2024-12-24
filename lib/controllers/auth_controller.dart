@@ -10,6 +10,7 @@ class AuthController {
   final FlutterSecureStorage storage = const FlutterSecureStorage();
   ValueNotifier<bool> isLoading = ValueNotifier(false);
 
+
   Future<void> loginUser(
     BuildContext context,
     String email,
