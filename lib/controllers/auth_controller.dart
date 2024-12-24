@@ -72,7 +72,7 @@ class AuthController {
   }
 
   void checkAuthStatus() async {
-
+    try {
       final String? token = await storage.read(key: 'jwt_token'); 
 
       if (token == null) {
@@ -94,6 +94,11 @@ class AuthController {
         await storage.delete(key: 'jwt_token');
         Get.offAllNamed('/login');
       }
+    }catch (e) {
+      
+      await storage.delete(key: 'jwt_token');
+      Get.offAllNamed('/login');
+    }
   }
 
   Future<String?> getToken() async {
