@@ -63,4 +63,10 @@ class AuthController {
 
     Get.offAllNamed('/login');
   }
+
+  Future<bool> isAuthenticated() async {
+    final token = await storage.read(key: 'jwt_token');
+    return token != null;
+  }
+  
 }
