@@ -6,7 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 
-class LoginController {
+class AuthController {
   final FlutterSecureStorage storage = const FlutterSecureStorage();
   ValueNotifier<bool> isLoading = ValueNotifier(false);
 
@@ -52,5 +52,15 @@ class LoginController {
     } finally {
       isLoading.value = false;
     }
+  }
+
+  Future<void> logoutUser(BuildContext context) async {
+    await storage.delete(key: 'jwt_token');
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Logged out successfully!")),
+    );
+
+    Get.offAllNamed('/login');
   }
 }

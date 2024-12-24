@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:front_end/controllers/login_controller.dart';
+import 'package:front_end/controllers/auth_controller.dart';
 import 'package:front_end/widgets/button.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/main_logo.dart';
 import 'package:front_end/widgets/text_field.dart';
 
 class Login extends StatelessWidget {
-  final LoginController controller = LoginController();
+  final AuthController controller = AuthController();
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
