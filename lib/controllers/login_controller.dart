@@ -12,7 +12,7 @@ class LoginController {
     String email,
     String password,
   ) async {
-    const String apiUrl = "http://localhost:8000/api/auth/login";
+    const String apiUrl = "http://127.0.0.1:8000/api/auth/login";
 
     isLoading.value = true;
 
@@ -29,7 +29,7 @@ class LoginController {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Login successful! Welcome, ${data['name']}")),
+          SnackBar(content: Text("Login successful! Welcome, $email")),
         );
         Get.toNamed('/main');
       } else {

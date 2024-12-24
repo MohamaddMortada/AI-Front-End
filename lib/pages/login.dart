@@ -8,7 +8,7 @@ import 'package:front_end/widgets/text_field.dart';
 class Login extends StatelessWidget {
   final LoginController controller = LoginController();
 
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   @override
@@ -26,7 +26,7 @@ class Login extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               Spacer(),
-              Input(text: 'Username', icon: Icon(Icons.person), height: 45, maxLines: 1, controller: nameController,),
+              Input(text: 'Email', icon: Icon(Icons.person), height: 45, maxLines: 1, controller: emailController,),
               SizedBox(height: 10),
               Input(text: 'Password', icon: Icon(Icons.key), height: 45, maxLines: 1, controller: passwordController,),
               SizedBox(height: 10),
@@ -41,7 +41,7 @@ class Login extends StatelessWidget {
                 onTap: () { 
                    controller.loginUser(
                     context,
-                  nameController.text.trim(),
+                  emailController.text.trim(),
                   passwordController.text.trim(),
                    );
                  },),
