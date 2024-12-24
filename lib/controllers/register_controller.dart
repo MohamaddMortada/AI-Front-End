@@ -40,7 +40,7 @@ class RegisterController {
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = jsonDecode(response.body);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Registration successful! Welcome, ${data['user']['name']}")),
+          SnackBar(content: Text("Registration successful! Welcome, ${data['name']}")),
         );
         Get.toNamed('/main');
       } else {
