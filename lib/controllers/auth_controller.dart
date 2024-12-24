@@ -77,4 +77,8 @@ class AuthController {
     }
   }
 
+  Future<String?> getToken() async {
+    return await storage.read(key: 'jwt_token');
+  }
+
 }
