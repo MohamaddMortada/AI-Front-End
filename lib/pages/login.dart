@@ -41,8 +41,8 @@ class Login extends StatelessWidget {
                 onTap: () { 
                    controller.loginUser(
                     context,
-                  emailController.text.trim(),
-                  passwordController.text.trim(),
+                    emailController.text.trim(),
+                    passwordController.text.trim(),
                    );
                  },),
               SizedBox(height: 10),
