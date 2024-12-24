@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:front_end/controllers/api_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -71,11 +72,28 @@ class AuthController {
   }
 
   void checkAuthStatus() async {
-    if (await isAuthenticated()) {
-      Get.offAllNamed('/main'); 
-    } else {
-      Get.offAllNamed('/login'); 
-    }
+
+      final String? token = await storage.read(key: 'jwt_token'); 
+
+      if (token == null) {
+
+        Get.offAllNamed('/login');
+        return;
+      }
+
+      final response = await ApiClient().request(
+        'POST', 
+        'http://127.0.0.1:8000/api/auth/me',
+      );
+
+      if (response.statusCode == 200) {
+        final userData = jsonDecode(response.body); 
+        Get.offAllNamed('/main', arguments: userData);
+      } else {
+
+        await storage.delete(key: 'jwt_token');
+        Get.offAllNamed('/login');
+      }
   }
 
   Future<String?> getToken() async {
