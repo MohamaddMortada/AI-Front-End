@@ -1,5 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:front_end/pages/detecting.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
@@ -26,6 +27,32 @@ class _DetectState extends State<Detect> {
       });
     }
   }
+
+  Future<void> _detectImage(BuildContext context) async {
+    if (_image == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please upload an image first.')),
+      );
+      return;
+    }
+
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse('http://127.0.0.1:5000/detect_image'), 
+    );
+    request.files.add(await http.MultipartFile.fromPath('image', _image!.path));
+
+    final response = await request.send();
+    if (response.statusCode == 200) {
+      final responseData = await response.stream.toBytes();
+      final result = json.decode(String.fromCharCodes(responseData));
+      print(result);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error detecting image.')),
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return   Scaffold(
@@ -36,9 +63,9 @@ class _DetectState extends State<Detect> {
         mainAxisAlignment: MainAxisAlignment.center, children: [
             ProfileBar(),
             Spacer(),
-            Upload(),
+            ElevatedButton(onPressed: _uploadImage, child: Text('Upload')),
             SizedBox(height: 10,),
-            Main_Button(text: 'Detect', icon: Icon(Icons.error), route: '/detecting', onTap: () {  },),
+            Main_Button(text: 'Detect', icon: Icon(Icons.error), route: '/detecting', onTap: (){_detectImage(context);}),
             Spacer(),
             Spacer(),
           ]),
