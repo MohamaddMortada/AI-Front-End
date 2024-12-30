@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:front_end/controllers/routes.dart';
+import 'package:front_end/pages/detect.dart';
 import 'package:front_end/pages/login.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -24,7 +25,7 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFB2C8D0),
 
       ),
-      home:Login(),
+      home:Detect(),
       
     );
   }
