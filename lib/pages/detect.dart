@@ -14,10 +14,13 @@ class Detect extends StatefulWidget {
 }
 
 class _DetectState extends State<Detect> {
-  File? _media;
+File? _media;
   final picker = ImagePicker();
   String _result = '';
   String _errorMessage = '';
+  String _selectedMode = 'start';
+  final List<String> _modes = ['start', 'set', 'hop', 'drive', 'sprint', 'run'];
+
 
   Future<void> uploadMedia() async {
     final pickedFile = await showDialog<File?>(
@@ -114,6 +117,37 @@ class _DetectState extends State<Detect> {
               children: [
                 ProfileBar(),
                 Spacer(),
+                Container(
+                  alignment: Alignment.center,
+                  width: 270,
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: DropdownButton<String>(
+                    isExpanded: true,
+                    borderRadius: BorderRadius.circular(10),
+                    iconEnabledColor: Theme.of(context).primaryColor,
+                    dropdownColor: Theme.of(context).primaryColor,
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                    value: _selectedMode,
+                    items: _modes.map((String mode) {
+                      return DropdownMenuItem<String>(
+                        value: mode,
+                        child: Text(mode),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedMode = newValue!;
+                      });
+                    },
+                  ),
+                ),
+
+
                 if (_image != null) Image.file(_image!),
                 Upload(onTap:_uploadImage),
                 SizedBox(height: 10),
