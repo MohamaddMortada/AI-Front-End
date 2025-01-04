@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:front_end/widgets/upload.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,15 +13,14 @@ class Detect extends StatefulWidget {
 }
 
 class _DetectState extends State<Detect> {
-File? _media;
+  File? _media;
   final picker = ImagePicker();
   String _result = '';
   String _errorMessage = '';
   String _selectedMode = 'start';
   final List<String> _modes = ['start', 'set', 'hop', 'drive', 'sprint', 'run'];
 
-
-  Future<void> uploadMedia() async {
+  Future<void> _uploadMedia() async {
     final pickedFile = await showDialog<File?>(
       context: context,
       builder: (context) {
@@ -60,7 +58,7 @@ File? _media;
     }
   }
 
-  Future<void> detectMedia(BuildContext context) async {
+  Future<void> _detectMedia(BuildContext context) async {
     if (_media == null) {
       setState(() {
         _errorMessage = 'Please upload an image or video first.';
@@ -146,23 +144,28 @@ File? _media;
                     },
                   ),
                 ),
-
-
-                if (_image != null) Image.file(_image!),
-                Upload(onTap:_uploadImage),
+                if (_media != null) Image.file(_media!),
+                ElevatedButton(
+                  onPressed: _uploadMedia,
+                  child: Text('Upload Image/Video'),
+                ),
                 SizedBox(height: 10),
                 Main_Button(
                   text: 'Detect',
                   icon: Icons.error,
                   route: '/detecting',
                   onTap: () {
-                    _detectImage(context);
+                    _detectMedia(context);
                   },
                 ),
                 SizedBox(height: 20),
                 if (_errorMessage.isNotEmpty)
-                  Text(_errorMessage, style: TextStyle(color: Colors.red)),
-                if (_result.isNotEmpty) Text('Result: $_result'),
+                  Text(
+                    _errorMessage,
+                    style:
+                        TextStyle(color: const Color.fromARGB(255, 130, 9, 0)),
+                  ),
+                if (_result.isNotEmpty) Text(_result),
                 Spacer(),
               ],
             ),
