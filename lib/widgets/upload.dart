@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 class Upload extends StatelessWidget {
-
-  const Upload({super.key});
+final VoidCallback onTap;
+  const Upload({required this.onTap});
 
   @override
   Widget build(BuildContext context) {
    
    return GestureDetector(
-            onTap: () {
-              print('Clicked');
-            },
+            onTap: onTap,
             child:Container(
       decoration: BoxDecoration(
       color: Theme.of(context).primaryColor,

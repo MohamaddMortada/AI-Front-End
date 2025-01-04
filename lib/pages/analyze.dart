@@ -15,7 +15,7 @@ class Analyze extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center, children: [
             ProfileBar(),
             Spacer(),
-            Upload(),
+            //Upload(),
             SizedBox(height: 10,),
             Main_Button(text: 'Analyze', icon: Icons.analytics, route: '/analyzing', onTap: (){},),
             Spacer(),

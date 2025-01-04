@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:front_end/widgets/upload.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,16 +14,44 @@ class Detect extends StatefulWidget {
 }
 
 class _DetectState extends State<Detect> {
-  File? _image;
+  File? _media;
   final picker = ImagePicker();
   String _result = '';
   String _errorMessage = '';
 
-  Future<void> _uploadImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+  Future<void> uploadMedia() async {
+    final pickedFile = await showDialog<File?>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Select Media'),
+          actions: [
+            TextButton(
+              onPressed: () async {
+                final file =
+                    await picker.pickImage(source: ImageSource.gallery);
+                Navigator.of(context)
+                    .pop(file != null ? File(file.path) : null);
+              },
+              child: Text('Image'),
+            ),
+            TextButton(
+              onPressed: () async {
+                final file =
+                    await picker.pickVideo(source: ImageSource.gallery);
+                Navigator.of(context)
+                    .pop(file != null ? File(file.path) : null);
+              },
+              child: Text('Video'),
+            ),
+          ],
+        );
+      },
+    );
+
     if (pickedFile != null) {
       setState(() {
-        _image = File(pickedFile.path);
+        _media = pickedFile;
         _errorMessage = '';
       });
     }
@@ -55,7 +84,7 @@ class _DetectState extends State<Detect> {
       } else {
         setState(() {
           _errorMessage =
-              'Error detecting image. Status code: ${response.statusCode}'; // Set error message
+              'Error detecting image. Status code: ${response.statusCode}';
           _result = '';
         });
       }
@@ -79,10 +108,7 @@ class _DetectState extends State<Detect> {
                 ProfileBar(),
                 Spacer(),
                 if (_image != null) Image.file(_image!),
-                ElevatedButton(
-                  onPressed: _uploadImage,
-                  child: Text('Upload'),
-                ),
+                Upload(onTap:_uploadImage),
                 SizedBox(height: 10),
                 Main_Button(
                   text: 'Detect',
