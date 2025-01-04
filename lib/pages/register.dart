@@ -5,6 +5,7 @@ import 'package:front_end/pages/main_page.dart';
 import 'package:front_end/widgets/button.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/main_logo.dart';
+import 'package:front_end/widgets/register_google.dart';
 import 'package:front_end/widgets/text_field.dart';
 
 class Register extends StatelessWidget {
@@ -53,7 +54,7 @@ class Register extends StatelessWidget {
               SizedBox(height: 10),
               Text('OR'),
               SizedBox(height: 10),
-              //Main_Button(text: 'Register with Google',icon: Icon(Icons.app_registration_rounded), route: '/main',onTap: () =>controller.registerUser),
+              RegisterGoogle(),
               Spacer(),
             ],
           )
