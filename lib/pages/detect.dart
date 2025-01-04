@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:front_end/widgets/gradient_line.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -18,6 +19,7 @@ class _DetectState extends State<Detect> {
   String _result = '';
   String _errorMessage = '';
   String _selectedMode = 'start';
+  late double  correctPercentage =0.0;
   final List<String> _modes = ['start', 'set', 'hop', 'drive', 'sprint', 'run'];
 
   Future<void> _uploadMedia() async {
@@ -86,20 +88,20 @@ class _DetectState extends State<Detect> {
         final result = json.decode(responseData);
 
         setState(() {
-          _result = result.toString();
+          correctPercentage = double.parse(result.toString())/100;
           _errorMessage = '';
         });
       } else {
         setState(() {
           _errorMessage =
               'Error detecting media. Status code: ${response.statusCode}';
-          _result = '';
+          correctPercentage = 0.0;
         });
       }
     } catch (e) {
       setState(() {
         _errorMessage = 'An error occurred: $e';
-        _result = '';
+        correctPercentage = 0.0;
       });
     }
   }
@@ -159,13 +161,18 @@ class _DetectState extends State<Detect> {
                   },
                 ),
                 SizedBox(height: 20),
-                if (_errorMessage.isNotEmpty)
+                if(correctPercentage > 0.0)
+                GradientLineWidget(percentage: correctPercentage, label: 'Correct'),
+                SizedBox(height: 10),
+                if(_media != null)
+                GradientLineWidget(percentage: 1-correctPercentage, label: 'Error'),
+                /*if (_errorMessage.isNotEmpty)
                   Text(
                     _errorMessage,
                     style:
                         TextStyle(color: const Color.fromARGB(255, 130, 9, 0)),
-                  ),
-                if (_result.isNotEmpty) Text(_result),
+                  ),*/
+                //if (_result.isNotEmpty) Text(_result),
                 Spacer(),
               ],
             ),
