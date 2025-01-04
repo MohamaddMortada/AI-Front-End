@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 class Main_Button extends StatelessWidget {
   final String text;
-  final Icon icon;
+  final IconData icon;
   final VoidCallback onTap;
   final String route;
 
@@ -26,7 +26,7 @@ class Main_Button extends StatelessWidget {
         mainAxisAlignment : MainAxisAlignment.spaceBetween,
         crossAxisAlignment : CrossAxisAlignment.center,
         children: [
-            icon,
+            Icon(icon,color: Colors.white,),
             Text(
               text, 
             style: const TextStyle(
