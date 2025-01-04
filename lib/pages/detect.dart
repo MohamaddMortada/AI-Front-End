@@ -21,6 +21,7 @@ class _DetectState extends State<Detect> {
   String _errorMessage = '';
   String _selectedMode = 'start';
   late double  correctPercentage =0.0;
+  late bool isDetected = false;
   final List<String> _modes = ['start', 'set', 'hop', 'drive', 'sprint', 'run'];
 
   Future<void> _uploadMedia() async {
@@ -91,18 +92,22 @@ class _DetectState extends State<Detect> {
         setState(() {
           correctPercentage = double.parse(result.toString())/100;
           _errorMessage = '';
+          isDetected = true;
         });
       } else {
         setState(() {
           _errorMessage =
               'Error detecting media. Status code: ${response.statusCode}';
           correctPercentage = 0.0;
+          isDetected = false;
         });
       }
     } catch (e) {
       setState(() {
         _errorMessage = 'An error occurred: $e';
         correctPercentage = 0.0;
+        isDetected = false;
+
       });
     }
   }
@@ -159,10 +164,10 @@ class _DetectState extends State<Detect> {
                   },
                 ),
                 SizedBox(height: 20),
-                if(correctPercentage > 0.0)
+                if(isDetected)
                 GradientLineWidget(percentage: correctPercentage, label: 'Correct'),
                 SizedBox(height: 10),
-                if(_media != null)
+                if(isDetected)
                 GradientLineWidget(percentage: 1-correctPercentage, label: 'Error'),
                 /*if (_errorMessage.isNotEmpty)
                   Text(
