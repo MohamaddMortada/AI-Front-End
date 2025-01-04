@@ -14,7 +14,7 @@ class RegisterController {
     String password,
     String confirmPassword,
   ) async {
-        const String apiUrl = "http://127.0.0.1:8000/api/auth/register";
+        const String apiUrl = "http://10.0.2.2:8000/api/auth/register";
         if (password != confirmPassword) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Passwords do not match!")),
