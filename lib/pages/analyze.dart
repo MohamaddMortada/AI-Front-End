@@ -17,7 +17,7 @@ class Analyze extends StatelessWidget {
             Spacer(),
             Upload(),
             SizedBox(height: 10,),
-            Main_Button(text: 'Analyze', icon: Icon(Icons.analytics), route: '/analyzing', onTap: (){},),
+            Main_Button(text: 'Analyze', icon: Icons.analytics, route: '/analyzing', onTap: (){},),
             Spacer(),
             Spacer(),
           ]),),

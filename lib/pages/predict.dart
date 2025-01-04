@@ -31,7 +31,7 @@ class Predict extends StatelessWidget {
                   SizedBox(height: 10,),
                   ButtonSecondary(text: 'Add Result', icon: Icon(Icons.add),),
                   SizedBox(height: 10,),
-                   Main_Button(text: 'Predict', icon: Icon(Icons.batch_prediction), route: '/predicting', onTap: () {  },),
+                   Main_Button(text: 'Predict', icon: Icons.batch_prediction, route: '/predicting', onTap: () {  },),
                   Spacer(),
 
                 ]

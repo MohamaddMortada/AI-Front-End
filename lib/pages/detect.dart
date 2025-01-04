@@ -86,7 +86,7 @@ class _DetectState extends State<Detect> {
                 SizedBox(height: 10),
                 Main_Button(
                   text: 'Detect',
-                  icon: Icon(Icons.error),
+                  icon: Icons.error,
                   route: '/detecting',
                   onTap: () {
                     _detectImage(context);

@@ -37,7 +37,7 @@ class Login extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Main_Button(
-                text: 'Login',icon: Icon(Icons.login), route: '/main', 
+                text: 'Login',icon: Icons.login, route: '/main', 
                 onTap: () { 
                    controller.loginUser(
                     context,
