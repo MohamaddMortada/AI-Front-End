@@ -57,19 +57,26 @@ class _DetectState extends State<Detect> {
     }
   }
 
-  Future<void> _detectImage(BuildContext context) async {
-    if (_image == null) {
+  Future<void> detectMedia(BuildContext context) async {
+    if (_media == null) {
       setState(() {
-        _errorMessage = 'Please upload an image first.';
+        _errorMessage = 'Please upload an image or video first.';
       });
       return;
     }
 
+    String apiUrl = _media!.path.endsWith('.mp4')
+        ? 'http://10.0.2.2:5000/${_selectedMode}_video'
+        : 'http://10.0.2.2:5000/${_selectedMode}_image';
+
     final request = http.MultipartRequest(
       'POST',
-      Uri.parse('http://10.0.2.2:5000/detect_image'),
+      Uri.parse(apiUrl),
     );
-    request.files.add(await http.MultipartFile.fromPath('image', _image!.path));
+
+    String mediaType = _media!.path.endsWith('.mp4') ? 'video' : 'image';
+    request.files
+        .add(await http.MultipartFile.fromPath(mediaType, _media!.path));
 
     try {
       final response = await request.send();
@@ -84,7 +91,7 @@ class _DetectState extends State<Detect> {
       } else {
         setState(() {
           _errorMessage =
-              'Error detecting image. Status code: ${response.statusCode}';
+              'Error detecting media. Status code: ${response.statusCode}';
           _result = '';
         });
       }
