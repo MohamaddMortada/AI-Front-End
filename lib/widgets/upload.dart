@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 class Upload extends StatelessWidget {
 final VoidCallback onTap;
-  const Upload({required this.onTap});
+final File? media;
+  const Upload({required this.onTap, this.media});
 
   @override
   Widget build(BuildContext context) {
@@ -10,22 +13,29 @@ final VoidCallback onTap;
             onTap: onTap,
             child:Container(
       decoration: BoxDecoration(
+      image: media != null
+                  ? DecorationImage(
+                      image: FileImage(media!), 
+                      fit: BoxFit.contain,
+                    )
+                  : null,
       color: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(10)
     ),
     width:270,
     height: 270,
-      child:const Column(
+      child: Column(
         mainAxisAlignment : MainAxisAlignment.center,
         crossAxisAlignment : CrossAxisAlignment.center,
         children: [
+          if(media == null)
             Icon(
                 Icons.upload, 
                 size: 100, 
                 color: Colors.white, 
               ),
-            
-            Text('Upload', 
+            if(media == null)
+            Text('Upload an Image/Video', 
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,

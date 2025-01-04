@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:front_end/widgets/gradient_line.dart';
+import 'package:front_end/widgets/upload.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -146,11 +147,8 @@ class _DetectState extends State<Detect> {
                     },
                   ),
                 ),
-                if (_media != null) Image.file(_media!),
-                ElevatedButton(
-                  onPressed: _uploadMedia,
-                  child: Text('Upload Image/Video'),
-                ),
+                SizedBox(height: 10),
+                Upload(onTap: _uploadMedia, media:_media),
                 SizedBox(height: 10),
                 Main_Button(
                   text: 'Detect',
@@ -172,7 +170,7 @@ class _DetectState extends State<Detect> {
                     style:
                         TextStyle(color: const Color.fromARGB(255, 130, 9, 0)),
                   ),*/
-                //if (_result.isNotEmpty) Text(_result),
+                 //Text('$correctPercentage'),
                 Spacer(),
               ],
             ),
