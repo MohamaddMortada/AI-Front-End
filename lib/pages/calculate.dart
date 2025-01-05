@@ -34,13 +34,13 @@ class _CalculateState extends State<Calculate> {
 
   String _selectedEvent = '100';
   String? _selectedGender = 'Male';
-  String? _selectedStaduim = 'Indoor';
+  String? _selectedStadium = 'Indoor';
 
   String? _fetchedId;
   bool _isLoading = false;
 
   Future<void> fetchEventId() async {
-    final url = Uri.parse('http://127.0.0.1:5000/get_id'); 
+    final url = Uri.parse('http://127.0.0.1:5000/get_id');
 
     setState(() {
       _isLoading = true;
@@ -52,7 +52,7 @@ class _CalculateState extends State<Calculate> {
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           "Name": _selectedEvent,
-          "Type": _selectedStaduim!.toLowerCase(),
+          "Type": _selectedStadium!.toLowerCase(),
           "Gender": _selectedGender,
         }),
       );
@@ -131,10 +131,10 @@ class _CalculateState extends State<Calculate> {
                   children: [
                     Radio<String>(
                       value: 'Indoor',
-                      groupValue: _selectedStaduim,
+                      groupValue: _selectedStadium,
                       onChanged: (String? value) {
                         setState(() {
-                          _selectedStaduim = value;
+                          _selectedStadium = value;
                         });
                       },
                     ),
@@ -142,10 +142,10 @@ class _CalculateState extends State<Calculate> {
                     const SizedBox(width: 20),
                     Radio<String>(
                       value: 'Outdoor',
-                      groupValue: _selectedStaduim,
+                      groupValue: _selectedStadium,
                       onChanged: (String? value) {
                         setState(() {
-                          _selectedStaduim = value;
+                          _selectedStadium = value;
                         });
                       },
                     ),
@@ -207,20 +207,30 @@ class _CalculateState extends State<Calculate> {
                     const Text('Female'),
                   ],
                 ),
-                const SizedBox(
-                  height: 10,
+                const SizedBox(height: 10),
+                Input(
+                  text: 'Result',
+                  icon: const Icon(Icons.lock_clock),
+                  height: 45,
+                  maxLines: 1,
+                  controller: resultController,
                 ),
-                const ButtonSecondary(
-                    text: 'Calculate', icon: Icon(Icons.calculate)),
-                const SizedBox(
-                  height: 10,
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () async {
+                    await fetchEventId();
+                    await fetchScore(); 
+                  },
+                  child: const Text('Calculate'),
                 ),
-                if (_isLoading)
-                  const CircularProgressIndicator()
-                else if (_fetchedId != null)
-                  Text('Fetched ID: $_fetchedId',
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 10),
+                Input(
+                  text: 'Score',
+                  icon: const Icon(Icons.score),
+                  height: 45,
+                  maxLines: 1,
+                  controller: scoreController,
+                ),
                 const Spacer(),
               ],
             ),
