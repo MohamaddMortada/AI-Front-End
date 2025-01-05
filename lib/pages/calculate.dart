@@ -93,15 +93,15 @@ class _CalculateState extends State<Calculate> {
         url,
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
-          "Id": _fetchedId,
-          "Result": resultController.text,
+          "eventId": _fetchedId,
+          "performance": resultController.text,
         }),
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         final responseData = json.decode(response.body);
         setState(() {
-          scoreController.text = responseData['Score'].toString();
+          scoreController.text = responseData['performancePoints'].toString();
         });
       } else {
         setState(() {
@@ -231,11 +231,6 @@ class _CalculateState extends State<Calculate> {
                   maxLines: 1,
                   controller: scoreController,
                 ),
-                Text('$_fetchedId'),
-                Text('$_selectedEvent'),
-                Text('$_selectedGender'),
-                Text('$_selectedStadium'),
-
                 const Spacer(),
               ],
             ),
