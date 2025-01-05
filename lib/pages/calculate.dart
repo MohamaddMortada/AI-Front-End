@@ -3,6 +3,8 @@ import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/button_secondary.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/profile_bar.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Calculate extends StatefulWidget {
   @override
@@ -14,25 +16,67 @@ class _CalculateState extends State<Calculate> {
   final TextEditingController scoreController = TextEditingController();
 
   final List<String> events = [
-    '100m',
-    '200m',
-    '400m',
-    '110mh',
-    '400mh',
-    '800m',
-    '1000m',
-    '1500m',
-    '3000m',
-    '3000m st',
-    '5000m',
-    '10000m',
+    '100',
+    '200',
+    '400',
+    '110h',
+    '400h',
+    '800',
+    '1000',
+    '1500',
+    '3000',
+    '3000st',
+    '5000',
+    '10000',
     '21.1k',
     '42.2k'
   ];
 
-  String _selectedEvent = '100m';
+  String _selectedEvent = '100';
   String? _selectedGender = 'Male';
   String? _selectedStaduim = 'Indoor';
+
+  String? _fetchedId;
+  bool _isLoading = false;
+
+  Future<void> fetchEventId() async {
+    final url = Uri.parse('http://127.0.0.1:5000/get_id'); 
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({
+          "Name": _selectedEvent,
+          "Type": _selectedStaduim!.toLowerCase(),
+          "Gender": _selectedGender,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = json.decode(response.body);
+        setState(() {
+          _fetchedId = responseData['Id'];
+        });
+      } else {
+        setState(() {
+          _fetchedId = 'Error: Event not found';
+        });
+      }
+    } catch (error) {
+      setState(() {
+        _fetchedId = 'Error: Unable to connect to API';
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,28 +173,17 @@ class _CalculateState extends State<Calculate> {
                 const SizedBox(
                   height: 10,
                 ),
-                Input(
-                  text: 'Result',
-                  icon: const Icon(Icons.lock_clock),
-                  height: 45,
-                  maxLines: 1,
-                  controller: resultController,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
                 const ButtonSecondary(
                     text: 'Calculate', icon: Icon(Icons.calculate)),
                 const SizedBox(
                   height: 10,
                 ),
-                Input(
-                  text: 'Score',
-                  icon: const Icon(Icons.score),
-                  height: 45,
-                  maxLines: 1,
-                  controller: scoreController,
-                ),
+                if (_isLoading)
+                  const CircularProgressIndicator()
+                else if (_fetchedId != null)
+                  Text('Fetched ID: $_fetchedId',
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold)),
                 const Spacer(),
               ],
             ),
