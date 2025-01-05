@@ -19,6 +19,7 @@ class _CalculateState extends State<Calculate> {
   ];
 
   String _selectedEvent = '100m'; 
+  String? _selectedGender = 'Male';
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +61,32 @@ class _CalculateState extends State<Calculate> {
                       });
                     },
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Radio<String>(
+                      value: 'Male',
+                      groupValue: _selectedGender,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _selectedGender = value;
+                        });
+                      },
+                    ),
+                    const Text('Male'),
+                    const SizedBox(width: 20),
+                    Radio<String>(
+                      value: 'Female',
+                      groupValue: _selectedGender,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _selectedGender = value;
+                        });
+                      },
+                    ),
+                    const Text('Female'),
+                  ],
                 ),
 
                 const SizedBox(
