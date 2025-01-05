@@ -26,7 +26,9 @@ class Main_Button extends StatelessWidget {
         mainAxisAlignment : MainAxisAlignment.spaceBetween,
         crossAxisAlignment : CrossAxisAlignment.center,
         children: [
-            Icon(icon,color: Colors.white,),
+            Padding(
+              padding: const EdgeInsets.only(left: 5),
+              child:Icon(icon,color: Colors.white,),),
             Text(
               text, 
             style: const TextStyle(
