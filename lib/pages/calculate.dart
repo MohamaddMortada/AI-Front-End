@@ -40,7 +40,7 @@ class _CalculateState extends State<Calculate> {
   bool _isLoading = false;
 
   Future<void> fetchEventId() async {
-    final url = Uri.parse('http://127.0.0.1:5000/get_id');
+    final url = Uri.parse('http://10.0.2.2:5000/get_id');
 
     setState(() {
       _isLoading = true;
@@ -52,7 +52,7 @@ class _CalculateState extends State<Calculate> {
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           "Name": _selectedEvent,
-          "Type": _selectedStadium!.toLowerCase(),
+          "Type": _selectedStadium,
           "Gender": _selectedGender,
         }),
       );
@@ -130,7 +130,7 @@ class _CalculateState extends State<Calculate> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Radio<String>(
-                      value: 'Indoor',
+                      value: 'i',
                       groupValue: _selectedStadium,
                       onChanged: (String? value) {
                         setState(() {
@@ -141,7 +141,7 @@ class _CalculateState extends State<Calculate> {
                     const Text('Indoor'),
                     const SizedBox(width: 20),
                     Radio<String>(
-                      value: 'Outdoor',
+                      value: 'o',
                       groupValue: _selectedStadium,
                       onChanged: (String? value) {
                         setState(() {
@@ -185,7 +185,7 @@ class _CalculateState extends State<Calculate> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Radio<String>(
-                      value: 'Male',
+                      value: 'm',
                       groupValue: _selectedGender,
                       onChanged: (String? value) {
                         setState(() {
@@ -196,7 +196,7 @@ class _CalculateState extends State<Calculate> {
                     const Text('Male'),
                     const SizedBox(width: 20),
                     Radio<String>(
-                      value: 'Female',
+                      value: 'f',
                       groupValue: _selectedGender,
                       onChanged: (String? value) {
                         setState(() {
@@ -231,6 +231,11 @@ class _CalculateState extends State<Calculate> {
                   maxLines: 1,
                   controller: scoreController,
                 ),
+                Text('$_fetchedId'),
+                Text('$_selectedEvent'),
+                Text('$_selectedGender'),
+                Text('$_selectedStadium'),
+
                 const Spacer(),
               ],
             ),
