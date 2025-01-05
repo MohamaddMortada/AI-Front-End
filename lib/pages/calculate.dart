@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/button_secondary.dart';
+import 'package:front_end/widgets/image_container.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/profile_bar.dart';
 import 'package:http/http.dart' as http;
@@ -86,7 +88,7 @@ class _CalculateState extends State<Calculate> {
       return;
     }
 
-    final url = Uri.parse('https://athleticsranking.vercel.app/ranking/points'); 
+    final url = Uri.parse('https://athleticsranking.vercel.app/ranking/points');
 
     try {
       final response = await http.post(
@@ -125,7 +127,19 @@ class _CalculateState extends State<Calculate> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const ProfileBar(),
-                const Spacer(),
+                Spacer(),
+                Container(
+                  
+                  width: 200,
+                  height: 200,
+                  child: Image.asset(('assets/Calculate-Image.webp'),),
+                  decoration: BoxDecoration(
+                    
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                Text('Calculate your Points',style: TextStyle(fontWeight: FontWeight.w500),),
+                 SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -215,22 +229,43 @@ class _CalculateState extends State<Calculate> {
                   maxLines: 1,
                   controller: resultController,
                 ),
+                const SizedBox(height: 20),
+                ButtonSecondary(
+                  text: 'Calculate',
+                  icon: Icon(Icons.calculate,color: Colors.white,),
+                  onTap: () async {
+                    await fetchEventId();
+                    await fetchScore();
+                  },
+                ),
                 const SizedBox(height: 10),
-                ElevatedButton(
+                /*ElevatedButton(
                   onPressed: () async {
                     await fetchEventId();
                     await fetchScore(); 
                   },
                   child: const Text('Calculate'),
-                ),
+                ),*/
                 const SizedBox(height: 10),
-                Input(
-                  text: 'Score',
-                  icon: const Icon(Icons.score),
-                  height: 45,
-                  maxLines: 1,
-                  controller: scoreController,
+                Container(
+                  alignment: Alignment.center,
+                  width: 100,height: 40,
+                  child: Text(
+                    scoreController.text,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).secondaryHeaderColor,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: Theme.of(context).primaryColor,
+                      width: 2.0,
+                    ),
+                  ),
                 ),
+                const Spacer(),
                 const Spacer(),
               ],
             ),

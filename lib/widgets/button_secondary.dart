@@ -5,17 +5,17 @@ import 'package:get/get_core/src/get_main.dart';
 class ButtonSecondary extends StatelessWidget {
   final String text;
   final Icon icon;
+    final VoidCallback onTap;
+
   
 
-  const ButtonSecondary({super.key, required this.text, required this.icon, });
+  const ButtonSecondary({super.key, required this.text, required this.icon, required this.onTap, });
 
   @override
   Widget build(BuildContext context) {
    
    return GestureDetector(
-            onTap: () {
-               print('Clicked');
-            },
+            onTap: onTap,
             child:Container(
       decoration: BoxDecoration(
       color: Theme.of(context).primaryColor,

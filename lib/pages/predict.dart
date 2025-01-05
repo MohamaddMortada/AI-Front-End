@@ -29,7 +29,7 @@ class Predict extends StatelessWidget {
                   SizedBox(height: 10,),
                   Input(text: 'Time', icon: Icon(Icons.lock_clock), height: 45, maxLines: 1, controller: distanceController,),
                   SizedBox(height: 10,),
-                  ButtonSecondary(text: 'Add Result', icon: Icon(Icons.add),),
+                  ButtonSecondary(text: 'Add Result', icon: Icon(Icons.add), onTap: () { print(''); },),
                   SizedBox(height: 10,),
                    Main_Button(text: 'Predict', icon: Icons.batch_prediction, route: '/predicting', onTap: () {  },),
                   Spacer(),

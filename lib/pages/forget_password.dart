@@ -27,7 +27,7 @@ class ForgetPassword extends StatelessWidget {
               Spacer(),
               Input(text: 'Email', icon: Icon(Icons.email), height: 45, maxLines: 1, controller: emailController,),
               SizedBox(height: 10),
-             ButtonSecondary(text: 'Send New Password', icon: Icon(Icons.password)),
+             ButtonSecondary(text: 'Send New Password', icon: Icon(Icons.password), onTap: () { print(''); },),
               Spacer(),
               Spacer(),
             ]
