@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/gradient_line.dart';
 import 'package:front_end/widgets/upload.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:front_end/widgets/profile_bar.dart';
-import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/button.dart';
 
 class Detect extends StatefulWidget {
@@ -180,7 +180,7 @@ class _DetectState extends State<Detect> {
               ],
             ),
           ),
-          AssistiveBall(),
+        AssistiveBall(),
         ],
       ),
     );

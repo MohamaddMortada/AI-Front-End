@@ -42,6 +42,8 @@ class RegisterController {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Registration successful! Welcome, ${data['name']}")),
         );
+        
+
         Get.toNamed('/main');
       } else {
         final error = jsonDecode(response.body);
