@@ -78,6 +78,43 @@ class _CalculateState extends State<Calculate> {
     }
   }
 
+  Future<void> fetchScore() async {
+    if (_fetchedId == null || resultController.text.isEmpty) {
+      setState(() {
+        scoreController.text = 'Error: Missing Id or Result';
+      });
+      return;
+    }
+
+    final url = Uri.parse('https://athleticsranking.vercel.app/ranking/points'); 
+
+    try {
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({
+          "Id": _fetchedId,
+          "Result": resultController.text,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = json.decode(response.body);
+        setState(() {
+          scoreController.text = responseData['Score'].toString();
+        });
+      } else {
+        setState(() {
+          scoreController.text = 'Error: Unable to fetch score';
+        });
+      }
+    } catch (error) {
+      setState(() {
+        scoreController.text = 'Error: Unable to connect to API';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
