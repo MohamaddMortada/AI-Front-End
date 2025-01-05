@@ -14,12 +14,25 @@ class _CalculateState extends State<Calculate> {
   final TextEditingController scoreController = TextEditingController();
 
   final List<String> events = [
-    '100m', '200m', '400m', '110mh', '400mh', '800m', '1000m', '1500m',
-    '3000m', '3000m st', '5000m', '10000m', '21.1k', '42.2k'
+    '100m',
+    '200m',
+    '400m',
+    '110mh',
+    '400mh',
+    '800m',
+    '1000m',
+    '1500m',
+    '3000m',
+    '3000m st',
+    '5000m',
+    '10000m',
+    '21.1k',
+    '42.2k'
   ];
 
-  String _selectedEvent = '100m'; 
+  String _selectedEvent = '100m';
   String? _selectedGender = 'Male';
+  String? _selectedStaduim = 'Indoor';
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +45,32 @@ class _CalculateState extends State<Calculate> {
               children: [
                 const ProfileBar(),
                 const Spacer(),
-
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Radio<String>(
+                      value: 'Indoor',
+                      groupValue: _selectedStaduim,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _selectedStaduim = value;
+                        });
+                      },
+                    ),
+                    const Text('Indoor'),
+                    const SizedBox(width: 20),
+                    Radio<String>(
+                      value: 'Outdoor',
+                      groupValue: _selectedStaduim,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _selectedStaduim = value;
+                        });
+                      },
+                    ),
+                    const Text('Outdoor'),
+                  ],
+                ),
                 Container(
                   alignment: Alignment.center,
                   width: 270,
@@ -88,11 +126,9 @@ class _CalculateState extends State<Calculate> {
                     const Text('Female'),
                   ],
                 ),
-
                 const SizedBox(
                   height: 10,
                 ),
-
                 Input(
                   text: 'Result',
                   icon: const Icon(Icons.lock_clock),
@@ -103,13 +139,11 @@ class _CalculateState extends State<Calculate> {
                 const SizedBox(
                   height: 10,
                 ),
-                
                 const ButtonSecondary(
                     text: 'Calculate', icon: Icon(Icons.calculate)),
                 const SizedBox(
                   height: 10,
                 ),
-
                 Input(
                   text: 'Score',
                   icon: const Icon(Icons.score),
