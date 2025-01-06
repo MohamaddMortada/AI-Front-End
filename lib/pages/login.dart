@@ -26,9 +26,9 @@ class Login extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               Spacer(),
-              Input(text: 'Email', icon: Icon(Icons.person), height: 45, maxLines: 1, controller: emailController,),
+              Input(text: 'Email', image: Image.asset('assets/Icons/email.png'), height: 45, maxLines: 1, controller: emailController,),
               SizedBox(height: 10),
-              Input(text: 'Password', icon: Icon(Icons.key), height: 45, maxLines: 1, controller: passwordController,),
+              Input(text: 'Password', image: Image.asset('assets/Icons/key.png'), height: 45, maxLines: 1, controller: passwordController,),
               SizedBox(height: 10),
               Text_Field(
                 text: 'Forgot your Password',
