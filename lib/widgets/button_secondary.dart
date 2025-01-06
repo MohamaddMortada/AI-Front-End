@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 class ButtonSecondary extends StatelessWidget {
   final String text;
-  final Icon icon;
-    final VoidCallback onTap;
+  final Image image;
+  final VoidCallback onTap;
 
   
 
-  const ButtonSecondary({super.key, required this.text, required this.icon, required this.onTap, });
+  const ButtonSecondary({super.key, required this.text, required this.image, required this.onTap, });
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +27,16 @@ class ButtonSecondary extends StatelessWidget {
         mainAxisAlignment : MainAxisAlignment.spaceBetween,
         crossAxisAlignment : CrossAxisAlignment.center,
         children: [
-            icon,
+            Padding(
+            padding: const EdgeInsets.only(left: 15), 
+            child: SizedBox(
+            width: 24,
+            height: 24,
+            child: image,
+          )),
             Text(
               text, 
-            style: const TextStyle(
+              style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: 16,
