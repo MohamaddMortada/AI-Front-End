@@ -18,7 +18,7 @@ class MainPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ProfileBar(), 
-              Text_Field(text: 'Welcome Nabiha \n to AP', fontSize: 24, fontWeight: FontWeight.bold),
+              Text_Field(text: 'Welcome Nabiha \n to AthletiQ', fontSize: 24, fontWeight: FontWeight.bold),
               Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

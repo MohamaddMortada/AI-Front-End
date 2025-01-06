@@ -5,6 +5,7 @@ import 'package:front_end/controllers/routes.dart';
 import 'package:front_end/pages/calculate.dart';
 import 'package:front_end/pages/detect.dart';
 import 'package:front_end/pages/login.dart';
+import 'package:front_end/pages/main_page.dart';
 import 'package:front_end/pages/on_boarding.dart';
 import 'package:front_end/pages/register.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -28,7 +29,7 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFB2C8D0),
 
       ),
-      home:OnBoarding(),
+      home:MainPage(),
       
     );
   }
