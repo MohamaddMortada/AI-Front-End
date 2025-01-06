@@ -27,7 +27,7 @@ class Chatbot extends StatelessWidget {
             alignment:Alignment.bottomCenter,
             child:Input(
               
-              text: 'Type your message here!', icon: Icon(Icons.type_specimen), height: 45, maxLines: 1, controller: messageController,
+              text: 'Type your message here!', image: Image.asset('assets/Icons/type.png'), height: 45, maxLines: 1, controller: messageController,
               ),
               
             ),
