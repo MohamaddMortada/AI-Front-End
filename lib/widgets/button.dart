@@ -26,16 +26,18 @@ class Main_Button extends StatelessWidget {
         mainAxisAlignment : MainAxisAlignment.spaceBetween,
         crossAxisAlignment : CrossAxisAlignment.center,
         children: [
-            SizedBox(
+            Padding(
+            padding: const EdgeInsets.only(left: 15), 
+            child: SizedBox(
             width: 24,
             height: 24,
             child: image,
-          ),
+          )),
             Text(
               text, 
             style: const TextStyle(
               color: Colors.white,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
               fontSize: 16,
               ),),
               const SizedBox(width: 30,),
