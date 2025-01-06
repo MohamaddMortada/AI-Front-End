@@ -21,7 +21,7 @@ class Contact extends StatelessWidget {
           
           Spacer(),
           Input(text: 'Type your message here', image: Image.asset('assets/Icons/type.png'), height: 270, maxLines: 10, controller: messageController, ),
-          ButtonSecondary(text:'Send Message', icon: Icon(Icons.email), onTap: () { print(''); },),
+          ButtonSecondary(text:'Send Message', image: Image.asset('assets/Icons/send.png'), onTap: () { print(''); },),
           Spacer(),
           Spacer(),
         ])),

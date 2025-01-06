@@ -39,7 +39,8 @@ class MainPage extends StatelessWidget {
               Spacer(),
             ]
           ),
-          AssistiveBall(),
+          //AssistiveBall(),
+          
          
         ],
       ),

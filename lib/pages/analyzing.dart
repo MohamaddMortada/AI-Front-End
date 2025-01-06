@@ -15,11 +15,11 @@ class Analyzing extends StatelessWidget {
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         ProfileBar(),
         Spacer(),
-        ButtonSecondary(text: 'Distance', icon: Icon(Icons.event), onTap: () { print(''); },),
+        ButtonSecondary(text: 'Distance', image: Image.asset('assets/Icons/lap.png'), onTap: () { print(''); },),
         SizedBox(
           height: 10,
         ),
-        ButtonSecondary(text: 'Result', icon: Icon(Icons.lock_clock), onTap: () { print(''); },),
+        ButtonSecondary(text: 'Result', image: Image.asset('assets/Icons/clock.png'), onTap: () { print(''); },),
         SizedBox(
           height: 10,
         ),
@@ -29,7 +29,7 @@ class Analyzing extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        ButtonSecondary(text: 'Average Speed', icon: Icon(Icons.speed), onTap: () { print(''); },),
+        ButtonSecondary(text: 'Average Speed', image: Image.asset('assets/Icons/speed.png'), onTap: () { print(''); },),
         SizedBox(
           height: 10,
         ),

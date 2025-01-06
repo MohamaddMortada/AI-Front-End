@@ -232,7 +232,7 @@ class _CalculateState extends State<Calculate> {
                 const SizedBox(height: 20),
                 ButtonSecondary(
                   text: 'Calculate',
-                  icon: Icon(Icons.calculate,color: Colors.white,),
+                  image: Image.asset('assets/Icons/calculate.png'),
                   onTap: () async {
                     await fetchEventId();
                     await fetchScore();

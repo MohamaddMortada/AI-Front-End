@@ -31,7 +31,7 @@ class ChangePassword extends StatelessWidget {
               SizedBox(height: 10),
               Input(text: 'Confirm Password', image: Image.asset('assets/Icons/key.png'), height: 45, maxLines: 1, controller: confirmController,),
               SizedBox(height: 30),
-              ButtonSecondary(text: 'Update Password', icon: Icon(Icons.update), onTap: () { print(''); },),
+              ButtonSecondary(text: 'Update Password', image: Image.asset('assets/Icons/update.png'), onTap: () { print(''); },),
               Spacer(),
             ]
           )

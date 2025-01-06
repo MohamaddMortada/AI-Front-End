@@ -3,6 +3,8 @@ import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/button.dart';
 import 'package:front_end/widgets/profile_bar.dart';
 import 'package:front_end/widgets/upload.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class Analyze extends StatelessWidget {
   @override
@@ -17,7 +19,7 @@ class Analyze extends StatelessWidget {
             Spacer(),
             //Upload(),
             SizedBox(height: 10,),
-            Main_Button(text: 'Analyze', image: Image.asset('assets/Icons/analyze.png'), route: '/analyzing', onTap: (){},),
+            Main_Button(text: 'Analyze', image: Image.asset('assets/Icons/analyze.png'), route: '/analyzing', onTap: (){Get.toNamed('/analyzing');},),
             Spacer(),
             Spacer(),
           ]),),

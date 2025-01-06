@@ -29,9 +29,9 @@ class Predict extends StatelessWidget {
                   SizedBox(height: 10,),
                   Input(text: 'Time',image: Image.asset('assets/Icons/clock.png'), height: 45, maxLines: 1, controller: distanceController,),
                   SizedBox(height: 10,),
-                  ButtonSecondary(text: 'Add Result', icon: Icon(Icons.add), onTap: () { print(''); },),
+                  ButtonSecondary(text: 'Add Result',image: Image.asset('assets/Icons/add.png'), onTap: () { print(''); },),
                   SizedBox(height: 10,),
-                   Main_Button(text: 'Predict',image: Image.asset('assets/Icons/predict.png'), route: '/predicting', onTap: () {  },),
+                  Main_Button(text: 'Predict',image: Image.asset('assets/Icons/predict.png'), route: '/predicting', onTap: () {  },),
                   Spacer(),
 
                 ]
