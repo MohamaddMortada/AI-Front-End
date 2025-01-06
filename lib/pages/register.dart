@@ -43,7 +43,7 @@ class Register extends StatelessWidget {
               Input(text: 'Confirm Password', image: Image.asset('assets/Icons/key.png'), height: 45, maxLines: 1, controller: confirmPasswordController),
               SizedBox(height: 20),
               Main_Button(
-                text: 'Register',icon: Icons.app_registration_rounded, route: '/main', 
+                text: 'Register',image: Image.asset('assets/Icons/register.png'), route: '/main', 
                 onTap: () =>controller.registerUser(
                    context,
                   usernameController.text.trim(),
