@@ -210,7 +210,7 @@ class _CalculateState extends State<Calculate> {
                     const Text('Male'),
                     const SizedBox(width: 20),
                     Radio<String>(
-                      value: 'f',
+                      value: 'w',
                       groupValue: _selectedGender,
                       onChanged: (String? value) {
                         setState(() {
