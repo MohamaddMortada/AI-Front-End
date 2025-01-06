@@ -224,7 +224,7 @@ class _CalculateState extends State<Calculate> {
                 const SizedBox(height: 10),
                 Input(
                   text: 'Result',
-                  icon: const Icon(Icons.lock_clock),
+                  image: Image.asset('assets/Icons/clock.png'),
                   height: 45,
                   maxLines: 1,
                   controller: resultController,
