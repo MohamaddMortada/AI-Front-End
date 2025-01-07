@@ -19,9 +19,10 @@ class Login extends StatelessWidget {
           child:Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              SizedBox(height: 40),
               MainLogo(),
               Text_Field(
-                text: 'ATHLETIC PERFORMANCE',
+                text: 'ATHLETIQ',
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),

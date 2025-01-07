@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:front_end/pages/analyze.dart';
-import 'package:front_end/pages/calculate.dart';
-import 'package:front_end/pages/detect.dart';
-import 'package:front_end/pages/predict.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/image_button.dart';
 import 'package:front_end/widgets/profile_bar.dart';
@@ -39,8 +35,7 @@ class MainPage extends StatelessWidget {
               Spacer(),
             ]
           ),
-          //AssistiveBall(),
-          
+          AssistiveBall(),
          
         ],
       ),
