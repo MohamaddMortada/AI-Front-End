@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:front_end/widgets/alami_message.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/button_secondary.dart';
 import 'package:front_end/widgets/image_container.dart';
@@ -128,18 +129,8 @@ class _CalculateState extends State<Calculate> {
               children: [
                 const ProfileBar(),
                 Spacer(),
-                Container(
-                  
-                  width: 200,
-                  height: 200,
-                  child: Image.asset(('assets/Calculate-Image.webp'),),
-                  decoration: BoxDecoration(
-                    
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                Text('Calculate your Points',style: TextStyle(fontWeight: FontWeight.w500),),
-                 SizedBox(height: 30),
+                AlamiMessage(text: 'Check your Points \n right now!', fontSize: 14, fontWeight: FontWeight.w500),
+                SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -265,7 +256,6 @@ class _CalculateState extends State<Calculate> {
                     ),
                   ),
                 ),
-                const Spacer(),
                 const Spacer(),
               ],
             ),
