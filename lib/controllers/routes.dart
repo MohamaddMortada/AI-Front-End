@@ -1,4 +1,5 @@
 import 'package:front_end/controllers/auth_middleware.dart';
+import 'package:front_end/pages/electric_time.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import 'package:front_end/pages/analyze.dart';
@@ -32,4 +33,5 @@ List<GetPage> appRoutes = [
         GetPage(name: '/profile', page: () => Profile(),middlewares: [AuthMiddleware()],),
         GetPage(name: '/contact', page: () => Contact(),middlewares: [AuthMiddleware()],),
         GetPage(name: '/chatbot', page: () => Chatbot(),middlewares: [AuthMiddleware()],),
+        GetPage(name: '/time', page: () => ElectricTime(),middlewares: [AuthMiddleware()],),
 ];
