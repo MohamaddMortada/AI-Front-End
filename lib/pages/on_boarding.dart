@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/pages/login.dart';
 import 'package:front_end/pages/register.dart';
+import 'package:front_end/widgets/alami_message.dart';
 import 'package:front_end/widgets/button.dart';
 import 'package:front_end/widgets/main_logo.dart';
 import 'package:front_end/widgets/text_field.dart';
@@ -25,7 +26,7 @@ class OnBoarding extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          const Text_Field(
+           AlamiMessage(
             text: "For a better performance,\nlet’s get in.",
             fontSize: 16,
             fontWeight: FontWeight.w300,

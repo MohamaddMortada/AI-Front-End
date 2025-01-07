@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:front_end/widgets/alami_message.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/gradient_line.dart';
 import 'package:front_end/widgets/upload.dart';
@@ -123,6 +124,8 @@ class _DetectState extends State<Detect> {
               children: [
                 ProfileBar(),
                 Spacer(),
+                AlamiMessage(text: "Upload an image or a video, and let’s start detecting", fontSize: 14, fontWeight:FontWeight.w500),
+                SizedBox(height: 10),
                 Container(
                   alignment: Alignment.center,
                   width: 270,

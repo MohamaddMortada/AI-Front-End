@@ -27,11 +27,13 @@ class Register extends StatelessWidget {
             children: [
               SizedBox(height: 40),
               MainLogo(),
-              Text_Field(
-                text: 'ATHLETIQ',
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
+              Text(
+            'ATHLETIQ',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
               Spacer(),
               Input(text: 'Username', image: Image.asset('assets/Icons/person.png'), height: 45, maxLines: 1, controller: usernameController,),
               SizedBox(height: 10),
