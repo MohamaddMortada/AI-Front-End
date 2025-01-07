@@ -4,8 +4,17 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class RegisterController {
   ValueNotifier<bool> isLoading = ValueNotifier(false);
+Future<void> saveUserData(Map<String, dynamic> userData) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  await prefs.setString('userId', userData['id'].toString());
+  await prefs.setString('userName', userData['name']);
+  await prefs.setString('userEmail', userData['email']); 
+}
 
   Future<void> registerUser(
     BuildContext context,
@@ -39,12 +48,13 @@ class RegisterController {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = jsonDecode(response.body);
+        await saveUserData(data);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Registration successful! Welcome, ${data['name']}")),
         );
+        Get.toNamed('/main');
         
 
-        Get.toNamed('/main');
       } else {
         final error = jsonDecode(response.body);
         ScaffoldMessenger.of(context).showSnackBar(

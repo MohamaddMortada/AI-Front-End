@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/pages/home.dart';
 import 'package:front_end/pages/predicting.dart';
+import 'package:front_end/widgets/alami_message.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/button.dart';
 import 'package:front_end/widgets/button_secondary.dart';
@@ -23,6 +24,8 @@ class Predict extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center, children: [
                   ProfileBar(),
                   Spacer(),
+                  AlamiMessage(text: 'Wanna know how much you can run right now!?', fontSize: 14, fontWeight: FontWeight.w500),
+                  SizedBox(height: 10,),
                   Text_Field(text: 'Input some previous Results: ', fontSize: 18, fontWeight: FontWeight.normal),
                   SizedBox(height: 10,),
                   Input(text: 'Distance',image: Image.asset('assets/Icons/lap.png'), height: 45, maxLines: 1, controller: distanceController,),
