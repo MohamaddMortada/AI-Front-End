@@ -14,13 +14,21 @@ class Text_Field extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Row(
+
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child:
+        Image.asset('assets/Icons/alami.png',width: 50,height: 50,)),
+
+        Container(
       width: 270,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: Color.fromARGB(255, 112, 168, 215),
       ),
-      child: Padding(
+      child:  Padding(
           padding: const EdgeInsets.all(5),
           child: Text(
             text,
@@ -29,7 +37,11 @@ class Text_Field extends StatelessWidget {
               fontWeight: fontWeight,
               fontSize: fontSize,
             ),
-          )),
+          ),)
+      
+    ),
+    
+      ],
     );
   }
 }
