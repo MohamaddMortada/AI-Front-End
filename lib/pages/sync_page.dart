@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:front_end/widgets/button_secondary.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -9,10 +10,11 @@ class SyncPage extends StatefulWidget {
 class _SyncPageState extends State<SyncPage> {
 
   String syncKey = "";
+  int? timeDifference;
 
   Future<void> generateKey() async {
     final response = await http.post(
-      Uri.parse('http://127.0.0.1:8000/api/generate-key'),
+      Uri.parse('http://10.0.2.2.1:8000/api/generate-key'),
       body: {'user_id': '2'},
     );
 
@@ -23,9 +25,58 @@ class _SyncPageState extends State<SyncPage> {
       });
     }
   }
+
+    Future<void> startSession() async {
+    final response = await http.post(
+      Uri.parse('http://10.0.2.2:8000/api/start'),
+      body: {'sync_key': syncKey},
+    );
+
+    if (response.statusCode == 200) {
+      
+    }
+  }
+
+    Future<void> stopSession() async {
+    final response = await http.post(
+      Uri.parse('http://10.0.2.2/api/stop'),
+      body: {'sync_key': syncKey},
+    );
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      setState(() {
+        timeDifference = data['time_difference'];
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      body: Center(child:
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (syncKey.isNotEmpty)
+              Text("Sync Key: $syncKey", style: const TextStyle(fontSize: 18)),
+            if (timeDifference != null)
+              Text("Time Difference: $timeDifference seconds", style: const TextStyle(fontSize: 18)),
+            
+            ButtonSecondary(text: "Generate Key", image: Image.asset('assets/Icons/add.png'), onTap: generateKey ),
+            const SizedBox(height: 10,),
+            ButtonSecondary(text: "Start", image: Image.asset('assets/Icons/start.png'), onTap: startSession ),
+            const SizedBox(height: 10,),
+            ButtonSecondary(text: "Stop", image: Image.asset('assets/Icons/stop.png'), onTap: stopSession ),
+            const SizedBox(height: 10,),
+            
+          ],
+        ),
+      )),
+    );
   }
+
 }
