@@ -30,7 +30,7 @@ class _DetectState extends State<Detect> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Select Media'),
+          title: const Text('Select Media'),
           actions: [
             TextButton(
               onPressed: () async {
@@ -39,7 +39,7 @@ class _DetectState extends State<Detect> {
                 Navigator.of(context)
                     .pop(file != null ? File(file.path) : null);
               },
-              child: Text('Image'),
+              child: const Text('Image'),
             ),
             TextButton(
               onPressed: () async {
@@ -48,7 +48,7 @@ class _DetectState extends State<Detect> {
                 Navigator.of(context)
                     .pop(file != null ? File(file.path) : null);
               },
-              child: Text('Video'),
+              child: const Text('Video'),
             ),
           ],
         );
@@ -122,14 +122,14 @@ class _DetectState extends State<Detect> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ProfileBar(),
-                Spacer(),
+                const ProfileBar(),
+                const Spacer(),
                 AlamiMessage(text: "Upload an image or a video, and let’s start detecting", fontSize: 14, fontWeight:FontWeight.w500),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   alignment: Alignment.center,
                   width: 270,
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(10),
@@ -139,7 +139,7 @@ class _DetectState extends State<Detect> {
                     borderRadius: BorderRadius.circular(10),
                     iconEnabledColor: Theme.of(context).primaryColor,
                     dropdownColor: Theme.of(context).primaryColor,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                     value: _selectedMode,
                     items: _modes.map((String mode) {
@@ -155,9 +155,9 @@ class _DetectState extends State<Detect> {
                     },
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Upload(onTap: _uploadMedia, media:_media),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Main_Button(
                   text: 'Detect',
                   image: Image.asset('assets/Icons/detect.png'),
@@ -166,10 +166,10 @@ class _DetectState extends State<Detect> {
                     _detectMedia(context);
                   },
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 if(isDetected)
                 GradientLineWidget(percentage: correctPercentage, label: 'Correct'),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 if(isDetected)
                 GradientLineWidget(percentage: 1-correctPercentage, label: 'Error'),
                 /*if (_errorMessage.isNotEmpty)
@@ -179,7 +179,7 @@ class _DetectState extends State<Detect> {
                         TextStyle(color: const Color.fromARGB(255, 130, 9, 0)),
                   ),*/
                  //Text('$correctPercentage'),
-                Spacer(),
+                const Spacer(),
               ],
             ),
           ),
