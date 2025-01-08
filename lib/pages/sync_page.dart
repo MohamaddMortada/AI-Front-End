@@ -14,7 +14,7 @@ class _SyncPageState extends State<SyncPage> {
 
   Future<void> generateKey() async {
     final response = await http.post(
-      Uri.parse('http://10.0.2.2.1:8000/api/generate-key'),
+      Uri.parse('http://10.0.2.2:8000/api/generate-key'),
       body: {'user_id': '2'},
     );
 
@@ -66,9 +66,9 @@ class _SyncPageState extends State<SyncPage> {
             if (timeDifference != null)
               Text("Time Difference: $timeDifference seconds", style: const TextStyle(fontSize: 18)),
             
-            ButtonSecondary(text: "Generate Key", image: Image.asset('assets/Icons/add.png'), onTap: generateKey ),
+            ButtonSecondary(text: "Generate Key", image: Image.asset('assets/Icons/add.png'), onTap: ()async{generateKey();} ),
             const SizedBox(height: 10,),
-            ButtonSecondary(text: "Start", image: Image.asset('assets/Icons/start.png'), onTap: startSession ),
+            ButtonSecondary(text: "Start", image: Image.asset('assets/Icons/start.png'), onTap: (){startSession;} ),
             const SizedBox(height: 10,),
             ButtonSecondary(text: "Stop", image: Image.asset('assets/Icons/stop.png'), onTap: stopSession ),
             const SizedBox(height: 10,),
