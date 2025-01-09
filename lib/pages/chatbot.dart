@@ -64,8 +64,29 @@ Column(
                   ),
                 );
               },
-            ),
-          ),]));
+            ),),
+            Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Input(
+              
+              text: 'Type your message here!', image: Image.asset('assets/Icons/type.png'), height: 45, maxLines: 1, controller: messageController,
+              ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.send,color: Theme.of(context).primaryColor,),
+                  onPressed: () {
+                    final message = messageController.text;
+                    if (message.isNotEmpty) {
+                      sendMessage(message);
+                      messageController.clear();
+                    }
+                  },
+                ),
+            
+            ]))]));
       }
 }
 
