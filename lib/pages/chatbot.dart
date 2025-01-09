@@ -10,7 +10,7 @@ class Chatbot extends StatefulWidget {
 
 class _ChatbotState extends State<Chatbot> {
   final TextEditingController messageController = TextEditingController();
-  final ScrollController _scrollController = ScrollController(); 
+  final ScrollController _scrollController = ScrollController();
   List<Map<String, String>> messages = [];
 
   Future<void> sendMessage(String message) async {
@@ -27,10 +27,10 @@ class _ChatbotState extends State<Chatbot> {
         messages.add({"role": "bot", "content": data['response']});
       });
 
-      Future.delayed(Duration(milliseconds: 300), () {
+      Future.delayed(const Duration(milliseconds: 300), () {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
         );
       });
@@ -39,16 +39,15 @@ class _ChatbotState extends State<Chatbot> {
         messages.add({"role": "bot", "content": "Failed to get response"});
       });
 
-      Future.delayed(Duration(milliseconds: 300), () {
+      Future.delayed(const Duration(milliseconds: 300), () {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
         );
       });
     }
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -83,53 +82,61 @@ class _ChatbotState extends State<Chatbot> {
                 itemBuilder: (context, index) {
                   final message = messages[index];
                   return Align(
-                    alignment: message['role'] == 'user'
-                        ? Alignment.centerRight
-                        : Alignment.centerLeft,
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 225, 245, 255),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        message['content'] ?? '',
-                        style: const TextStyle(color: Colors.black),
-                      ),
-                    ),
-                  );
+                      alignment: message['role'] == 'user'
+                          ? Alignment.centerRight
+                          : Alignment.centerLeft,
+                      child: Padding(
+                        padding: message['role'] == 'user'
+                          ? const EdgeInsets.only(top:8,bottom: 8,right: 8, left:50)
+                          : const EdgeInsets.only(top:8,bottom: 8,right: 50, left:8),
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          margin: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 225, 245, 255),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Text(
+                            message['content'] ?? '',
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ));
                 },
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Input(
-                      text: 'Type your message here!',
-                      image: Image.asset('assets/Icons/type.png'),
-                      height: 45,
-                      maxLines: 1,
-                      controller: messageController,
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Input(
+                        text: 'Type your message here!',
+                        image: Image.asset('assets/Icons/type.png'),
+                        height: 45,
+                        maxLines: 1,
+                        controller: messageController,
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    icon: const Icon(
-                      size: 30,
-                      Icons.send,
-                      color: Colors.white,
+                    IconButton(
+                      icon: const Icon(
+                        size: 30,
+                        Icons.send,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        final message = messageController.text;
+                        if (message.isNotEmpty) {
+                          sendMessage(message);
+                          messageController.clear();
+                        }
+                      },
                     ),
-                    onPressed: () {
-                      final message = messageController.text;
-                      if (message.isNotEmpty) {
-                        sendMessage(message);
-                        messageController.clear();
-                      }
-                    },
-                  ),
-                ],
-              )),],),),);
+                  ],
+                )),
+          ],
+        ),
+      ),
+    );
   }
 }
