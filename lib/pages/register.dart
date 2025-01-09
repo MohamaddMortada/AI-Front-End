@@ -55,9 +55,9 @@ class Register extends StatelessWidget {
                   confirmPasswordController.text.trim()
                 ),),
               SizedBox(height: 10),
-              Text('OR'),
+              //Text('OR'),
               SizedBox(height: 10),
-              RegisterGoogle(),
+              //RegisterGoogle(),
               Spacer(),
             ],
           )

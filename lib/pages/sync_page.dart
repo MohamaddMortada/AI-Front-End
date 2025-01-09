@@ -37,20 +37,6 @@ class _SyncPageState extends State<SyncPage> {
     }
   }
 
-    Future<void> stopSession() async {
-    final response = await http.post(
-      Uri.parse('http://10.0.2.2/api/stop'),
-      body: {'sync_key': syncKey},
-    );
-
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      setState(() {
-        timeDifference = data['time_difference'];
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,9 +54,8 @@ class _SyncPageState extends State<SyncPage> {
             
             ButtonSecondary(text: "Generate Key", image: Image.asset('assets/Icons/add.png'), onTap: ()async{generateKey();} ),
             const SizedBox(height: 10,),
-            ButtonSecondary(text: "Start", image: Image.asset('assets/Icons/start.png'), onTap: (){startSession;} ),
-            const SizedBox(height: 10,),
-            ButtonSecondary(text: "Stop", image: Image.asset('assets/Icons/stop.png'), onTap: stopSession ),
+            if(syncKey.isNotEmpty)
+              ButtonSecondary(text: "Start", image: Image.asset('assets/Icons/start.png'), onTap: (){} ),
             const SizedBox(height: 10,),
             
           ],

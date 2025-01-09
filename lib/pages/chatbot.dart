@@ -3,11 +3,17 @@ import 'package:flutter/widgets.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/profile_widget.dart';
 
-class Chatbot extends StatelessWidget {
-    
-    final TextEditingController messageController = TextEditingController();
-
+class Chatbot extends StatefulWidget {
   @override
+  _ChatbotState createState() => _ChatbotState();
+}
+
+class _ChatbotState extends State<Chatbot> {  
+    final TextEditingController messageController = TextEditingController();
+     List<Map<String, String>> messages = [];
+     
+
+@override
   Widget build(BuildContext context) {
     return    Scaffold(
         body: Stack(
@@ -37,4 +43,7 @@ class Chatbot extends StatelessWidget {
          )
           )]));
       }
-    }
+}
+
+  
+    
