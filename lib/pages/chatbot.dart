@@ -40,32 +40,32 @@ class _ChatbotState extends State<Chatbot> {
 @override
   Widget build(BuildContext context) {
     return    Scaffold(
-        body: Stack(
+        body: 
           
-          children: [
-            
-            Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center, children: [
-          SizedBox(height: 50,),
-          ProfileIcon(
-            imageUrl:'https://static.vecteezy.com/system/resources/previews/023/124/665/large_2x/modern-futuristic-female-humanoid-robot-portrait-with-technology-details-on-face-neural-network-generated-art-photo.jpg' ,
-            rad: 80,
-          ),
-          Spacer(),
-          Align(
-            alignment:Alignment.bottomCenter,
-            child:Input(
-              
-              text: 'Type your message here!', image: Image.asset('assets/Icons/type.png'), height: 45, maxLines: 1, controller: messageController,
-              ),
-              
+Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: messages.length,
+              itemBuilder: (context, index) {
+                final message = messages[index];
+                return Align(
+                  alignment: message['role'] == 'user'
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    margin: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color:Color.fromARGB(255, 201, 218, 223),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(message['content'] ?? ''),
+                  ),
+                );
+              },
             ),
-            SizedBox(height: 10,),
-          ]
-             
-         )
-          )]));
+          ),]));
       }
 }
 
