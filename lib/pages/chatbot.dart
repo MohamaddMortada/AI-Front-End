@@ -1,9 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:front_end/widgets/input.dart';
-import 'package:front_end/widgets/profile_widget.dart';
 import 'package:http/http.dart' as http;
 
 class Chatbot extends StatefulWidget {
@@ -13,6 +10,7 @@ class Chatbot extends StatefulWidget {
 
 class _ChatbotState extends State<Chatbot> {
   final TextEditingController messageController = TextEditingController();
+  final ScrollController _scrollController = ScrollController(); 
   List<Map<String, String>> messages = [];
 
   Future<void> sendMessage(String message) async {
@@ -28,12 +26,29 @@ class _ChatbotState extends State<Chatbot> {
         messages.add({"role": "user", "content": message});
         messages.add({"role": "bot", "content": data['response']});
       });
+
+      Future.delayed(Duration(milliseconds: 300), () {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      });
     } else {
       setState(() {
         messages.add({"role": "bot", "content": "Failed to get response"});
       });
+
+      Future.delayed(Duration(milliseconds: 300), () {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      });
     }
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +57,10 @@ class _ChatbotState extends State<Chatbot> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 139, 166, 177), 
-              Color.fromARGB(255, 19, 99, 134), 
-              Color.fromARGB(255, 1, 71, 98), 
-              Color.fromARGB(255, 0, 41, 57), 
+              Color.fromARGB(255, 139, 166, 177),
+              Color.fromARGB(255, 19, 99, 134),
+              Color.fromARGB(255, 1, 71, 98),
+              Color.fromARGB(255, 0, 41, 57),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -53,15 +68,17 @@ class _ChatbotState extends State<Chatbot> {
         ),
         child: Column(
           children: [
-             Padding(
+            Padding(
               padding: const EdgeInsets.only(top: 20),
-              child:CircleAvatar(
-    radius: 80,
-    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-    backgroundImage: const AssetImage('assets/Chatbot-girl.webp'),
-             )),
+              child: CircleAvatar(
+                radius: 80,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                backgroundImage: const AssetImage('assets/Chatbot-girl.webp'),
+              ),
+            ),
             Expanded(
               child: ListView.builder(
+                controller: _scrollController,
                 itemCount: messages.length,
                 itemBuilder: (context, index) {
                   final message = messages[index];
@@ -113,7 +130,6 @@ class _ChatbotState extends State<Chatbot> {
                     },
                   ),
                 ],
-              ),
-            ),],),),);
-        }
+              )),],),),);
+  }
 }
