@@ -12,41 +12,53 @@ class _ChatbotState extends State<Chatbot> {
   final TextEditingController messageController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   List<Map<String, String>> messages = [];
+  bool isTyping = false;
+
+
+  void _scrollToBottom() {
+    Future.delayed(const Duration(milliseconds: 300), () {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    });
+  }
 
   Future<void> sendMessage(String message) async {
+    setState(() {
+      messages.add({"role": "user", "content": message});
+    });
+
+    _scrollToBottom();
+
+    setState(() {
+      isTyping = true;
+    });
+
     final url = Uri.parse('http://10.0.2.2:8000/api/chatbot');
     final response = await http.post(
       url,
       body: {'message': message},
     );
 
+    await Future.delayed(const Duration(seconds: 2));
+
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      setState(() {
-        messages.add({"role": "user", "content": message});
-        messages.add({"role": "bot", "content": data['response']});
-      });
 
-      Future.delayed(const Duration(milliseconds: 300), () {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
+      setState(() {
+        isTyping = false;
+        messages.add({"role": "bot", "content": data['response']});
       });
     } else {
       setState(() {
+        isTyping = false;
         messages.add({"role": "bot", "content": "Failed to get response"});
       });
-
-      Future.delayed(const Duration(milliseconds: 300), () {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
-      });
     }
+
+    _scrollToBottom();
   }
 
   @override
