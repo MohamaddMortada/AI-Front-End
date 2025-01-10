@@ -8,6 +8,7 @@ import 'package:front_end/pages/electric_time.dart';
 import 'package:front_end/pages/login.dart';
 import 'package:front_end/pages/main_page.dart';
 import 'package:front_end/pages/on_boarding.dart';
+import 'package:front_end/pages/predict.dart';
 import 'package:front_end/pages/register.dart';
 import 'package:front_end/pages/results.dart';
 import 'package:front_end/pages/sync_page.dart';
@@ -33,7 +34,7 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFB2C8D0),
 
       ),
-      home:Results(),
+      home:Predict(),
       
     );
   }

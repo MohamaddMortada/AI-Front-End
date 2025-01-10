@@ -21,12 +21,15 @@ Future<void> sendResult() async {
       return;
     }
 
-    final url = Uri.parse('http://10.0.2.2:8000/api/setResult'); 
+    final url = Uri.parse('http://10.0.2.2:8000/api/results'); 
   try {
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
-        body: json.encode({'Result': session}),
+        body: json.encode({
+          'result': session,
+          'user_id':'3'
+          }),
       );
 
       if (response.statusCode == 200) {
@@ -52,7 +55,7 @@ Future<void> sendResult() async {
               children: [
               Input(text: 'Enter a training session', image: Image.asset('assets/Icons/type.png'), height: 270, maxLines: 10, controller: _trainingController),
               SizedBox(height: 10,),
-              ButtonSecondary(text: 'Add Result', image: Image.asset('assets/Icons/add.png'), onTap: (){sendResult();})
+              ButtonSecondary(text: 'Add Result', image: Image.asset('assets/Icons/add.png'), onTap: ()async{sendResult();})
   
             ])));
   }
