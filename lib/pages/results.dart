@@ -52,7 +52,7 @@ Future<void> sendResult() async {
               children: [
               Input(text: 'Enter a training session', image: Image.asset('assets/Icons/type.png'), height: 270, maxLines: 10, controller: _trainingController),
               SizedBox(height: 10,),
-              ButtonSecondary(text: 'Add Result', image: Image.asset('assets/Icons/add.png'), onTap: (){})
+              ButtonSecondary(text: 'Add Result', image: Image.asset('assets/Icons/add.png'), onTap: (){sendResult();})
   
             ])));
   }
