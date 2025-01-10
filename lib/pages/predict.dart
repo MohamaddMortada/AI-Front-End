@@ -54,6 +54,7 @@ class Predict extends StatefulWidget {
         url,
         body: {
           'results': json.encode(results), 
+          'event':eventController.text.trim()
         },
       );
 
