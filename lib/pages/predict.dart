@@ -44,7 +44,9 @@ class Predict extends StatefulWidget {
 
     Future<void> predictResult() async {
     if (results.isEmpty) {
-      return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Input some Results in the results section")),
+      );
     }
 
     final url = Uri.parse('http://10.0.2.2:8000/api/AIpredict');
@@ -83,7 +85,7 @@ class Predict extends StatefulWidget {
                   SizedBox(height: 10,),
                   Input(text: 'Event',image: Image.asset('assets/Icons/lap.png'), height: 45, maxLines: 1, controller: eventController,),
                   SizedBox(height: 10,),
-                  ButtonSecondary(text: '',  image:  Image.asset('assets/Icons/add.png'),onTap: () {  },),
+                  ButtonSecondary(text: '',  image:  Image.asset('assets/Icons/add.png'),onTap: () { predictResult();},),
                   Spacer(),
                 ]
               )
