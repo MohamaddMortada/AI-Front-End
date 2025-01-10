@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/widgets/button_secondary.dart';
+import 'package:front_end/widgets/input.dart';
 
 class Results extends StatefulWidget {
   @override
@@ -6,9 +8,19 @@ class Results extends StatefulWidget {
 }
 
 class _ResultsState extends State<Results> {
+    final TextEditingController _trainingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+        body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              Input(text: 'Enter a training session', image: Image.asset('assets/Icons/type.png'), height: 270, maxLines: 10, controller: _trainingController),
+              SizedBox(height: 10,),
+              ButtonSecondary(text: 'Add Result', image: Image.asset('assets/Icons/add.png'), onTap: (){})
+  
+            ])));
   }
 }
