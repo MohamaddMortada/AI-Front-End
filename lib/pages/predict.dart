@@ -14,7 +14,8 @@ class Predict extends StatefulWidget {
   class _PredictState extends State<Predict> {
   final TextEditingController eventController = TextEditingController();
   List<dynamic> results = [];
-
+  String predictedResult = '';
+  String confidence = '';
 
   Future<void> fetchResults() async {
     final url = Uri.parse('http://10.0.2.2:8000/api/getResults'); 
@@ -39,6 +40,31 @@ class Predict extends StatefulWidget {
         SnackBar(content: Text("Error: ${e.toString()}")),
       );
     }
+  }
+
+    Future<void> predictResult() async {
+    if (results.isEmpty) {
+      return;
+    }
+
+    final url = Uri.parse('http://10.0.2.2:8000/api/AIpredict');
+      final response = await http.post(
+        url,
+        body: {
+          'results': json.encode(results), 
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        setState(() {
+          predictedResult = data['prediction'];
+          confidence = data['confidence'].toString();
+        });
+      } else {
+        throw Exception('Failed to get prediction');
+      }
+   
   }
 
 
