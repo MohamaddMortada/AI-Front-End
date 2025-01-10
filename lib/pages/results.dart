@@ -10,6 +10,15 @@ class Results extends StatefulWidget {
 class _ResultsState extends State<Results> {
     final TextEditingController _trainingController = TextEditingController();
 
+Future<void> sendResult() async {
+    final session = _trainingController.text.trim();
+    if (session.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please enter a valid training session.")),
+      );
+      return;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
