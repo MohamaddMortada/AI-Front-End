@@ -9,8 +9,11 @@ import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/profile_bar.dart';
 import 'package:front_end/widgets/text_field.dart';
 
-class Predict extends StatelessWidget {
-  
+class Predict extends StatefulWidget {
+  @override
+  _PredictState createState() => _PredictState();
+}
+  class _PredictState extends State<Predict> {
   final TextEditingController distanceController = TextEditingController();
   final TextEditingController timeController = TextEditingController();
 
