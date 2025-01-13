@@ -136,9 +136,10 @@ class _CalculateState extends State<Calculate> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                const Spacer(),
+                Spacer(),
+                //Image.asset('assets/motivation.png',width: 150,height: 200,),
                 AlamiMessage(
-                  text: 'Check your Points \n right now!',
+                  text: 'Check your Points \n Right Now!',
                   fontSize: 18,
                   fontWeight: FontWeight.w800,
                 ),
@@ -253,7 +254,7 @@ class _CalculateState extends State<Calculate> {
                     await fetchScore();
                   },
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
                 Container(
                   alignment: Alignment.center,
                   width: 100,
