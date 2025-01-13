@@ -97,17 +97,17 @@ class _MainPageState extends State<MainPage> {
 
                   ImageButton(
                     imagePath: 'assets/Calculate-Image.webp',
-                    text: 'CALCULATE',
-                    discription: 'CALCULATE YOUR \nPOINTS',
-                    route: '/calculate',
+                    text: 'SESSIONS',
+                    discription: 'Add Your Daily \nSessions',
+                    route: '/results',
                   ),
               SizedBox(height: 10),
 
                   ImageButton(
-                    imagePath: 'assets/Calculate-Image.webp',
-                    text: 'CALCULATE',
-                    discription: 'CALCULATE YOUR \nPOINTS',
-                    route: '/calculate',
+                    imagePath: 'assets/Chatbot-girl.webp',
+                    text: 'CHATBOT',
+                    discription: 'Have you Meet Mika? \n',
+                    route: '/chatbot',
                   ),
                
               Spacer(),
