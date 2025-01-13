@@ -182,6 +182,8 @@ class _DetectState extends State<Detect> {
                   ),*/
                  //Text('$correctPercentage'),
                 const Spacer(),
+                const Spacer(),
+                const Spacer(),
               ],
             ),
           ),

@@ -126,20 +126,23 @@ class _CalculateState extends State<Calculate> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const ProfileBar(),
-                Container(
+                 Container(
                   alignment: Alignment.center,
                   width: 250,
-                  height: 80,
+                  height: 60,
                   child: const Text(
                     'Athletic Performance Calculator',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                     textAlign: TextAlign.center,
                   ),
                 ),
+                Image.asset('assets/group-run.png',
+                              height: 200, width: 200),
+               
                 Spacer(),
                 //Image.asset('assets/motivation.png',width: 150,height: 200,),
                 AlamiMessage(
-                  text: 'Check your Points \n Right Now!',
+                  text: 'Check your Points Right Now!',
                   fontSize: 18,
                   fontWeight: FontWeight.w800,
                 ),
@@ -273,6 +276,8 @@ class _CalculateState extends State<Calculate> {
                         fontWeight: FontWeight.w500, fontSize: 18),
                   ),
                 ),
+                const Spacer(),
+                const Spacer(),
                 const Spacer(),
               ],
             ),
