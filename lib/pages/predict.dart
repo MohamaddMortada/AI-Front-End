@@ -49,7 +49,7 @@ class Predict extends StatefulWidget {
       );
     }
 
-    final url = Uri.parse('http://10.0.2.2:8000/api/AIpredict');
+    final url = Uri.parse('http://10.0.2.2:8000/api/aipredict');
       final response = await http.post(
         url,
         body: {

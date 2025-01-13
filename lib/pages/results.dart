@@ -28,7 +28,7 @@ Future<void> sendResult() async {
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           'result': session,
-          'user_id':'3'
+          'user_id':2
           }),
       );
 

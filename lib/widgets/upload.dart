@@ -22,8 +22,8 @@ final File? media;
       color: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(10)
     ),
-    width:270,
-    height: 270,
+    width:330,
+    height: 330,
       child: Column(
         mainAxisAlignment : MainAxisAlignment.center,
         crossAxisAlignment : CrossAxisAlignment.center,

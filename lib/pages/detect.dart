@@ -128,7 +128,7 @@ class _DetectState extends State<Detect> {
                 const SizedBox(height: 10),
                 Container(
                   alignment: Alignment.center,
-                  width: 270,
+                  width: 330,
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,

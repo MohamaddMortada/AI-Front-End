@@ -27,7 +27,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
       width: 270,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Color.fromARGB(255, 112, 168, 215),
+        //color: Color.fromARGB(255, 112, 168, 215),
       ),
       child:  Padding(
           padding: const EdgeInsets.all(5),

@@ -20,7 +20,7 @@ class Main_Button extends StatelessWidget {
       color: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(10)
     ),
-    width:270,
+    width:330,
     height: 45,
       child: Row(
         mainAxisAlignment : MainAxisAlignment.spaceBetween,

@@ -61,9 +61,7 @@ class _MainPageState extends State<MainPage> {
                 ],
               ),
               Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+            
                   ImageButton(
                     imagePath: 'assets/Detect-Image.webp',
                     text: 'DETECT',
@@ -76,12 +74,9 @@ class _MainPageState extends State<MainPage> {
                     discription: 'ANALYZE YOUR PERFORMANCE',
                     route: '/analyze',
                   ),
-                ],
-              ),
+                
               SizedBox(height: 50),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+              
                   ImageButton(
                     imagePath: 'assets/Predict-Image.webp',
                     text: 'PREDICT',
@@ -94,8 +89,7 @@ class _MainPageState extends State<MainPage> {
                     discription: 'CALCULATE YOUR \nPOINTS',
                     route: '/calculate',
                   ),
-                ],
-              ),
+               
               Spacer(),
               Spacer(),
             ],

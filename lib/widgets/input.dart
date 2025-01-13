@@ -19,20 +19,16 @@ class Input extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 270,
+      width: 330,
       height: height,
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Theme.of(context).primaryColor,
-            spreadRadius: 0,
-            blurRadius: 1,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        border: Border.all(
+      color: Theme.of(context).primaryColor, 
+      width: 1, 
+    ),
         borderRadius: BorderRadius.circular(10),
-        color: Theme.of(context).secondaryHeaderColor,
+        //color: Theme.of(context).secondaryHeaderColor,
       ),
       child: Row(
         children: [
@@ -47,9 +43,6 @@ class Input extends StatelessWidget {
               controller: controller,
               maxLines: maxLines,
               decoration: InputDecoration(
-                border: InputBorder.none,
-                filled: true,
-                fillColor: Theme.of(context).secondaryHeaderColor,
                 labelText: text,
               ),
             ),
