@@ -44,7 +44,22 @@ class ImageButton extends StatelessWidget {
                     discription,
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
                   ),
-                  
+                  GestureDetector(
+                      onTap: () {
+                        Get.toNamed(route);
+                      },
+                      child: Container(
+                        child: Text(
+                          text,
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        width: 100,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ))
                 ],
               ),
               Container(
