@@ -139,8 +139,8 @@ class _CalculateState extends State<Calculate> {
                 const Spacer(),
                 AlamiMessage(
                   text: 'Check your Points \n right now!',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
                 ),
                 const SizedBox(height: 20),
                 Container(
