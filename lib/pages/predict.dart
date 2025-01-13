@@ -80,6 +80,7 @@ class Predict extends StatefulWidget {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center, children: [
                   ProfileBar(),
+                  Image.asset('assets/finishh.png',width: 300,height: 300,),
                   Spacer(),
                   AlamiMessage(text: 'Wanna know how much you can run right now!?', fontSize: 14, fontWeight: FontWeight.w500),
                   SizedBox(height: 10,),
@@ -87,6 +88,9 @@ class Predict extends StatefulWidget {
                   Input(text: 'Event',image: Image.asset('assets/Icons/lap.png'), height: 45, maxLines: 1, controller: eventController,),
                   SizedBox(height: 10,),
                   ButtonSecondary(text: '',  image:  Image.asset('assets/Icons/add.png'),onTap: () { predictResult();},),
+                  Spacer(),
+                  Spacer(),
+                  Spacer(),
                   Spacer(),
                 ]
               )
