@@ -1,9 +1,7 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:front_end/widgets/alami_message.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/button_secondary.dart';
-import 'package:front_end/widgets/image_container.dart';
 import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/profile_bar.dart';
 import 'package:http/http.dart' as http;
@@ -128,38 +126,90 @@ class _CalculateState extends State<Calculate> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const ProfileBar(),
-                Spacer(),
-                AlamiMessage(text: 'Check your Points \n right now!', fontSize: 14, fontWeight: FontWeight.w500),
-                SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Radio<String>(
-                      value: 'i',
-                      groupValue: _selectedStadium,
-                      onChanged: (String? value) {
-                        setState(() {
-                          _selectedStadium = value;
-                        });
-                      },
-                    ),
-                    const Text('Indoor'),
-                    const SizedBox(width: 20),
-                    Radio<String>(
-                      value: 'o',
-                      groupValue: _selectedStadium,
-                      onChanged: (String? value) {
-                        setState(() {
-                          _selectedStadium = value;
-                        });
-                      },
-                    ),
-                    const Text('Outdoor'),
-                  ],
-                ),
                 Container(
                   alignment: Alignment.center,
-                  width: 270,
+                  width: 250,
+                  height: 80,
+                  child: const Text(
+                    'Athletic Performance Calculator',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const Spacer(),
+                AlamiMessage(
+                  text: 'Check your Points \n right now!',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Choose Stadium'),
+                      Row(
+                        children: [
+                          Radio<String>(
+                            value: 'i',
+                            groupValue: _selectedStadium,
+                            onChanged: (String? value) {
+                              setState(() {
+                                _selectedStadium = value;
+                              });
+                            },
+                          ),
+                          const Text('Indoor'),
+                          const SizedBox(width: 20),
+                          Radio<String>(
+                            value: 'o',
+                            groupValue: _selectedStadium,
+                            onChanged: (String? value) {
+                              setState(() {
+                                _selectedStadium = value;
+                              });
+                            },
+                          ),
+                          const Text('Outdoor'),
+                        ],
+                      ),
+                      const Text('Choose Gender'),
+                      Row(
+                        children: [
+                          Radio<String>(
+                            value: 'm',
+                            groupValue: _selectedGender,
+                            onChanged: (String? value) {
+                              setState(() {
+                                _selectedGender = value;
+                              });
+                            },
+                          ),
+                          Image.asset('assets/Icons/male.png',
+                              height: 40, width: 40),
+                          const SizedBox(width: 20),
+                          Radio<String>(
+                            value: 'w',
+                            groupValue: _selectedGender,
+                            onChanged: (String? value) {
+                              setState(() {
+                                _selectedGender = value;
+                              });
+                            },
+                          ),
+                          Image.asset('assets/Icons/female.png',
+                              height: 40, width: 40),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.center,
+                  width: 330,
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
@@ -186,32 +236,6 @@ class _CalculateState extends State<Calculate> {
                     },
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Radio<String>(
-                      value: 'm',
-                      groupValue: _selectedGender,
-                      onChanged: (String? value) {
-                        setState(() {
-                          _selectedGender = value;
-                        });
-                      },
-                    ),
-                    const Text('Male'),
-                    const SizedBox(width: 20),
-                    Radio<String>(
-                      value: 'w',
-                      groupValue: _selectedGender,
-                      onChanged: (String? value) {
-                        setState(() {
-                          _selectedGender = value;
-                        });
-                      },
-                    ),
-                    const Text('Female'),
-                  ],
-                ),
                 const SizedBox(height: 10),
                 Input(
                   text: 'Result',
@@ -230,23 +254,10 @@ class _CalculateState extends State<Calculate> {
                   },
                 ),
                 const SizedBox(height: 10),
-                /*ElevatedButton(
-                  onPressed: () async {
-                    await fetchEventId();
-                    await fetchScore(); 
-                  },
-                  child: const Text('Calculate'),
-                ),*/
-                const SizedBox(height: 10),
                 Container(
                   alignment: Alignment.center,
-                  width: 100,height: 40,
-                  child: Text(
-                    scoreController.text,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18),
-                  ),
+                  width: 100,
+                  height: 40,
                   decoration: BoxDecoration(
                     color: Theme.of(context).secondaryHeaderColor,
                     borderRadius: BorderRadius.circular(8),
@@ -255,12 +266,17 @@ class _CalculateState extends State<Calculate> {
                       width: 2.0,
                     ),
                   ),
+                  child: Text(
+                    scoreController.text,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500, fontSize: 18),
+                  ),
                 ),
                 const Spacer(),
               ],
             ),
           ),
-          AssistiveBall()
+          AssistiveBall(),
         ],
       ),
     );

@@ -10,7 +10,7 @@ class AlamiMessage extends StatelessWidget {
       {super.key,
       required this.text,
       required this.fontSize,
-      required this.fontWeight});
+      required this.fontWeight, });
 
   @override
   Widget build(BuildContext context) {
