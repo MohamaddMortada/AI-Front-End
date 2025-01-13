@@ -23,8 +23,8 @@ class ImageButton extends StatelessWidget {
       },
       child: Container(
         width: 330,
-        height: 150,
-        padding: const EdgeInsets.all(10),
+        height: 100, 
+        padding: const EdgeInsets.all(8), 
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 128, 168, 183),
           borderRadius: BorderRadius.circular(10),
@@ -42,17 +42,19 @@ class ImageButton extends StatelessWidget {
                     text,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 14, 
                       color: Colors.black,
                     ),
                   ),
                   Text(
                     discription,
                     style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12,
                       color: Colors.black54,
                     ),
+                    maxLines: 2, 
+                    overflow: TextOverflow.ellipsis,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -60,8 +62,8 @@ class ImageButton extends StatelessWidget {
                     },
                     child: Container(
                       alignment: Alignment.center,
-                      width: 100,
-                      height: 40,
+                      width: 80, 
+                      height: 30, 
                       decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(8),
@@ -71,6 +73,7 @@ class ImageButton extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
+                          fontSize: 12,
                         ),
                       ),
                     ),
@@ -79,8 +82,8 @@ class ImageButton extends StatelessWidget {
               ),
             ),
             Container(
-              width: 100,
-              height: 100,
+              width: 100, 
+              height: 80, 
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
               ),

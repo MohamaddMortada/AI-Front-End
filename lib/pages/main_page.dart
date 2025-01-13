@@ -68,6 +68,8 @@ class _MainPageState extends State<MainPage> {
                     discription: 'DETECT & FIX \nERRORS',
                     route: '/detect',
                   ),
+              SizedBox(height: 10),
+
                   ImageButton(
                     imagePath: 'assets/Analyze-Image.webp',
                     text: 'ANALYZE',
@@ -75,7 +77,7 @@ class _MainPageState extends State<MainPage> {
                     route: '/analyze',
                   ),
                 
-              SizedBox(height: 50),
+              SizedBox(height: 10),
               
                   ImageButton(
                     imagePath: 'assets/Predict-Image.webp',
@@ -83,6 +85,24 @@ class _MainPageState extends State<MainPage> {
                     discription: 'PREDICT FUTURE PERFORMANCES',
                     route: '/predict',
                   ),
+              SizedBox(height: 10),
+
+                  ImageButton(
+                    imagePath: 'assets/Calculate-Image.webp',
+                    text: 'CALCULATE',
+                    discription: 'CALCULATE YOUR \nPOINTS',
+                    route: '/calculate',
+                  ),
+              SizedBox(height: 10),
+
+                  ImageButton(
+                    imagePath: 'assets/Calculate-Image.webp',
+                    text: 'CALCULATE',
+                    discription: 'CALCULATE YOUR \nPOINTS',
+                    route: '/calculate',
+                  ),
+              SizedBox(height: 10),
+
                   ImageButton(
                     imagePath: 'assets/Calculate-Image.webp',
                     text: 'CALCULATE',
