@@ -7,6 +7,7 @@ import 'package:front_end/widgets/input.dart';
 import 'package:front_end/widgets/main_logo.dart';
 import 'package:front_end/widgets/register_google.dart';
 import 'package:front_end/widgets/text_field.dart';
+import 'package:get/get.dart';
 
 class Register extends StatelessWidget {
   final RegisterController controller = RegisterController();
@@ -15,53 +16,89 @@ class Register extends StatelessWidget {
   final TextEditingController numberController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return   Scaffold(
+    return Scaffold(
         body: Center(
-          
-          child:Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(height: 40),
-              MainLogo(),
-              Text(
-            'ATHLETIQ',
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-            ),
+            child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        SizedBox(height: 40),
+        MainLogo(),
+        Text(
+          'ATHLETIQ',
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
           ),
-              Spacer(),
-              Input(text: 'Username', image: Image.asset('assets/Icons/person.png'), height: 45, maxLines: 1, controller: usernameController,),
-              SizedBox(height: 10),
-              Input(text: 'Email', image: Image.asset('assets/Icons/email.png'), height: 45, maxLines: 1, controller: emailController),
-              SizedBox(height: 10),
-              Input(text: 'Phone Number', image: Image.asset('assets/Icons/phone.png'), height: 45, maxLines: 1, controller: numberController),
-              SizedBox(height: 10),
-              Input(text: 'Password', image: Image.asset('assets/Icons/key.png'), height: 45, maxLines: 1, controller: passwordController),
-              SizedBox(height: 10),
-              Input(text: 'Confirm Password', image: Image.asset('assets/Icons/key.png'), height: 45, maxLines: 1, controller: confirmPasswordController),
-              SizedBox(height: 20),
-              Main_Button(
-                text: 'Register',image: Image.asset('assets/Icons/register.png'), route: '/main', 
-                onTap: () =>controller.registerUser(
-                   context,
-                  usernameController.text.trim(),
-                  emailController.text.trim(),
-                  passwordController.text.trim(),
-                  confirmPasswordController.text.trim()
-                ),),
-              SizedBox(height: 10),
-              //Text('OR'),
-              SizedBox(height: 10),
-              //RegisterGoogle(),
-              Spacer(),
-            ],
-          )
-        )
-    );
+        ),
+        Spacer(),
+        Input(
+          text: 'Username',
+          image: Image.asset('assets/Icons/person.png'),
+          height: 45,
+          maxLines: 1,
+          controller: usernameController,
+        ),
+        SizedBox(height: 10),
+        Input(
+            text: 'Email',
+            image: Image.asset('assets/Icons/email.png'),
+            height: 45,
+            maxLines: 1,
+            controller: emailController),
+        SizedBox(height: 10),
+        Input(
+            text: 'Phone Number',
+            image: Image.asset('assets/Icons/phone.png'),
+            height: 45,
+            maxLines: 1,
+            controller: numberController),
+        SizedBox(height: 10),
+        Input(
+            text: 'Password',
+            image: Image.asset('assets/Icons/key.png'),
+            height: 45,
+            maxLines: 1,
+            controller: passwordController),
+        SizedBox(height: 10),
+        Input(
+            text: 'Confirm Password',
+            image: Image.asset('assets/Icons/key.png'),
+            height: 45,
+            maxLines: 1,
+            controller: confirmPasswordController),
+        SizedBox(height: 20),
+        Main_Button(
+          text: 'Register',
+          image: Image.asset('assets/Icons/register.png'),
+          route: '/main',
+          onTap: () => controller.registerUser(
+              context,
+              usernameController.text.trim(),
+              emailController.text.trim(),
+              passwordController.text.trim(),
+              confirmPasswordController.text.trim()),
+        ),
+        SizedBox(height: 10),
+        Text('Already have an Account?'),
+        SizedBox(height: 10),
+        Main_Button(
+          text: 'Login',
+          image: Image.asset('assets/Icons/login.png'),
+          route: '/login',
+          onTap: () {
+            Get.toNamed('/login');
+          },
+        ),
+        //Text('OR'),
+        SizedBox(height: 10),
+        //RegisterGoogle(),
+        Spacer(),
+      ],
+    )));
   }
 }
