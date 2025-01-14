@@ -187,12 +187,13 @@ class _DetectState extends State<Detect> {
                 ),
                 const SizedBox(height: 20),
                 if (_media != null)
-                  Image.file(
+                Image.file(
                     _media!,
                     width: 300,
                     height: 200,
                     fit: BoxFit.cover,
                   ),
+                  
                 const SizedBox(height: 20),
                 Main_Button(
                   text: 'Detect',
@@ -204,11 +205,25 @@ class _DetectState extends State<Detect> {
                 ),
                 const SizedBox(height: 20),
                 if (isDetected)
-                  GradientLineWidget(
+                Container(
+                  decoration: BoxDecoration(borderRadius:BorderRadius.circular(15),color: Color.fromARGB(255, 128, 166, 179),),
+                  
+                  height: 80,width: 330,
+                  child:
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                    
+                    GradientLineWidget(
                       percentage: correctPercentage, label: 'Correct'),
-                if (isDetected)
+                      SizedBox(height: 10,),
+                
                   GradientLineWidget(
                       percentage: 1 - correctPercentage, label: 'Error'),
+                  ],)
+                ),
+                  
                 if (noResultFound)
                   const Column(
                     children: [
