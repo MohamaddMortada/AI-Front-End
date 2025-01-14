@@ -18,7 +18,7 @@ class Predict extends StatefulWidget {
   String confidence = '';
 
   Future<void> fetchResults() async {
-    final url = Uri.parse('http://10.0.2.2:8000/api/getResults'); 
+    final url = Uri.parse('http://10.0.2.2:8000/api/getresult'); 
     try {
       final response = await http.post(
         url,
@@ -30,7 +30,7 @@ class Predict extends StatefulWidget {
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
-          results = data['results'];
+          results = data['result'];
         });
       } else {
         throw Exception('Failed to load results');
@@ -84,6 +84,7 @@ class Predict extends StatefulWidget {
                   Spacer(),
                   AlamiMessage(text: 'Wanna know how much you can run right now!?', fontSize: 14, fontWeight: FontWeight.w500),
                   SizedBox(height: 10,),
+                  Text(results.toString()),
                   SizedBox(height: 10,),
                   Input(text: 'Event',image: Image.asset('assets/Icons/lap.png'), height: 45, maxLines: 1, controller: eventController,),
                   SizedBox(height: 10,),
