@@ -127,12 +127,12 @@ class _DetectState extends State<Detect> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const ProfileBar(),
-                Text(
-                    'DETECT & FIX',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
-                    textAlign: TextAlign.center,
-                  ),
-                  Spacer(),
+                const Text(
+                  'DETECT & FIX',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+                  textAlign: TextAlign.center,
+                ),
+                const Spacer(),
                 //Image.asset('assets/sprint-start.png', width: 200, height: 200),
                 AlamiMessage(
                   text: "Upload an image or a video, and let’s start detecting",

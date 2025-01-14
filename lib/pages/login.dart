@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:front_end/controllers/auth_controller.dart';
 import 'package:front_end/widgets/button.dart';
 import 'package:front_end/widgets/input.dart';
@@ -44,13 +45,19 @@ class Login extends StatelessWidget {
           controller: passwordController,
         ),
         const SizedBox(height: 10),
-        const Text(
-          'Forgot your password',
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        const Padding(
+            padding: EdgeInsets.only(left: 40),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Forgot your password',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            )),
         const SizedBox(height: 10),
         Main_Button(
           text: 'Login',
