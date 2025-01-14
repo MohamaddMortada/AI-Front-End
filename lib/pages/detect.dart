@@ -127,6 +127,12 @@ class _DetectState extends State<Detect> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const ProfileBar(),
+                Text(
+                    'DETECT & FIX',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+                    textAlign: TextAlign.center,
+                  ),
+                  Spacer(),
                 //Image.asset('assets/sprint-start.png', width: 200, height: 200),
                 AlamiMessage(
                   text: "Upload an image or a video, and let’s start detecting",
@@ -179,7 +185,7 @@ class _DetectState extends State<Detect> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 if (_media != null)
                   Image.file(
                     _media!,
@@ -187,7 +193,7 @@ class _DetectState extends State<Detect> {
                     height: 200,
                     fit: BoxFit.cover,
                   ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 Main_Button(
                   text: 'Detect',
                   image: Image.asset('assets/Icons/detect.png'),
