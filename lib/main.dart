@@ -29,7 +29,7 @@ class MainApp extends StatelessWidget {
       initialRoute: '/',  
       getPages: appRoutes,
       theme: ThemeData(
-        primaryColor: Color(0xFF006B8B),
+        primaryColor: Color(0xFF006b8b),
         secondaryHeaderColor:Color(0xFFE1F7FF),
         scaffoldBackgroundColor: Color(0xFFB2C8D0),
 

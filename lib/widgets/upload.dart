@@ -13,28 +13,28 @@ final File? media;
             onTap: onTap,
             child:Container(
       decoration: BoxDecoration(
-      image: media != null
+      /*image: media != null
                   ? DecorationImage(
                       image: FileImage(media!), 
                       fit: BoxFit.contain,
                     )
-                  : null,
+                  : null,*/
       color: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(10)
     ),
     width:330,
-    height: 330,
+    height: 45,
       child: Column(
         mainAxisAlignment : MainAxisAlignment.center,
         crossAxisAlignment : CrossAxisAlignment.center,
         children: [
-          if(media == null)
-            Icon(
+          //if(media == null)
+            /*Icon(
                 Icons.upload, 
-                size: 100, 
+                size: 10, 
                 color: Colors.white, 
-              ),
-            if(media == null)
+              ),*/
+            //if(media == null)
             Text('Upload an Image/Video', 
             style: TextStyle(
               color: Colors.white,
