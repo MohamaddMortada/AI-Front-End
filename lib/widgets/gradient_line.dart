@@ -40,12 +40,28 @@ class GradientLineWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
         ),
+        if(label == 'Correct')
         Positioned.fill(
           child: Center(
             child: Text(
               "$label (${(percentage * 100).toStringAsFixed(1)}%)",
               style: TextStyle(
+                
                 color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
+            ),
+          ),
+        ),
+        if(label == 'Error')
+        Positioned.fill(
+          child: Center(
+            child: Text(
+              "$label (${(percentage * 100).toStringAsFixed(1)}%)",
+              style: TextStyle(
+                
+                color: Color.fromARGB(255, 168, 168, 168),
                 fontWeight: FontWeight.bold,
                 fontSize: 12,
               ),
