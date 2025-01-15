@@ -129,6 +129,11 @@ class _FinishLineState extends State<FinishLine> {
     }
   }
   @override
+  void initState() {
+    super.initState();
+    _initializeCamera();
+  }
+  @override
   Widget build(BuildContext context) {
     // TODO: implement build
     throw UnimplementedError();
