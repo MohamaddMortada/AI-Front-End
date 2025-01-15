@@ -152,6 +152,15 @@ class _FinishLineState extends State<FinishLine> {
                           onPressed: _startRecording,
                           child: Text("Start Recording"),
                         ),
+                      SizedBox(height: 20),
+                    videoPlayerController != null && videoPlayerController!.value.isInitialized
+                      ? AspectRatio(
+                          aspectRatio: videoPlayerController!.value.aspectRatio,
+                          child: VideoPlayer(videoPlayerController!),
+                        )
+                      : Container(),
+                  SizedBox(height: 20),
+        
           ])
           : Center(child: CircularProgressIndicator()),
     ));
