@@ -160,7 +160,14 @@ class _FinishLineState extends State<FinishLine> {
                         )
                       : Container(),
                   SizedBox(height: 20),
-        
+                
+                  accurateTime.isNotEmpty
+                      ? Text(
+                          "Response from API: $accurateTime",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 16),
+                        )
+                      : Container(),
           ])
           : Center(child: CircularProgressIndicator()),
     ));
