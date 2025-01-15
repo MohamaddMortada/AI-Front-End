@@ -5,6 +5,10 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
+import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
+
+
 
 
 class FinishLine extends StatefulWidget {
@@ -21,6 +25,8 @@ class _FinishLineState extends State<FinishLine> {
   late DateTime endTimestamp;
   late String videoPath;
   VideoPlayerController? videoPlayerController;
+
+   String accurateTime = '';
 
 
 
@@ -87,6 +93,38 @@ class _FinishLineState extends State<FinishLine> {
 
     } catch (e) {
 
+    }
+  }
+
+  Future<void> _sendDataToApi(String videoPath, DateTime startTimestamp, DateTime endTimestamp) async {
+    try {
+      var uri = Uri.parse("http://10.0.2.2:5000/..");
+      var request = http.MultipartRequest("POST", uri);
+
+      request.files.add(await http.MultipartFile.fromPath(
+        'video', videoPath,
+        contentType: MediaType('video', 'mp4'),
+      ));
+
+      request.fields['start_timestamp'] = startTimestamp.toIso8601String();
+      request.fields['end_timestamp'] = endTimestamp.toIso8601String();
+
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        var responseString = await response.stream.bytesToString();
+        setState(() {
+          accurateTime = responseString;
+        });
+      } else {
+        setState(() {
+          accurateTime = "Failed to upload video.";
+        });
+      }
+    } catch (e) {
+      setState(() {
+        accurateTime = "Error sending data to API.";
+      });
     }
   }
   @override
