@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -84,6 +85,30 @@ class _FinishLineState extends State<FinishLine> {
       _sendDataToApi(videoPath, startTimestamp, endTimestamp, fireTimestamp);
     } catch (e) {}
   }
+
+  Future<String> _getFireTimestamp() async {
+  try {
+    final String syncKey = ""; 
+
+    final response = await http.post(
+      Uri.parse('http://127.0.0.1:8000/getfiretimestamp'), 
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({'sync_key': syncKey}),
+    );
+
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      return data['fire_timestamp'];
+    } else {
+      throw Exception('Failed to get fire timestamp from API');
+    }
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("Failed to get fire timestamp: $e"),
+    ));
+    return '';
+  }
+}
 
   Future<void> _sendDataToApi(
       String videoPath, DateTime startTimestamp, DateTime endTimestamp, DateTime fireTimestamp) async {
