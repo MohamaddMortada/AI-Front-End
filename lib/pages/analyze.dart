@@ -18,6 +18,7 @@ class _FinishLineState extends State<FinishLine> {
   bool isRecording = false;
   late DateTime startTimestamp;
   late DateTime endTimestamp;
+  late DateTime fireTimestamp;
   late String videoPath;
   VideoPlayerController? videoPlayerController;
 
@@ -80,12 +81,12 @@ class _FinishLineState extends State<FinishLine> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Video saved at: $videoPath"),
       ));
-      _sendDataToApi(videoPath, startTimestamp, endTimestamp);
+      _sendDataToApi(videoPath, startTimestamp, endTimestamp, fireTimestamp);
     } catch (e) {}
   }
 
   Future<void> _sendDataToApi(
-      String videoPath, DateTime startTimestamp, DateTime endTimestamp) async {
+      String videoPath, DateTime startTimestamp, DateTime endTimestamp, DateTime fireTimestamp) async {
     try {
       var uri = Uri.parse("http://10.0.2.2:5000/..");
       var request = http.MultipartRequest("POST", uri);
@@ -98,6 +99,7 @@ class _FinishLineState extends State<FinishLine> {
 
       request.fields['start_timestamp'] = startTimestamp.toIso8601String();
       request.fields['end_timestamp'] = endTimestamp.toIso8601String();
+      request.fields['fire_timestamp'] = fireTimestamp.toIso8601String();
 
       var response = await request.send();
 
