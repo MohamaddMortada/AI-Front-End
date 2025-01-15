@@ -25,7 +25,7 @@ List<GetPage> appRoutes = [
 
         GetPage(name: '/main', page: () => MainPage(),middlewares: [AuthMiddleware()],),  
         GetPage(name: '/detect', page: () => Detect(),middlewares: [AuthMiddleware()],), 
-        GetPage(name: '/analyze', page: () => Analyze(),middlewares: [AuthMiddleware()],), 
+        GetPage(name: '/analyze', page: () => FinishLine(),middlewares: [AuthMiddleware()],), 
         GetPage(name: '/predict', page: () => Predict(),middlewares: [AuthMiddleware()],),
         GetPage(name: '/calculate', page: () => Calculate(),middlewares: [AuthMiddleware()],),
         GetPage(name: '/detecting', page: () => Detecting(),middlewares: [AuthMiddleware()],),
