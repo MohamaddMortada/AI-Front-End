@@ -133,6 +133,13 @@ class _FinishLineState extends State<FinishLine> {
     super.initState();
     _initializeCamera();
   }
+
+    @override
+  void dispose() {
+    _controller.dispose();
+    videoPlayerController?.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
