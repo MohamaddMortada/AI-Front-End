@@ -1,7 +1,10 @@
 
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:video_player/video_player.dart';
 
 
 class FinishLine extends StatefulWidget {
@@ -15,7 +18,10 @@ class _FinishLineState extends State<FinishLine> {
   late List<CameraDescription> cameras;
   bool isRecording = false;
   late DateTime startTimestamp;
+  late DateTime endTimestamp;
   late String videoPath;
+  VideoPlayerController? videoPlayerController;
+
 
 
   Future<void> _initializeCamera() async {
@@ -51,6 +57,34 @@ class _FinishLineState extends State<FinishLine> {
       setState(() {
         isRecording = true;
       });
+    } catch (e) {
+
+    }
+  }
+
+  Future<void> _stopRecording() async {
+    if (!_controller.value.isRecordingVideo || !isRecording) return;
+
+    try {
+      endTimestamp = DateTime.now();
+
+      XFile videoFile = await _controller.stopVideoRecording();
+
+      videoPath = videoFile.path;
+
+      setState(() {
+        isRecording = false;
+      });
+
+      videoPlayerController = VideoPlayerController.file(File(videoPath))
+        ..initialize().then((_) {
+          setState(() {});
+        });
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Video saved at: $videoPath"),
+      ));
+
     } catch (e) {
 
     }
