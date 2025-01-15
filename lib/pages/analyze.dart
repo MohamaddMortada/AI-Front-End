@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -8,16 +7,12 @@ import 'package:video_player/video_player.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
-
-
-
 class FinishLine extends StatefulWidget {
   @override
   _FinishLineState createState() => _FinishLineState();
 }
 
 class _FinishLineState extends State<FinishLine> {
-
   late CameraController _controller;
   late List<CameraDescription> cameras;
   bool isRecording = false;
@@ -26,9 +21,7 @@ class _FinishLineState extends State<FinishLine> {
   late String videoPath;
   VideoPlayerController? videoPlayerController;
 
-   String accurateTime = '';
-
-
+  String accurateTime = '';
 
   Future<void> _initializeCamera() async {
     try {
@@ -45,9 +38,7 @@ class _FinishLineState extends State<FinishLine> {
       await _controller.initialize();
 
       setState(() {});
-    } catch (e) {
-      
-    }
+    } catch (e) {}
   }
 
   Future<void> _startRecording() async {
@@ -57,15 +48,14 @@ class _FinishLineState extends State<FinishLine> {
       startTimestamp = DateTime.now();
 
       final directory = await getApplicationDocumentsDirectory();
-      videoPath = '${directory.path}/video_${startTimestamp.millisecondsSinceEpoch}.mp4';
+      videoPath =
+          '${directory.path}/video_${startTimestamp.millisecondsSinceEpoch}.mp4';
 
       await _controller.startVideoRecording();
       setState(() {
         isRecording = true;
       });
-    } catch (e) {
-
-    }
+    } catch (e) {}
   }
 
   Future<void> _stopRecording() async {
@@ -91,19 +81,18 @@ class _FinishLineState extends State<FinishLine> {
         content: Text("Video saved at: $videoPath"),
       ));
       _sendDataToApi(videoPath, startTimestamp, endTimestamp);
-
-    } catch (e) {
-
-    }
+    } catch (e) {}
   }
 
-  Future<void> _sendDataToApi(String videoPath, DateTime startTimestamp, DateTime endTimestamp) async {
+  Future<void> _sendDataToApi(
+      String videoPath, DateTime startTimestamp, DateTime endTimestamp) async {
     try {
       var uri = Uri.parse("http://10.0.2.2:5000/..");
       var request = http.MultipartRequest("POST", uri);
 
       request.files.add(await http.MultipartFile.fromPath(
-        'video', videoPath,
+        'video',
+        videoPath,
         contentType: MediaType('video', 'mp4'),
       ));
 
@@ -128,22 +117,33 @@ class _FinishLineState extends State<FinishLine> {
       });
     }
   }
+
   @override
   void initState() {
     super.initState();
     _initializeCamera();
   }
 
-    @override
+  @override
   void dispose() {
     _controller.dispose();
     videoPlayerController?.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+        body: Padding(
+      padding: const EdgeInsets.all(16),
+      child: _controller.value.isInitialized
+          ? Column(children: [
+            AspectRatio(
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: CameraPreview(_controller),
+                  ),
+          ])
+          : Center(child: CircularProgressIndicator()),
+    ));
   }
-  
 }
