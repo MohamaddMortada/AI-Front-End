@@ -142,6 +142,16 @@ class _FinishLineState extends State<FinishLine> {
                     aspectRatio: _controller.value.aspectRatio,
                     child: CameraPreview(_controller),
                   ),
+            SizedBox(height: 20),
+                  isRecording
+                      ? ElevatedButton(
+                          onPressed: _stopRecording,
+                          child: Text("Stop Recording"),
+                        )
+                      : ElevatedButton(
+                          onPressed: _startRecording,
+                          child: Text("Start Recording"),
+                        ),
           ])
           : Center(child: CircularProgressIndicator()),
     ));
