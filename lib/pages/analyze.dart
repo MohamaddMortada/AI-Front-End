@@ -90,6 +90,7 @@ class _FinishLineState extends State<FinishLine> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Video saved at: $videoPath"),
       ));
+      _sendDataToApi(videoPath, startTimestamp, endTimestamp);
 
     } catch (e) {
 
