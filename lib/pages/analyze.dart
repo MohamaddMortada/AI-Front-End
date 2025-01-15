@@ -1,6 +1,8 @@
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+
 
 class FinishLine extends StatefulWidget {
   @override
@@ -8,8 +10,13 @@ class FinishLine extends StatefulWidget {
 }
 
 class _FinishLineState extends State<FinishLine> {
-    late CameraController _controller;
+
+  late CameraController _controller;
   late List<CameraDescription> cameras;
+  bool isRecording = false;
+  late DateTime startTimestamp;
+  late String videoPath;
+
 
   Future<void> _initializeCamera() async {
     try {
@@ -28,6 +35,24 @@ class _FinishLineState extends State<FinishLine> {
       setState(() {});
     } catch (e) {
       
+    }
+  }
+
+  Future<void> _startRecording() async {
+    if (!_controller.value.isInitialized || isRecording) return;
+
+    try {
+      startTimestamp = DateTime.now();
+
+      final directory = await getApplicationDocumentsDirectory();
+      videoPath = '${directory.path}/video_${startTimestamp.millisecondsSinceEpoch}.mp4';
+
+      await _controller.startVideoRecording();
+      setState(() {
+        isRecording = true;
+      });
+    } catch (e) {
+
     }
   }
   @override
