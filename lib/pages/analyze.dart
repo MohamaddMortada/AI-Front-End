@@ -19,7 +19,6 @@ class _FinishLineState extends State<FinishLine> {
   bool isRecording = false;
   late DateTime startTimestamp;
   late DateTime endTimestamp;
-  late DateTime fireTimestamp;
   late String videoPath;
   VideoPlayerController? videoPlayerController;
 
@@ -82,6 +81,8 @@ class _FinishLineState extends State<FinishLine> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Video saved at: $videoPath"),
       ));
+      String fireTimestampstring = await _getFireTimestamp();
+      DateTime fireTimestamp = DateTime.parse(fireTimestampstring);
       _sendDataToApi(videoPath, startTimestamp, endTimestamp, fireTimestamp);
     } catch (e) {}
   }
