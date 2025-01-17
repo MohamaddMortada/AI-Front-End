@@ -26,6 +26,7 @@ class _FinishLineState extends State<FinishLine> {
   String accurateTime = '';
   late DateTime fireTimestamp = DateTime.now();
 
+
     Future<String> _getSyncKey() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('sync_key') ?? '';
@@ -89,7 +90,6 @@ class _FinishLineState extends State<FinishLine> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Video saved at: $videoPath"),
       ));
-
        _sendDataToApi(videoPath);
     } catch (e) {
       print("Error stopping video recording: $e");
@@ -155,8 +155,21 @@ class _FinishLineState extends State<FinishLine> {
               SnackBar(content: Text("Video processed successfully!")),
             );
           } else if (data.containsKey('message')) {
-            setState(() {
-              accurateTime = data['message'];
+            setState(() async {
+                  accurateTime = data['message'];
+
+                  String fireTimestampString = await _getFireTimestamp();
+                    if (fireTimestampString.isNotEmpty) {
+                        DateTime fireTimestamp = DateTime.parse(fireTimestampString);
+                        double adjustedTime = calculateOfficialTime(
+                          accurateTime: double.parse(data['crossing_time']), 
+                          startTime: startTimestamp, 
+                          fireTime: fireTimestamp,
+                        );
+
+                        setState(() {
+                          accurateTime = "Adjusted Time: ${adjustedTime.toStringAsFixed(2)} seconds";
+                  });}
             });
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(data['message'])),
@@ -195,6 +208,22 @@ class _FinishLineState extends State<FinishLine> {
       );
     }
   }
+
+  double calculateOfficialTime({
+  required double accurateTime, 
+  required DateTime startTime, 
+  required DateTime fireTime
+}) {
+  Duration fireToStartDuration = startTime.difference(fireTime);
+  double fireToStartTime = fireToStartDuration.inMilliseconds / 1000.0;
+
+  double officialTime = accurateTime - fireToStartTime;
+
+  return officialTime;
+}
+
+
+
 
 
   @override
