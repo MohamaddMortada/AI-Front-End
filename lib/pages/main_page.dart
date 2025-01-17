@@ -72,7 +72,7 @@ class _MainPageState extends State<MainPage> {
                 imagePath: 'assets/Analyze-Image.webp',
                 text: 'ANALYZE',
                 discription: 'ANALYZE YOUR PERFORMANCE',
-                route: '/analyze',
+                route: '/mode',
               ),
               const SizedBox(height: 10),
               const ImageButton(
