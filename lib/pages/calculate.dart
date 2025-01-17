@@ -41,7 +41,7 @@ class _CalculateState extends State<Calculate> {
   bool _isLoading = false;
 
   Future<void> fetchEventId() async {
-    final url = Uri.parse('http://192.168.2.106:5000/get_id');
+    final url = Uri.parse('http://192.168.199.124:5000/get_id');
 
     setState(() {
       _isLoading = true;
@@ -257,13 +257,13 @@ class _CalculateState extends State<Calculate> {
                     await fetchScore();
                   },
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 10),
                 Container(
                   alignment: Alignment.center,
                   width: 100,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).secondaryHeaderColor,
+                    //color: Theme.of(context).secondaryHeaderColor,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
                       color: Theme.of(context).primaryColor,

@@ -16,6 +16,8 @@ import 'package:front_end/pages/start_line.dart';
 import 'package:front_end/pages/sync_page.dart';
 import 'package:front_end/pages/validate_page.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:flutter/services.dart';
+
 
 void main() {
   runApp( MainApp());

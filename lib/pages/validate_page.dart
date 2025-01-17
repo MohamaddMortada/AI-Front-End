@@ -29,7 +29,7 @@ class _ValidatePageState extends State<ValidatePage> {
   Future<void> validateKey(String key) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.44.188:8000/api/validate-key'),
+        Uri.parse('http://192.168.199.124:8000/api/validate-key'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'sync_key': key, 'user_id': '5'}),
       );
@@ -55,7 +55,7 @@ class _ValidatePageState extends State<ValidatePage> {
 
   Future<void> stopSession(String key) async {
     final response = await http.post(
-      Uri.parse('http://192.168.44.188:8000:8000/api/stop'),
+      Uri.parse('http://192.168.199.124:8000:8000/api/stop'),
       body: {'sync_key': key},
     );
 

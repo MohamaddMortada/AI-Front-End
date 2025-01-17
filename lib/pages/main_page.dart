@@ -90,7 +90,7 @@ class _MainPageState extends State<MainPage> {
               ),
               const SizedBox(height: 10),
               const ImageButton(
-                imagePath: 'assets/Calculate-Image.webp',
+                imagePath: 'assets/session.webp',
                 text: 'SESSIONS',
                 discription: 'Add Your Daily \nSessions',
                 route: '/results',
