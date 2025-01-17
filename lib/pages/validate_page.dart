@@ -1,7 +1,10 @@
 import 'dart:convert';
-import 'package:front_end/widgets/button_secondary.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:front_end/widgets/button.dart';
+import 'package:front_end/widgets/button_secondary.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ValidatePage extends StatefulWidget {
   @override
@@ -13,19 +16,30 @@ class _ValidatePageState extends State<ValidatePage> {
   int? timeDifference;
   bool isValidated = false;
 
+  Future<void> storeSyncKey(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('sync_key', key); 
+  }
+
+  Future<String?> getSyncKey() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('sync_key'); 
+  }
+
   Future<void> validateKey(String key) async {
     try {
       final response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/api/validate-key'),
+        Uri.parse('http://192.168.44.188:8000/api/validate-key'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'sync_key': key, 'user_id': '5'}),
       );
 
       if (response.statusCode == 200) {
         setState(() {
-          isValidated=true;
+          isValidated = true;
         });
-        
+        await storeSyncKey(key);
+
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text("Key validated successfully!")));
       } else {
@@ -35,14 +49,13 @@ class _ValidatePageState extends State<ValidatePage> {
       }
     } catch (error) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content:
-              Text("Error validating key. Please check your connection.")));
+          content: Text("Error validating key. Please check your connection.")));
     }
   }
 
   Future<void> stopSession(String key) async {
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:8000/api/stop'),
+      Uri.parse('http://192.168.44.188:8000:8000/api/stop'),
       body: {'sync_key': key},
     );
 
@@ -93,22 +106,16 @@ class _ValidatePageState extends State<ValidatePage> {
             ),
             if(isValidated)
             ButtonSecondary(
-                text: "Stop",
-                image: Image.asset('assets/Icons/start.png'),
-                onTap: () async{
-                  final key = _keyController.text.trim();
-                if (key.isNotEmpty) {
-                  await stopSession(key);
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Please enter a key.")),
-                  );
-                }
-                }),
+              text: "Get to Start Line",
+              image: Image.asset('assets/Icons/add.png'),
+              onTap: () {
+                Get.toNamed('/start_line');
+              },
+            ),
             const SizedBox(
               height: 10,
             ),
-            Text(_keyController.text.trim()),
+           
           ],
         ),
       )),
