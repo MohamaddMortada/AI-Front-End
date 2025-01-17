@@ -74,8 +74,8 @@ class _DetectState extends State<Detect> {
     }
 
     String apiUrl = _media!.path.endsWith('.mp4')
-        ? 'http://10.0.2.2:5000/${_selectedMode}_video'
-        : 'http://10.0.2.2:5000/${_selectedMode}_image';
+        ? 'http://192.168.44.188:5000/${_selectedMode}_video'
+        : 'http://192.168.44.188:5000/${_selectedMode}_image';
 
     final request = http.MultipartRequest(
       'POST',
@@ -116,6 +116,8 @@ class _DetectState extends State<Detect> {
       });
     }
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -193,6 +195,7 @@ class _DetectState extends State<Detect> {
                     height: 200,
                     fit: BoxFit.cover,
                   ),
+                
                   
                 const SizedBox(height: 20),
                 Main_Button(
