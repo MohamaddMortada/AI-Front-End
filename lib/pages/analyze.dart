@@ -26,6 +26,11 @@ class _FinishLineState extends State<FinishLine> {
   String accurateTime = '';
   late DateTime fireTimestamp = DateTime.now();
 
+    Future<String> _getSyncKey() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('sync_key') ?? '';
+  }
+
   Future<void> _initializeCamera() async {
     try {
       cameras = await availableCameras();
@@ -88,6 +93,35 @@ class _FinishLineState extends State<FinishLine> {
        _sendDataToApi(videoPath);
     } catch (e) {
       print("Error stopping video recording: $e");
+    }
+  }
+
+    Future<String> _getFireTimestamp() async {
+    try {
+      String syncKey = await _getSyncKey();
+
+      if (syncKey.isEmpty) {
+        throw Exception('Sync key is empty.');
+      }
+
+      final response = await http.post(
+        Uri.parse('http://192.168.2.106:8000/api/getfiretimestamp'),
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({'sync_key': syncKey}),
+      );
+
+      if (response.statusCode == 200) {
+        var data = json.decode(response.body);
+        
+        return data['fire_timestamp'];
+      } else {
+        throw Exception('Failed to get fire timestamp from API');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Failed to get fire timestamp: $e"),
+      ));
+      return '';
     }
   }
 
@@ -161,6 +195,7 @@ class _FinishLineState extends State<FinishLine> {
       );
     }
   }
+
 
   @override
   void initState() {
