@@ -1,6 +1,10 @@
 import 'package:front_end/controllers/auth_middleware.dart';
 import 'package:front_end/pages/electric_time.dart';
+import 'package:front_end/pages/mode.dart';
 import 'package:front_end/pages/results.dart';
+import 'package:front_end/pages/start_line.dart';
+import 'package:front_end/pages/sync_page.dart';
+import 'package:front_end/pages/validate_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import 'package:front_end/pages/analyze.dart';
@@ -35,5 +39,9 @@ List<GetPage> appRoutes = [
         GetPage(name: '/contact', page: () => Contact(),middlewares: [AuthMiddleware()],),
         GetPage(name: '/chatbot', page: () => Chatbot(),middlewares: [AuthMiddleware()],),
         GetPage(name: '/results', page: () => Results(),middlewares: [AuthMiddleware()],),
-        GetPage(name: '/time', page: () => ElectricTime(),middlewares: [AuthMiddleware()],),
+        GetPage(name: '/electric_time', page: () => ElectricTime(),middlewares: [AuthMiddleware()],),
+        GetPage(name: '/start_line', page: () => StartLine(),middlewares: [AuthMiddleware()],),
+        GetPage(name: '/mode', page: () => ModePage(),middlewares: [AuthMiddleware()],),
+        GetPage(name: '/validate', page: () => ValidatePage(),middlewares: [AuthMiddleware()],),
+        GetPage(name: '/sync', page: () => SyncPage(),middlewares: [AuthMiddleware()],),
 ];
