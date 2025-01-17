@@ -41,7 +41,7 @@ class _CalculateState extends State<Calculate> {
   bool _isLoading = false;
 
   Future<void> fetchEventId() async {
-    final url = Uri.parse('http://10.0.2.2:5000/get_id');
+    final url = Uri.parse('http://192.168.2.106:5000/get_id');
 
     setState(() {
       _isLoading = true;

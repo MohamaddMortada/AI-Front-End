@@ -36,7 +36,7 @@ class _ChatbotState extends State<Chatbot> {
       isTyping = true;
     });
 
-    final url = Uri.parse('http://10.0.2.2:8000/api/chatbot');
+    final url = Uri.parse('http://192.168.44.188:8000/api/chatbot');
     final response = await http.post(
       url,
       body: {'message': message},

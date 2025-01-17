@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FinishLine extends StatefulWidget {
   @override
@@ -17,12 +18,13 @@ class _FinishLineState extends State<FinishLine> {
   late CameraController _controller;
   late List<CameraDescription> cameras;
   bool isRecording = false;
-  late DateTime startTimestamp;
-  late DateTime endTimestamp;
+  late DateTime startTimestamp = DateTime.now();
+  late DateTime endTimestamp = DateTime.now();
   late String videoPath;
   VideoPlayerController? videoPlayerController;
 
   String accurateTime = '';
+  late DateTime fireTimestamp = DateTime.now();
 
   Future<void> _initializeCamera() async {
     try {
@@ -39,7 +41,9 @@ class _FinishLineState extends State<FinishLine> {
       await _controller.initialize();
 
       setState(() {});
-    } catch (e) {}
+    } catch (e) {
+      print("Error initializing camera: $e");
+    }
   }
 
   Future<void> _startRecording() async {
@@ -49,14 +53,15 @@ class _FinishLineState extends State<FinishLine> {
       startTimestamp = DateTime.now();
 
       final directory = await getApplicationDocumentsDirectory();
-      videoPath =
-          '${directory.path}/video_${startTimestamp.millisecondsSinceEpoch}.mp4';
+      videoPath = '${directory.path}/video_${startTimestamp.millisecondsSinceEpoch}.mp4';
 
       await _controller.startVideoRecording();
       setState(() {
         isRecording = true;
       });
-    } catch (e) {}
+    } catch (e) {
+      print("Error starting video recording: $e");
+    }
   }
 
   Future<void> _stopRecording() async {
@@ -66,83 +71,94 @@ class _FinishLineState extends State<FinishLine> {
       endTimestamp = DateTime.now();
 
       XFile videoFile = await _controller.stopVideoRecording();
-
       videoPath = videoFile.path;
 
       setState(() {
         isRecording = false;
+        videoPlayerController = VideoPlayerController.file(File(videoPath))
+          ..initialize().then((_) {
+            setState(() {});
+          });
       });
-
-      videoPlayerController = VideoPlayerController.file(File(videoPath))
-        ..initialize().then((_) {
-          setState(() {});
-        });
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Video saved at: $videoPath"),
       ));
-      String fireTimestampstring = await _getFireTimestamp();
-      DateTime fireTimestamp = DateTime.parse(fireTimestampstring);
-      _sendDataToApi(videoPath, startTimestamp, endTimestamp, fireTimestamp);
-    } catch (e) {}
-  }
 
-  Future<String> _getFireTimestamp() async {
-  try {
-    final String syncKey = ""; 
-
-    final response = await http.post(
-      Uri.parse('http://127.0.0.1:8000/getfiretimestamp'), 
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode({'sync_key': syncKey}),
-    );
-
-    if (response.statusCode == 200) {
-      var data = json.decode(response.body);
-      return data['fire_timestamp'];
-    } else {
-      throw Exception('Failed to get fire timestamp from API');
+       _sendDataToApi(videoPath);
+    } catch (e) {
+      print("Error stopping video recording: $e");
     }
-  } catch (e) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text("Failed to get fire timestamp: $e"),
-    ));
-    return '';
   }
-}
 
-  Future<void> _sendDataToApi(
-      String videoPath, DateTime startTimestamp, DateTime endTimestamp, DateTime fireTimestamp) async {
+  Future<void> _sendDataToApi(String videoPath) async {
     try {
-      var uri = Uri.parse("http://10.0.2.2:5000/..");
+      var uri = Uri.parse("http://192.168.199.124:5000/middle-crossing");
+
       var request = http.MultipartRequest("POST", uri);
 
-      request.files.add(await http.MultipartFile.fromPath(
-        'video',
-        videoPath,
-        contentType: MediaType('video', 'mp4'),
-      ));
-
-      request.fields['start_timestamp'] = startTimestamp.toIso8601String();
-      request.fields['end_timestamp'] = endTimestamp.toIso8601String();
-      request.fields['fire_timestamp'] = fireTimestamp.toIso8601String();
+      request.files.add(
+        await http.MultipartFile.fromPath(
+          'video',
+          videoPath,
+          contentType: MediaType('video', 'mp4'),
+        ),
+      );
 
       var response = await request.send();
 
       if (response.statusCode == 200) {
         var responseString = await response.stream.bytesToString();
-        setState(() {
-          accurateTime = responseString;
-        });
+
+        if (response.headers['content-type']!.contains('application/json')) {
+          var data = json.decode(responseString);
+
+          if (data.containsKey('crossing_time')) {
+            setState(() {
+              accurateTime = "Crossing Time: ${data['crossing_time']} seconds";
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Video processed successfully!")),
+            );
+          } else if (data.containsKey('message')) {
+            setState(() {
+              accurateTime = data['message'];
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(data['message'])),
+            );
+          } else {
+            setState(() {
+              accurateTime = "Unexpected response data: $data";
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Unexpected response data.")),
+            );
+          }
+        } else {
+          setState(() {
+            accurateTime = "Unexpected response format:\n$responseString";
+          });
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Unexpected response format from the server.")),
+          );
+        }
       } else {
+        var responseString = await response.stream.bytesToString();
         setState(() {
-          accurateTime = "Failed to upload video.";
+          accurateTime = "Error: ${response.statusCode}\n$responseString";
         });
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Failed to communicate with the API. Status: ${response.statusCode}"),
+        ));
       }
     } catch (e) {
       setState(() {
-        accurateTime = "Error sending data to API.";
+        accurateTime = "Error sending data to API: $e";
       });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error sending data to API: $e")),
+      );
     }
   }
 
@@ -162,15 +178,17 @@ class _FinishLineState extends State<FinishLine> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(16),
-      child: _controller.value.isInitialized
-          ? Column(children: [
-            AspectRatio(
+      appBar: AppBar(title: Text("Finish Line")),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: _controller.value.isInitialized
+            ? Column(
+                children: [
+                  AspectRatio(
                     aspectRatio: _controller.value.aspectRatio,
                     child: CameraPreview(_controller),
                   ),
-            SizedBox(height: 20),
+                  SizedBox(height: 20),
                   isRecording
                       ? ElevatedButton(
                           onPressed: _stopRecording,
@@ -180,24 +198,17 @@ class _FinishLineState extends State<FinishLine> {
                           onPressed: _startRecording,
                           child: Text("Start Recording"),
                         ),
-                      SizedBox(height: 20),
-                    videoPlayerController != null && videoPlayerController!.value.isInitialized
-                      ? AspectRatio(
-                          aspectRatio: videoPlayerController!.value.aspectRatio,
-                          child: VideoPlayer(videoPlayerController!),
-                        )
-                      : Container(),
                   SizedBox(height: 20),
-                
-                  accurateTime.isNotEmpty
-                      ? Text(
-                          "Response from API: $accurateTime",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16),
-                        )
-                      : Container(),
-          ])
-          : Center(child: CircularProgressIndicator()),
-    ));
+                  
+                  Text(
+                    "Response from API: $accurateTime",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              )
+            : Center(child: CircularProgressIndicator()),
+      ),
+    );
   }
 }
