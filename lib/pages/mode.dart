@@ -13,7 +13,7 @@ class ModePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            
+            Image.asset('assets/chronometer.png', width: 300,height: 300,),
             SizedBox(height: 20),
             Main_Button(text: 'Start Line', image: Image.asset('assets/Icons/add.png'), onTap: (){Get.toNamed('/validate');}, route: '/validate',),
             SizedBox(height: 20),
