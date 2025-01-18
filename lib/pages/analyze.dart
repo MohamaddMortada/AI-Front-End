@@ -187,53 +187,58 @@ class _FinishLineState extends State<FinishLine> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Finish Line")),
         body: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Center(
-            child: _controller.value.isInitialized
-                ? Column(
-                    children: [
-                      Container(
-                        width: 300,
-                        height: 300,
-                        child: AspectRatio(
-                          aspectRatio: _controller.value.aspectRatio,
-                          child: CameraPreview(_controller),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      isRecording
-                          ? ButtonSecondary(
-                              text: 'Stop',
-                              image: Image.asset('assets/Icons/stop.png'),
+      padding: const EdgeInsets.all(16),
+      child: Center(
+        child: _controller.value.isInitialized
+            ? Column(
+                children: [
+                  const SizedBox(height: 50),
+                  const Text(
+                    'Finish Line',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                  ),
+                  const SizedBox(height: 30),
+                  Container(
+                    width: 300,
+                    height: 300,
+                    child: AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      child: CameraPreview(_controller),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  isRecording
+                      ? ButtonSecondary(
+                          text: 'STOP',
+                          image: Image.asset('assets/Icons/stop.png'),
+                          onTap: () {
+                            _stopRecording;
+                          })
+                      : Column(children: [
+                          const Text(
+                            'Make sure to press "start" here before the start shot begin',
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 10),
+                          ButtonSecondary(
+                              text: 'START',
+                              image: Image.asset('assets/Icons/start.png'),
                               onTap: () {
                                 _stopRecording;
-                              })
-                          : Column(children: [
-                              const Text(
-                                'Make sure to press "start" here before the start shot begin',
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(height: 10),
-                              ButtonSecondary(
-                                  text: 'Start',
-                                  image: Image.asset('assets/Icons/start.png'),
-                                  onTap: () {
-                                    _stopRecording;
-                                  }),
-                            ]),
-                      const SizedBox(height: 20),
-                      Text(
-                        'Electric Time:\n $finalTime',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 22),
-                      ),
-                    ],
-                  )
-                : const Center(child: CircularProgressIndicator()),
-          ),
-        ));
+                              }),
+                        ]),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Electric Time:\n $finalTime',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 22),
+                  ),
+                ],
+              )
+            : const Center(child: CircularProgressIndicator()),
+      ),
+    ));
   }
 }
