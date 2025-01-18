@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:front_end/controllers/routes.dart';
+import 'package:front_end/pages/analyze.dart';
 import 'package:front_end/pages/calculate.dart';
 import 'package:front_end/pages/detect.dart';
 import 'package:front_end/pages/electric_time.dart';
@@ -38,7 +39,7 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFB2C8D0),
 
       ),
-      home:MainPage(),
+      home:FinishLine(),
       
     );
   }
