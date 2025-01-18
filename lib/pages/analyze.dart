@@ -209,15 +209,20 @@ class _FinishLineState extends State<FinishLine> {
                   ),
                   const SizedBox(height: 20),
                   isRecording
-                      ? ButtonSecondary(
+                      ? Column(children: [
+                          const Text(
+                            'Make sure to the Athlete to finish then you press "STOP"',
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 10),ButtonSecondary(
                           text: 'STOP',
                           image: Image.asset('assets/Icons/stop.png'),
                           onTap: () {
-                            _stopRecording;
-                          })
+                            _stopRecording();
+                          })])
                       : Column(children: [
                           const Text(
-                            'Make sure to press "start" here before the start shot begin',
+                            'Make sure to press "START" here before the \n SHOT begin',
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 10),
@@ -225,7 +230,7 @@ class _FinishLineState extends State<FinishLine> {
                               text: 'START',
                               image: Image.asset('assets/Icons/start.png'),
                               onTap: () {
-                                _stopRecording;
+                                _startRecording();
                               }),
                         ]),
                   const SizedBox(height: 20),

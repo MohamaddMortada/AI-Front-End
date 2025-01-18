@@ -39,7 +39,7 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFB2C8D0),
 
       ),
-      home:FinishLine(),
+      home:StartLine(),
       
     );
   }
