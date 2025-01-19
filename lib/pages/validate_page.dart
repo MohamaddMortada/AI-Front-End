@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:front_end/widgets/button.dart';
-import 'package:front_end/widgets/button_secondary.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:front_end/widgets/button_secondary.dart';
 
 class ValidatePage extends StatefulWidget {
   @override
@@ -13,17 +13,11 @@ class ValidatePage extends StatefulWidget {
 
 class _ValidatePageState extends State<ValidatePage> {
   final TextEditingController _keyController = TextEditingController();
-  int? timeDifference;
   bool isValidated = false;
 
   Future<void> storeSyncKey(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('sync_key', key); 
-  }
-
-  Future<String?> getSyncKey() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString('sync_key'); 
+    await prefs.setString('sync_key', key);
   }
 
   Future<void> validateKey(String key) async {
@@ -41,29 +35,21 @@ class _ValidatePageState extends State<ValidatePage> {
         await storeSyncKey(key);
 
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Key validated successfully!")));
+          const SnackBar(content: Text("Key validated successfully!")),
+        );
       } else {
         final data = json.decode(response.body);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(data['error'] ?? "Invalid key. Please try again.")));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text(data['error'] ?? "Invalid key. Please try again.")),
+        );
       }
     } catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text("Error validating key. Please check your connection.")));
-    }
-  }
-
-  Future<void> stopSession(String key) async {
-    final response = await http.post(
-      Uri.parse('http://192.168.199.124:8000:8000/api/stop'),
-      body: {'sync_key': key},
-    );
-
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      setState(() {
-        timeDifference = data['time_difference'];
-      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content:
+                Text("Error validating key. Please check your connection.")),
+      );
     }
   }
 
@@ -71,54 +57,112 @@ class _ValidatePageState extends State<ValidatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (timeDifference != null)
-              Text("Time Difference: $timeDifference seconds",
-                  style: const TextStyle(fontSize: 18)),
-            TextField(
-              controller: _keyController,
-              decoration: InputDecoration(
-                labelText: "Enter Sync Key",
-                border: OutlineInputBorder(),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 50),
+              const Text(
+                'Key Validator',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-            ),
-            ButtonSecondary(
-              text: "Validate Key",
-              image: Image.asset('assets/Icons/add.png'),
-              onTap: () async {
-                final key = _keyController.text.trim();
-                if (key.isNotEmpty) {
-                  await validateKey(key);
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Please enter a key.")),
+              Image.asset(
+                'assets/validatekey.png',
+                width: 200,
+                height: 200,
+              ),
+              const Spacer(),
+              TextField(
+                controller: _keyController,
+                decoration: const InputDecoration(
+                  labelText: "Enter Sync Key",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 10),
+              ButtonSecondary(
+                text: "Validate Key",
+                image: Image.asset('assets/Icons/white-lock.png'),
+                onTap: () async {
+                  final key = _keyController.text.trim();
+                  if (key.isNotEmpty) {
+                    await validateKey(key);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Please enter a key.")),
+                    );
+                  }
+                },
+              ),
+              const SizedBox(height: 10),
+              ButtonSecondary(
+                text: "Scan QR Code",
+                image: Image.asset('assets/Icons/qr.png'),
+                onTap: () async {
+                  final qrCode = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => QRCodeScannerPage()),
                   );
-                }
-              },
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            if(isValidated)
-            ButtonSecondary(
-              text: "Get to Start Line",
-              image: Image.asset('assets/Icons/add.png'),
-              onTap: () {
-                Get.toNamed('/start_line');
-              },
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-           
-          ],
+                  if (qrCode != null) {
+                    _keyController.text = qrCode;
+                  }
+                },
+              ),
+              const SizedBox(height: 10),
+              if (isValidated)
+                ButtonSecondary(
+                  text: "Get to Start Line",
+                  image: Image.asset('assets/Icons/start.png'),
+                  onTap: () {
+                    Get.toNamed('/start_line');
+                  },
+                ),
+              const Spacer(),
+              const Spacer(),
+            ],
+          ),
         ),
-      )),
+      ),
+    );
+  }
+}
+
+class QRCodeScannerPage extends StatefulWidget {
+  @override
+  _QRCodeScannerPageState createState() => _QRCodeScannerPageState();
+}
+
+class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  QRViewController? qrController;
+
+  @override
+  void dispose() {
+    qrController?.dispose();
+    super.dispose();
+  }
+
+  void _onQRViewCreated(QRViewController qrViewController) {
+    setState(() {
+      qrController = qrViewController;
+    });
+    qrController?.scannedDataStream.listen((scanData) {
+      qrController?.pauseCamera();
+      Navigator.pop(context, scanData.code);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Scan QR Code')),
+      body: QRView(
+        key: qrKey,
+        onQRViewCreated: _onQRViewCreated,
+      ),
     );
   }
 }
