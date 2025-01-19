@@ -126,7 +126,7 @@ class _CalculateState extends State<Calculate> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const ProfileBar(),
-                 Container(
+                Container(
                   alignment: Alignment.center,
                   width: 250,
                   height: 60,
@@ -136,10 +136,9 @@ class _CalculateState extends State<Calculate> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Image.asset('assets/group-run.png',
-                              height: 200, width: 200),
-               
-                Spacer(),
+                Image.asset('assets/group-run.png', height: 200, width: 200),
+
+                const Spacer(),
                 //Image.asset('assets/motivation.png',width: 150,height: 200,),
                 AlamiMessage(
                   text: 'Check your Points Right Now!',
@@ -220,6 +219,7 @@ class _CalculateState extends State<Calculate> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: DropdownButton<String>(
+                    
                     isExpanded: true,
                     borderRadius: BorderRadius.circular(10),
                     iconEnabledColor: Theme.of(context).primaryColor,
@@ -262,18 +262,12 @@ class _CalculateState extends State<Calculate> {
                   alignment: Alignment.center,
                   width: 100,
                   height: 40,
-                  decoration: BoxDecoration(
-                    //color: Theme.of(context).secondaryHeaderColor,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: Theme.of(context).primaryColor,
-                      width: 2.0,
-                    ),
-                  ),
                   child: Text(
                     scoreController.text,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w500, fontSize: 18),
+                    style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22),
                   ),
                 ),
                 const Spacer(),
