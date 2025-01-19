@@ -87,9 +87,10 @@ class ImageButton extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
               ),
+              clipBehavior: Clip.hardEdge,
               child: Image.asset(
                 imagePath,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
           ],
