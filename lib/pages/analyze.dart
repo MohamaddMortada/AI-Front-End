@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:front_end/widgets/button_secondary.dart';
+import 'package:front_end/widgets/profile_bar.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:path_provider/path_provider.dart';
@@ -193,7 +194,8 @@ class _FinishLineState extends State<FinishLine> {
         child: _controller.value.isInitialized
             ? Column(
                 children: [
-                  const SizedBox(height: 50),
+                  ProfileBar(),
+                  
                   const Text(
                     'Finish Line',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
