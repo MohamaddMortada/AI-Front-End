@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:front_end/widgets/profile_bar.dart';
 import 'package:front_end/widgets/button.dart';
+import 'package:video_player/video_player.dart'; 
 
 class Detect extends StatefulWidget {
   @override
@@ -18,6 +19,7 @@ class Detect extends StatefulWidget {
 
 class _DetectState extends State<Detect> {
   File? _media;
+  VideoPlayerController? _videoController;
   final picker = ImagePicker();
   String _result = '';
   String _errorMessage = '';
@@ -63,6 +65,13 @@ class _DetectState extends State<Detect> {
         _errorMessage = '';
         noResultFound = false;
       });
+
+      if (_media!.path.endsWith('.mp4')) {
+        _videoController = VideoPlayerController.file(_media!)
+          ..initialize().then((_) {
+            setState(() {});
+          });
+      }
     }
   }
 
@@ -75,8 +84,8 @@ class _DetectState extends State<Detect> {
     }
 
     String apiUrl = _media!.path.endsWith('.mp4')
-        ? 'http://192.168.199.124:5000/${_selectedMode}_video'
-        : 'http://192.168.199.124:5000/${_selectedMode}_image';
+        ? 'http://192.168.43.170:5000/${_selectedMode}_video'
+        : 'http://192.168.43.170:5000/${_selectedMode}_image';
 
     final request = http.MultipartRequest(
       'POST',
@@ -119,6 +128,12 @@ class _DetectState extends State<Detect> {
   }
 
   @override
+  void dispose() {
+    _videoController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -130,11 +145,11 @@ class _DetectState extends State<Detect> {
                   const ProfileBar(),
                   Positioned(
                     left: 10,
-                    top: 20, 
+                    top: 20,
                     child: IconButton(
                       icon: const Icon(Icons.arrow_back),
                       onPressed: () {
-                        Navigator.of(context).pop(); 
+                        Navigator.of(context).pop();
                       },
                     ),
                   ),
@@ -219,13 +234,26 @@ class _DetectState extends State<Detect> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             clipBehavior: Clip.hardEdge,
-                            child: Image.file(
-                              _media!,
-                              width: 300,
-                              height: 200,
-                              fit: BoxFit.fitHeight,
-                            ),
+                            child: _media!.path.endsWith('.mp4')
+                                ? _videoController != null &&
+                                        _videoController!.value.isInitialized
+                                    ? AspectRatio(
+                                        aspectRatio: _videoController!
+                                            .value.aspectRatio,
+                                        child: VideoPlayer(_videoController!),
+                                      )
+                                    : const Center(
+                                        child: CircularProgressIndicator(),
+                                      )
+                                : Image.file(
+                                    _media!,
+                                    width: 300,
+                                    height: 200,
+                                    fit: BoxFit.fitHeight,
+                                  ),
                           ),
+                        
+                          
                         const SizedBox(height: 20),
                         Main_Button(
                           text: 'Detect',
@@ -257,7 +285,6 @@ class _DetectState extends State<Detect> {
                                       label: 'Error'),
                                 ],
                               )),
-
                         if (noResultFound)
                           const Column(
                             children: [
