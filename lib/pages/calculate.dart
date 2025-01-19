@@ -116,178 +116,202 @@ class _CalculateState extends State<Calculate> {
       });
     }
   }
-
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const ProfileBar(),
-                Container(
-                  alignment: Alignment.center,
-                  width: 250,
-                  height: 60,
-                  child: const Text(
-                    'Athletic Performance Calculator',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-                    textAlign: TextAlign.center,
-                  ),
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: Stack(
+      children: [
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 80), 
+              Container(
+                alignment: Alignment.center,
+                width: 250,
+                height: 60,
+                child: const Text(
+                  'Athletic Performance Calculator',
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                  textAlign: TextAlign.center,
                 ),
-                Image.asset('assets/group-run.png', height: 200, width: 200),
-                const Spacer(),
-                AlamiMessage(
-                  text: 'Check your Points Right Now!',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w800,
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Choose Stadium'),
-                      Row(
-                        children: [
-                          Radio<String>(
-                            value: 'i',
-                            groupValue: _selectedStadium,
-                            onChanged: (String? value) {
-                              setState(() {
-                                _selectedStadium = value;
-                              });
-                            },
-                          ),
-                          const Text('Indoor'),
-                          const SizedBox(width: 20),
-                          Radio<String>(
-                            value: 'o',
-                            groupValue: _selectedStadium,
-                            onChanged: (String? value) {
-                              setState(() {
-                                _selectedStadium = value;
-                              });
-                            },
-                          ),
-                          const Text('Outdoor'),
-                        ],
-                      ),
-                      const Text('Choose Gender'),
-                      Row(
-                        children: [
-                          Radio<String>(
-                            value: 'm',
-                            groupValue: _selectedGender,
-                            onChanged: (String? value) {
-                              setState(() {
-                                _selectedGender = value;
-                              });
-                            },
-                          ),
-                          Image.asset('assets/Icons/male.png',
-                              height: 40, width: 40),
-                          const SizedBox(width: 20),
-                          Radio<String>(
-                            value: 'w',
-                            groupValue: _selectedGender,
-                            onChanged: (String? value) {
-                              setState(() {
-                                _selectedGender = value;
-                              });
-                            },
-                          ),
-                          Image.asset('assets/Icons/female.png',
-                              height: 40, width: 40),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  alignment: Alignment.center,
-                  width: 330,
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: DropdownButton<String>(
-                    icon: const Icon(
-                      Icons.arrow_drop_down,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      size: 30,
+              ),
+              Image.asset('assets/group-run.png', height: 200, width: 200),
+              const Spacer(),
+              AlamiMessage(
+                text: 'Check your Points Right Now!',
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+              ),
+              const SizedBox(height: 20),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Choose Stadium'),
+                    Row(
+                      children: [
+                        Radio<String>(
+                          value: 'i',
+                          groupValue: _selectedStadium,
+                          onChanged: (String? value) {
+                            setState(() {
+                              _selectedStadium = value;
+                            });
+                          },
+                        ),
+                        const Text('Indoor'),
+                        const SizedBox(width: 20),
+                        Radio<String>(
+                          value: 'o',
+                          groupValue: _selectedStadium,
+                          onChanged: (String? value) {
+                            setState(() {
+                              _selectedStadium = value;
+                            });
+                          },
+                        ),
+                        const Text('Outdoor'),
+                      ],
                     ),
-                    isExpanded: true,
-                    borderRadius: BorderRadius.circular(10),
-                    iconEnabledColor: Theme.of(context).primaryColor,
-                    dropdownColor: Theme.of(context).primaryColor,
-                    style: const TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                    value: _selectedEvent,
-                    items: events.map((String event) {
-                      return DropdownMenuItem<String>(
-                        value: event,
-                        child: Text('$event m'),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        _selectedEvent = newValue!;
-                      });
-                    },
+                    const Text('Choose Gender'),
+                    Row(
+                      children: [
+                        Radio<String>(
+                          value: 'm',
+                          groupValue: _selectedGender,
+                          onChanged: (String? value) {
+                            setState(() {
+                              _selectedGender = value;
+                            });
+                          },
+                        ),
+                        Image.asset('assets/Icons/male.png',
+                            height: 40, width: 40),
+                        const SizedBox(width: 20),
+                        Radio<String>(
+                          value: 'w',
+                          groupValue: _selectedGender,
+                          onChanged: (String? value) {
+                            setState(() {
+                              _selectedGender = value;
+                            });
+                          },
+                        ),
+                        Image.asset('assets/Icons/female.png',
+                            height: 40, width: 40),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
+              Container(
+                alignment: Alignment.center,
+                width: 330,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: DropdownButton<String>(
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    size: 30,
                   ),
-                ),
-                const SizedBox(height: 10),
-                Input(
-                  text: 'Result',
-                  image: Image.asset('assets/Icons/clock.png'),
-                  height: 45,
-                  maxLines: 1,
-                  controller: resultController,
-                ),
-                const SizedBox(height: 20),
-                ButtonSecondary(
-                  text: 'Calculate',
-                  image: Image.asset('assets/Icons/calculate.png'),
-                  onTap: () async {
-                    await fetchEventId();
-                    await fetchScore();
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(10),
+                  iconEnabledColor: Theme.of(context).primaryColor,
+                  dropdownColor: Theme.of(context).primaryColor,
+                  style: const TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                  value: _selectedEvent,
+                  items: events.map((String event) {
+                    return DropdownMenuItem<String>(
+                      value: event,
+                      child: Text('$event m'),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedEvent = newValue!;
+                    });
                   },
                 ),
-                const SizedBox(height: 10),
-                if (_isLoading)
-                  Container(
-                    //color: Color.fromARGB(255, 255, 255, 255),
-                    child: const CircularProgressIndicator(),
+              ),
+              const SizedBox(height: 10),
+              Input(
+                text: 'Result',
+                image: Image.asset('assets/Icons/clock.png'),
+                height: 45,
+                maxLines: 1,
+                controller: resultController,
+              ),
+              const SizedBox(height: 20),
+              ButtonSecondary(
+                text: 'Calculate',
+                image: Image.asset('assets/Icons/calculate.png'),
+                onTap: () async {
+                  await fetchEventId();
+                  await fetchScore();
+                },
+              ),
+              const SizedBox(height: 10),
+              if (_isLoading)
+                Container(
+                  child: const CircularProgressIndicator(),
+                ),
+              if (!_isLoading)
+                Container(
+                  alignment: Alignment.center,
+                  width: 100,
+                  height: 40,
+                  child: Text(
+                    scoreController.text,
+                    style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22),
                   ),
-                if (!_isLoading)
-                  Container(
-                    alignment: Alignment.center,
-                    width: 100,
-                    height: 40,
-                    child: Text(
-                      scoreController.text,
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22),
-                    ),
-                  ),
-                const Spacer(),
-                const Spacer(),
-                const Spacer(),
-              ],
-            ),
+                ),
+              const Spacer(),
+              const Spacer(),
+              const Spacer(),
+            ],
           ),
-          AssistiveBall(),
-        ],
-      ),
-    );
-  }
+        ),
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(
+                left: 10,
+                top: 10,
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    size: 30,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+              const ProfileBar(),
+            ],
+          ),
+        ),
+        AssistiveBall(),
+      ],
+    ),
+  );
+}
+
 }
