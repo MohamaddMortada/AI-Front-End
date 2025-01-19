@@ -219,7 +219,11 @@ class _CalculateState extends State<Calculate> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: DropdownButton<String>(
-                    
+                    icon: const Icon(
+                      Icons.arrow_drop_down,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      size: 30,
+                    ),
                     isExpanded: true,
                     borderRadius: BorderRadius.circular(10),
                     iconEnabledColor: Theme.of(context).primaryColor,
