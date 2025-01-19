@@ -230,7 +230,7 @@ class _CalculateState extends State<Calculate> {
                     items: events.map((String event) {
                       return DropdownMenuItem<String>(
                         value: event,
-                        child: Text(event),
+                        child: Text('$event m'),
                       );
                     }).toList(),
                     onChanged: (String? newValue) {
