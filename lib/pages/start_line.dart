@@ -44,7 +44,7 @@ class _StartLineState extends State<StartLine> {
     setState(() {});
 
     final response = await http.post(
-      Uri.parse('http://192.168.199.124:8000/api/start'),
+      Uri.parse('http://192.168.43.170:8000/api/start'),
       headers: {'Content-Type': 'application/json'},
       body:
           '{"user_id": "$userId", "fire_timestamp": "$fireTimestamp", "sync_key": "$syncKey"}',

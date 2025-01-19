@@ -128,7 +128,7 @@ class _FinishLineState extends State<FinishLine> {
       if (syncKey.isEmpty) throw Exception('Sync key is empty.');
 
       final response = await http.post(
-        Uri.parse('http://192.168.199.124:8000/api/getfiretimestamp'),
+        Uri.parse('http://192.168.43.170:8000/api/getfiretimestamp'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'sync_key': syncKey}),
       );
@@ -150,7 +150,7 @@ class _FinishLineState extends State<FinishLine> {
 
   Future<void> _sendDataToApi(String videoPath) async {
     try {
-      var uri = Uri.parse("http://192.168.199.124:5000/middle-crossing");
+      var uri = Uri.parse("http://192.168.43.170:5000/middle-crossing");
       var request = http.MultipartRequest("POST", uri);
 
       request.files.add(

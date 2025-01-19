@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:front_end/widgets/button_secondary.dart';
 import 'package:front_end/widgets/profile_bar.dart';
+import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,7 +17,7 @@ class _SyncPageState extends State<SyncPage> {
 
   Future<void> generateKey() async {
     final response = await http.post(
-      Uri.parse('http://192.168.199.124:8000/api/generate-key'),
+      Uri.parse('http://192.168.43.170:8000/api/generate-key'),
       body: {'user_id': '2'},
     );
 
@@ -61,7 +62,7 @@ class _SyncPageState extends State<SyncPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 50),
+              //const SizedBox(height: 50),
               const Text(
                 'Key Generator',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -72,7 +73,7 @@ class _SyncPageState extends State<SyncPage> {
                 width: 200,
                 height: 200,
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 10),
               if (syncKey.isNotEmpty)
                 Text(
                   "Sync Key: $syncKey",
@@ -95,6 +96,10 @@ class _SyncPageState extends State<SyncPage> {
                   onTap: () async {
                     await generateKey();
                   }),
+              const SizedBox(height: 20),
+
+              if(syncKey.isNotEmpty)
+                ButtonSecondary(text: 'Get to Finish Line', image:Image.asset('assets/Icons/white-key.png') , onTap: (){Get.toNamed('/analyze');}),
               const Spacer(flex: 2),
             ],
           ),
