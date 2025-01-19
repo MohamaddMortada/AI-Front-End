@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:front_end/widgets/profile_bar.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -56,13 +57,25 @@ class _ValidatePageState extends State<ValidatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+      body: Stack(
+        children: [
+          Column(
             children: [
+              Stack(
+                children: [
+                  const ProfileBar(),
+                  Positioned(
+                    left: 10,
+                    top: 20, 
+                    child: IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () {
+                        Navigator.of(context).pop(); 
+                      },
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(height: 50),
               const Text(
                 'Key Validator',
@@ -73,7 +86,7 @@ class _ValidatePageState extends State<ValidatePage> {
                 width: 200,
                 height: 200,
               ),
-              const Spacer(),
+              const SizedBox(height: 40),
               TextField(
                 controller: _keyController,
                 decoration: const InputDecoration(
@@ -124,7 +137,7 @@ class _ValidatePageState extends State<ValidatePage> {
               const Spacer(),
             ],
           ),
-        ),
+        ],
       ),
     );
   }
