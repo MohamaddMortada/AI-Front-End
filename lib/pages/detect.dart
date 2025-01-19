@@ -4,6 +4,7 @@ import 'package:front_end/widgets/alami_message.dart';
 import 'package:front_end/widgets/assistive_ball.dart';
 import 'package:front_end/widgets/gradient_line.dart';
 import 'package:front_end/widgets/upload.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -170,7 +171,7 @@ class _DetectState extends State<Detect> {
                           items: _modes.map((String mode) {
                             return DropdownMenuItem<String>(
                               value: mode,
-                              child: Text(mode),
+                              child: Text(mode.toUpperCase()),
                             );
                           }).toList(),
                           onChanged: (String? newValue) {
