@@ -123,148 +123,162 @@ class _DetectState extends State<Detect> {
     return Scaffold(
       body: Stack(
         children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const ProfileBar(),
-                const Text(
-                  'DETECT & FIX',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
-                  textAlign: TextAlign.center,
-                ),
-                const Spacer(),
-                //Image.asset('assets/sprint-start.png', width: 200, height: 200),
-                AlamiMessage(
-                  text: "Upload an image or a video, and let’s start detecting",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color.fromARGB(255, 128, 166, 179),
+          Column(
+            children: [
+              Stack(
+                children: [
+                  const ProfileBar(),
+                  Positioned(
+                    left: 10,
+                    top: 20, 
+                    child: IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () {
+                        Navigator.of(context).pop(); 
+                      },
+                    ),
                   ),
-                  width: 350,
-                  height: 140,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        width: 330,
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          borderRadius: BorderRadius.circular(10),
+                ],
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'DETECT & FIX',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.w800),
+                          textAlign: TextAlign.center,
                         ),
-                        child: DropdownButton<String>(
-                          isExpanded: true,
-                          borderRadius: BorderRadius.circular(10),
-                          iconEnabledColor: Theme.of(context).primaryColor,
-                          dropdownColor: Theme.of(context).primaryColor,
-                          style: const TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                          value: _selectedMode,
-                          items: _modes.map((String mode) {
-                            return DropdownMenuItem<String>(
-                              value: mode,
-                              child: Text(mode.toUpperCase()),
-                            );
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _selectedMode = newValue!;
-                            });
+                        const SizedBox(height: 10),
+                        AlamiMessage(
+                          text:
+                              "Upload an image or a video, and let’s start detecting",
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        const SizedBox(height: 10),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: const Color.fromARGB(255, 128, 166, 179),
+                          ),
+                          width: 350,
+                          height: 140,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                alignment: Alignment.center,
+                                width: 330,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: DropdownButton<String>(
+                                  isExpanded: true,
+                                  borderRadius: BorderRadius.circular(10),
+                                  iconEnabledColor:
+                                      Theme.of(context).primaryColor,
+                                  dropdownColor:
+                                      Theme.of(context).primaryColor,
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                  value: _selectedMode,
+                                  items: _modes.map((String mode) {
+                                    return DropdownMenuItem<String>(
+                                      value: mode,
+                                      child: Text(mode.toUpperCase()),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      _selectedMode = newValue!;
+                                    });
+                                  },
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Upload(onTap: _uploadMedia, media: _media),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        if (_media != null)
+                          Container(
+                            width: 300,
+                            height: 200,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            clipBehavior: Clip.hardEdge,
+                            child: Image.file(
+                              _media!,
+                              width: 300,
+                              height: 200,
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        const SizedBox(height: 20),
+                        Main_Button(
+                          text: 'Detect',
+                          image: Image.asset('assets/Icons/detect.png'),
+                          route: '/detecting',
+                          onTap: () {
+                            _detectMedia(context);
                           },
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      Upload(onTap: _uploadMedia, media: _media),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                if (_media != null)
-                  Container(
-                    width: 300,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    clipBehavior: Clip.hardEdge,
-                    child: Image.file(
-                      _media!,
-                      width: 300,
-                      height: 200,
-                      fit: BoxFit.fitHeight,
-                    ),
-                  ),
+                        const SizedBox(height: 20),
+                        if (isDetected)
+                          Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Color.fromARGB(255, 128, 166, 179),
+                              ),
+                              height: 80,
+                              width: 330,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  GradientLineWidget(
+                                      percentage: correctPercentage,
+                                      label: 'Correct'),
+                                  const SizedBox(height: 10),
+                                  GradientLineWidget(
+                                      percentage: 1 - correctPercentage,
+                                      label: 'Error'),
+                                ],
+                              )),
 
-                const SizedBox(height: 20),
-                Main_Button(
-                  text: 'Detect',
-                  image: Image.asset('assets/Icons/detect.png'),
-                  route: '/detecting',
-                  onTap: () {
-                    _detectMedia(context);
-                  },
-                ),
-                const SizedBox(height: 20),
-                if (isDetected)
-                  Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Color.fromARGB(255, 128, 166, 179),
-                      ),
-                      height: 80,
-                      width: 330,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          GradientLineWidget(
-                              percentage: correctPercentage, label: 'Correct'),
-                          SizedBox(
-                            height: 10,
+                        if (noResultFound)
+                          const Column(
+                            children: [
+                              Text(
+                                'No results found, try adjusting to find what you are detecting.',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 130, 9, 0),
+                                  fontSize: 16,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(height: 10),
+                            ],
                           ),
-                          GradientLineWidget(
-                              percentage: 1 - correctPercentage,
-                              label: 'Error'),
-                        ],
-                      )),
-
-                if (noResultFound)
-                  const Column(
-                    children: [
-                      Text(
-                        'No results found, try adjusting to find what you are detecting.',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 130, 9, 0),
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 10),
-                      /*Main_Button(
-                        text: 'Detect Again',
-                        image: Image.asset('assets/Icons/detect.png'),
-                        route: '/detecting',
-                        onTap: () {
-                          _detectMedia(context);
-                        },
-                      ),*/
-                    ],
+                        const SizedBox(height: 50),
+                      ],
+                    ),
                   ),
-                const Spacer(),
-                const Spacer(),
-                const Spacer(),
-                const Spacer(),
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
           AssistiveBall(),
         ],
