@@ -72,10 +72,6 @@ class _CalculateState extends State<Calculate> {
       setState(() {
         _fetchedId = 'Error: Unable to connect to API';
       });
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
     }
   }
 
@@ -83,6 +79,7 @@ class _CalculateState extends State<Calculate> {
     if (_fetchedId == null || resultController.text.isEmpty) {
       setState(() {
         scoreController.text = 'Error: Missing Id or Result';
+        _isLoading = false;
       });
       return;
     }
@@ -113,6 +110,10 @@ class _CalculateState extends State<Calculate> {
       setState(() {
         scoreController.text = 'Error: Unable to connect to API';
       });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -137,9 +138,7 @@ class _CalculateState extends State<Calculate> {
                   ),
                 ),
                 Image.asset('assets/group-run.png', height: 200, width: 200),
-
                 const Spacer(),
-                //Image.asset('assets/motivation.png',width: 150,height: 200,),
                 AlamiMessage(
                   text: 'Check your Points Right Now!',
                   fontSize: 18,
@@ -262,18 +261,24 @@ class _CalculateState extends State<Calculate> {
                   },
                 ),
                 const SizedBox(height: 10),
-                Container(
-                  alignment: Alignment.center,
-                  width: 100,
-                  height: 40,
-                  child: Text(
-                    scoreController.text,
-                    style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22),
+                if (_isLoading)
+                  Container(
+                    //color: Color.fromARGB(255, 255, 255, 255),
+                    child: const CircularProgressIndicator(),
                   ),
-                ),
+                if (!_isLoading)
+                  Container(
+                    alignment: Alignment.center,
+                    width: 100,
+                    height: 40,
+                    child: Text(
+                      scoreController.text,
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22),
+                    ),
+                  ),
                 const Spacer(),
                 const Spacer(),
                 const Spacer(),
