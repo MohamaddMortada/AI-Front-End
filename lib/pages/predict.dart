@@ -14,7 +14,7 @@ class Predict extends StatefulWidget {
 
 class _PredictState extends State<Predict> {
   final TextEditingController eventController = TextEditingController();
-  List<String> results = []; 
+  List<String> results = [];
   String predictedResult = '';
   String confidence = '';
   bool isLoading = false;
@@ -24,7 +24,7 @@ class _PredictState extends State<Predict> {
       isLoading = true;
     });
 
-    final url = Uri.parse('http://192.168.44.188:8000/api/getresult'); 
+    final url = Uri.parse('http://192.168.199.124:8000/api/getresult');
 
     try {
       final response = await http.post(
@@ -38,7 +38,8 @@ class _PredictState extends State<Predict> {
 
         if (data['results'] != null && data['results'] is List) {
           setState(() {
-            results = List<String>.from(data['results'].map((item) => item['result'].toString()));
+            results = List<String>.from(
+                data['results'].map((item) => item['result'].toString()));
           });
         } else {
           throw Exception('Results not found');
@@ -61,7 +62,8 @@ class _PredictState extends State<Predict> {
     await fetchResults();
     if (results.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Input some results in the results section")),
+        const SnackBar(
+            content: Text("Input some results in the results section")),
       );
       return;
     }
@@ -70,14 +72,14 @@ class _PredictState extends State<Predict> {
       isLoading = true;
     });
 
-    final url = Uri.parse('http://192.168.44.188:8000/api/aipredict');
+    final url = Uri.parse('http://192.168.199.124:8000/api/aipredict');
 
     try {
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
-          'results': results, 
+          'results': results,
           'event': eventController.text.trim(),
         }),
       );
@@ -85,8 +87,8 @@ class _PredictState extends State<Predict> {
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
-          predictedResult = data['prediction'] ?? ''; 
-          confidence = data['confidence']?.toString() ?? ''; 
+          predictedResult = data['prediction'] ?? '';
+          confidence = data['confidence']?.toString() ?? '';
         });
       } else {
         throw Exception('Failed to get prediction');
@@ -111,25 +113,29 @@ class _PredictState extends State<Predict> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ProfileBar(),
+                const ProfileBar(),
+                const Text(
+                  'PREDICT',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
                 Image.asset(
                   'assets/finishh.png',
                   width: 300,
                   height: 300,
                 ),
-                Spacer(),
+                const Spacer(),
                 AlamiMessage(
                     text: 'Wanna know how much you can run right now!?',
                     fontSize: 14,
                     fontWeight: FontWeight.w500),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 /*Text(
                   results.isEmpty
                       ? 'No results yet'
                       : 'Results: ${results.join(', ')}', 
                   style: TextStyle(fontSize: 16, color: Colors.black),
                 ),*/
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Input(
                   text: 'Event',
                   image: Image.asset('assets/Icons/lap.png'),
@@ -137,22 +143,66 @@ class _PredictState extends State<Predict> {
                   maxLines: 1,
                   controller: eventController,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 ButtonSecondary(
-                  text: '',
-                  image: Image.asset('assets/Icons/add.png'),
+                  text: 'PREDICT',
+                  image: Image.asset('assets/Icons/predict.png'),
                   onTap: predictResult,
                 ),
-                if (isLoading) CircularProgressIndicator(),
-                SizedBox(height: 20),
-                if (predictedResult.isNotEmpty)
-                  Text('Prediction: $predictedResult'),
-                if (confidence.isNotEmpty)
-                  Text('Confidence: $confidence'),
-                Spacer(),
-                Spacer(),
-                Spacer(),
-                Spacer(),
+                const SizedBox(height: 10),
+                if (isLoading) const CircularProgressIndicator(),
+                const SizedBox(height: 20),
+                //if (predictedResult.isNotEmpty)
+                if (!isLoading)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        width: 150,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: Theme.of(context).primaryColor,
+                            width: 2.0,
+                          ),
+                        ),
+                        child: Text(
+                          'Prediction:\n $predictedResult',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 18),
+                        ),
+                      ),
+
+                      //if (confidence.isNotEmpty)
+                      Container(
+                        alignment: Alignment.center,
+                        width: 150,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: Theme.of(context).primaryColor,
+                            width: 2.0,
+                          ),
+                        ),
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          'Confidence:\n $confidence',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 18),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                const Spacer(),
+                const Spacer(),
+                const Spacer(),
+                const Spacer(),
+                const Spacer(),
               ],
             ),
           ),
