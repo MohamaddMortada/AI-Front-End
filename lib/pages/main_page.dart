@@ -70,15 +70,15 @@ class _MainPageState extends State<MainPage> {
               const SizedBox(height: 10),
               const ImageButton(
                 imagePath: 'assets/Analyze-Image.webp',
-                text: 'ANALYZE',
-                discription: 'ANALYZE YOUR PERFORMANCE',
+                text: 'PHOTO FINISH',
+                discription: 'LIVE PHOTO \nFINISH TIMING',
                 route: '/mode',
               ),
               const SizedBox(height: 10),
               const ImageButton(
                 imagePath: 'assets/Predict-Image.webp',
                 text: 'PREDICT',
-                discription: 'PREDICT FUTURE PERFORMANCES',
+                discription: 'PREDICT FUTURE \nPERFORMANCES',
                 route: '/predict',
               ),
               const SizedBox(height: 10),
@@ -99,7 +99,7 @@ class _MainPageState extends State<MainPage> {
               const ImageButton(
                 imagePath: 'assets/Chatbot-girl.webp',
                 text: 'CHATBOT',
-                discription: 'Have you Meet Mika? \n',
+                discription: 'Have you Meet \nMika?',
                 route: '/chatbot',
               ),
               const Spacer(),
