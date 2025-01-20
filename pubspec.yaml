@@ -1,0 +1,36 @@
+name: front_end
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.0-282.2.beta <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get: ^4.6.6
+  http: ^1.2.2
+  provider: ^6.0.5
+  shared_preferences: ^2.0.15
+  flutter_secure_storage: ^8.0.0
+  image_picker: ^0.8.4+4
+  audioplayers: ^6.1.0
+  file_picker: ^8.0.5
+  permission_handler: ^11.3.1
+  video_player: ^2.9.2
+  camera: ^0.11.0+2
+  qr_code_scanner: ^1.0.0
+  qr_flutter: ^4.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/Icons/
+    
