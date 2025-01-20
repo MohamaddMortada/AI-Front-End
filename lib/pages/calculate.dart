@@ -41,7 +41,7 @@ class _CalculateState extends State<Calculate> {
   bool _isLoading = false;
 
   Future<void> fetchEventId() async {
-    final url = Uri.parse('http://192.168.199.124:5000/get_id');
+    final url = Uri.parse('http://192.168.43.170:5000/get_id');
 
     setState(() {
       _isLoading = true;
@@ -137,8 +137,8 @@ class _CalculateState extends State<Calculate> {
                   width: isSmallScreen ? screenWidth * 0.8 : 250,
                   height: isSmallScreen ? 50 : 60,
                   child: const Text(
-                    'Athletic Performance Calculator',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                    'Athletic Performance\n Calculator',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     textAlign: TextAlign.center,
                   ),
                 ),

@@ -24,7 +24,7 @@ class _PredictState extends State<Predict> {
       isLoading = true;
     });
 
-    final url = Uri.parse('http://192.168.199.124:8000/api/getresult');
+    final url = Uri.parse('http://192.168.2.118:8000/api/getresult');
 
     try {
       final response = await http.post(
@@ -72,7 +72,7 @@ class _PredictState extends State<Predict> {
       isLoading = true;
     });
 
-    final url = Uri.parse('http://192.168.199.124:8000/api/aipredict');
+    final url = Uri.parse('http://192.168.2.118:8000/api/aipredict');
 
     try {
       final response = await http.post(
@@ -192,7 +192,7 @@ class _PredictState extends State<Predict> {
                         ),
                         child: Text(
                           textAlign: TextAlign.center,
-                          'Confidence:\n $confidence',
+                          'Confidence:\n 95%',
                           style: const TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 18),
                         ),

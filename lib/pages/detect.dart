@@ -85,8 +85,8 @@ class _DetectState extends State<Detect> {
     }
 
     String apiUrl = _media!.path.endsWith('.mp4')
-        ? 'http://192.168.2.103:5000/${_selectedMode}_video'
-        : 'http://192.168.2.103:5000/${_selectedMode}_image';
+        ? 'http://192.168.43.170:5000/${_selectedMode}_video'
+        : 'http://192.168.43.170:5000/${_selectedMode}_image';
 
     final request = http.MultipartRequest(
       'POST',
