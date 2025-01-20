@@ -26,8 +26,8 @@ class _FinishLineState extends State<FinishLine> {
   String res = '';
   DateTime fireTimestamp = DateTime.now();
   DateTime startTimestamp = DateTime.now();
-  //Duration subTime = ;
   double finalTime = 0;
+  bool isProcessing = false;
 
   @override
   void initState() {
@@ -87,6 +87,10 @@ class _FinishLineState extends State<FinishLine> {
   Future<void> _stopRecording() async {
     if (!_controller.value.isRecordingVideo || !isRecording) return;
 
+    setState(() {
+      isProcessing = true; // Show the loading indicator
+    });
+
     try {
       XFile videoFile = await _controller.stopVideoRecording();
       videoPath = videoFile.path;
@@ -99,18 +103,19 @@ class _FinishLineState extends State<FinishLine> {
           });
       });
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Video saved at: $videoPath")),
-      );
       await _getFireTimestamp();
       await _sendDataToApi(videoPath);
       setState(() {
         Duration subTime = fireTimestamp.difference(startTimestamp);
         finalTime = crossingTime - subTime.inSeconds;
         finalTime = double.parse(finalTime.toStringAsFixed(4));
+        isProcessing = false; // Hide the loading indicator
       });
     } catch (e) {
       print("Error stopping video recording: $e");
+      setState(() {
+        isProcessing = false; // Hide the loading indicator on error
+      });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error stopping video recording: $e")),
       );
@@ -195,7 +200,6 @@ class _FinishLineState extends State<FinishLine> {
             ? Column(
                 children: [
                   ProfileBar(),
-                  
                   const Text(
                     'Finish Line',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
@@ -211,37 +215,48 @@ class _FinishLineState extends State<FinishLine> {
                   ),
                   const SizedBox(height: 20),
                   isRecording
-                      ? Column(children: [
-                          const Text(
-                            'Make sure to the Athlete to finish then you press "STOP"',
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 10),ButtonSecondary(
-                          text: 'STOP',
-                          image: Image.asset('assets/Icons/stop.png'),
-                          onTap: () {
-                            _stopRecording();
-                          })])
-                      : Column(children: [
-                          const Text(
-                            'Make sure to press "START" here before the \n SHOT begin',
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 10),
-                          ButtonSecondary(
+                      ? Column(
+                          children: [
+                            const Text(
+                              'Make sure the athlete finishes before pressing "STOP"',
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 10),
+                            ButtonSecondary(
+                              text: 'STOP',
+                              image: Image.asset('assets/Icons/stop.png'),
+                              onTap: () {
+                                _stopRecording();
+                              },
+                            ),
+                          ],
+                        )
+                      : Column(
+                          children: [
+                            const Text(
+                              'Make sure to press "START" here before the shot begins.',
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 10),
+                            ButtonSecondary(
                               text: 'START',
                               image: Image.asset('assets/Icons/start.png'),
                               onTap: () {
                                 _startRecording();
-                              }),
-                        ]),
+                              },
+                            ),
+                          ],
+                        ),
                   const SizedBox(height: 20),
-                  Text(
-                    'Electric Time:\n $finalTime',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 22),
-                  ),
+                  if (isProcessing)
+                    const CircularProgressIndicator(), 
+                  if (!isProcessing && !isRecording)
+                    Text(
+                      'Electric Time:\n $finalTime',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 22),
+                    ),
                 ],
               )
             : const Center(child: CircularProgressIndicator()),
