@@ -120,8 +120,8 @@ class _PredictState extends State<Predict> {
                 ),
                 Image.asset(
                   'assets/finishh.png',
-                  width: 300,
-                  height: 300,
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  height: MediaQuery.of(context).size.height * 0.3,
                 ),
                 const Spacer(),
                 AlamiMessage(
@@ -136,12 +136,15 @@ class _PredictState extends State<Predict> {
                   style: TextStyle(fontSize: 16, color: Colors.black),
                 ),*/
                 const SizedBox(height: 10),
-                Input(
-                  text: 'Event',
-                  image: Image.asset('assets/Icons/lap.png'),
-                  height: 45,
-                  maxLines: 1,
-                  controller: eventController,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Input(
+                    text: 'Event',
+                    image: Image.asset('assets/Icons/lap.png'),
+                    height: 45,
+                    maxLines: 1,
+                    controller: eventController,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 ButtonSecondary(
@@ -152,7 +155,6 @@ class _PredictState extends State<Predict> {
                 const SizedBox(height: 10),
                 if (isLoading) const CircularProgressIndicator(),
                 const SizedBox(height: 20),
-                //if (predictedResult.isNotEmpty)
                 if (!isLoading)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -160,7 +162,7 @@ class _PredictState extends State<Predict> {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        width: 150,
+                        width: MediaQuery.of(context).size.width * 0.4,
                         height: 100,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
@@ -173,13 +175,13 @@ class _PredictState extends State<Predict> {
                           'Prediction:\n $predictedResult',
                           style: const TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 18),
+                          textAlign: TextAlign.center,
                         ),
                       ),
 
-                      //if (confidence.isNotEmpty)
                       Container(
                         alignment: Alignment.center,
-                        width: 150,
+                        width: MediaQuery.of(context).size.width * 0.4,
                         height: 100,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
@@ -197,7 +199,6 @@ class _PredictState extends State<Predict> {
                       ),
                     ],
                   ),
-
                 const Spacer(),
                 const Spacer(),
                 const Spacer(),
