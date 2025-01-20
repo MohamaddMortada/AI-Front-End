@@ -88,7 +88,7 @@ class _FinishLineState extends State<FinishLine> {
     if (!_controller.value.isRecordingVideo || !isRecording) return;
 
     setState(() {
-      isProcessing = true; // Show the loading indicator
+      isProcessing = true; 
     });
 
     try {
@@ -109,12 +109,12 @@ class _FinishLineState extends State<FinishLine> {
         Duration subTime = fireTimestamp.difference(startTimestamp);
         finalTime = crossingTime - subTime.inSeconds;
         finalTime = double.parse(finalTime.toStringAsFixed(4));
-        isProcessing = false; // Hide the loading indicator
+        isProcessing = false; 
       });
     } catch (e) {
       print("Error stopping video recording: $e");
       setState(() {
-        isProcessing = false; // Hide the loading indicator on error
+        isProcessing = false; 
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error stopping video recording: $e")),
