@@ -318,7 +318,54 @@ Please provide tips to improve the incorrect poses.
                           },
                         ),
                         const SizedBox(height: 10),
-                        
+                        if (isDetected)
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: Theme.of(context).primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            onPressed: () async {
+                              final tips = await _getOpenAITips({}, {}, {});
+                              if (tips != null) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Tips for Improvement'),
+                                    content: Text(tips),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('No Tips Available'),
+                                    content: const Text(
+                                        'Unable to retrieve tips at the moment. Try again later.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                            },
+                            child: const Text(
+                              'Show Tips',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
                         if (isDetected)
                           Container(
                               decoration: BoxDecoration(
