@@ -41,7 +41,7 @@ class _CalculateState extends State<Calculate> {
   bool _isLoading = false;
 
   Future<void> fetchEventId() async {
-    final url = Uri.parse('http://192.168.199.124:5000/get_id');
+    final url = Uri.parse('http://192.168.43.170:5000/get_id');
 
     setState(() {
       _isLoading = true;
@@ -119,6 +119,11 @@ class _CalculateState extends State<Calculate> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    final isSmallScreen = screenWidth < 600;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -126,27 +131,30 @@ class _CalculateState extends State<Calculate> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 80),
+                SizedBox(height: screenHeight * 0.1),
                 Container(
                   alignment: Alignment.center,
-                  width: 250,
-                  height: 60,
+                  width: isSmallScreen ? screenWidth * 0.8 : 250,
+                  height: isSmallScreen ? 50 : 60,
                   child: const Text(
-                    'Athletic Performance Calculator',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                    'Athletic Performance\n Calculator',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Image.asset('assets/group-run.png', height: 200, width: 200),
+                Image.asset('assets/group-run.png',
+                    height: isSmallScreen ? 150 : 200,
+                    width: isSmallScreen ? 150 : 200),
                 const Spacer(),
                 AlamiMessage(
                   text: 'Check your Points Right Now!',
-                  fontSize: 18,
+                  fontSize: isSmallScreen ? 16 : 18,
                   fontWeight: FontWeight.w800,
                 ),
                 const SizedBox(height: 20),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: isSmallScreen ? 20 : 30),
                   alignment: Alignment.centerLeft,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,7 +172,7 @@ class _CalculateState extends State<Calculate> {
                             },
                           ),
                           const Text('Indoor'),
-                          const SizedBox(width: 20),
+                          SizedBox(width: screenWidth * 0.05),
                           Radio<String>(
                             value: 'o',
                             groupValue: _selectedStadium,
@@ -190,8 +198,9 @@ class _CalculateState extends State<Calculate> {
                             },
                           ),
                           Image.asset('assets/Icons/male.png',
-                              height: 40, width: 40),
-                          const SizedBox(width: 20),
+                              height: isSmallScreen ? 30 : 40,
+                              width: isSmallScreen ? 30 : 40),
+                          SizedBox(width: screenWidth * 0.05),
                           Radio<String>(
                             value: 'w',
                             groupValue: _selectedGender,
@@ -202,7 +211,8 @@ class _CalculateState extends State<Calculate> {
                             },
                           ),
                           Image.asset('assets/Icons/female.png',
-                              height: 40, width: 40),
+                              height: isSmallScreen ? 30 : 40,
+                              width: isSmallScreen ? 30 : 40),
                         ],
                       ),
                     ],
@@ -211,7 +221,7 @@ class _CalculateState extends State<Calculate> {
                 const SizedBox(height: 10),
                 Container(
                   alignment: Alignment.center,
-                  width: 330,
+                  width: isSmallScreen ? screenWidth * 0.85 : 330,
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
@@ -247,7 +257,7 @@ class _CalculateState extends State<Calculate> {
                 Input(
                   text: 'Result',
                   image: Image.asset('assets/Icons/clock.png'),
-                  height: 45,
+                  height: isSmallScreen ? 40 : 45,
                   maxLines: 1,
                   controller: resultController,
                 ),
@@ -262,9 +272,7 @@ class _CalculateState extends State<Calculate> {
                 ),
                 const SizedBox(height: 10),
                 if (_isLoading)
-                  Container(
-                    child: const CircularProgressIndicator(),
-                  ),
+                  const CircularProgressIndicator(),
                 if (!_isLoading)
                   Container(
                     alignment: Alignment.center,

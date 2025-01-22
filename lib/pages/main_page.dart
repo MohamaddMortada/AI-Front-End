@@ -28,6 +28,9 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -40,70 +43,73 @@ class _MainPageState extends State<MainPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 0),
+                    padding: EdgeInsets.only(left: screenWidth * 0.02),
                     child: Image.asset(
                       'assets/Icons/alami.png',
-                      width: 75,
-                      height: 75,
+                      width: screenWidth * 0.15,
+                      height: screenWidth * 0.15,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 0),
+                    padding: EdgeInsets.only(right: screenWidth * 0.02),
                     child: Text_Field(
                       text: 'WELCOME $_userName \n to ATHLETIQ',
-                      fontSize: 20,
+                      fontSize: screenWidth * 0.05,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const Spacer(),
-                  const Spacer(),
-                  const Spacer(),
                 ],
               ),
-              const Spacer(),
-              const ImageButton(
-                imagePath: 'assets/Detect-Image.webp',
-                text: 'DETECT',
-                discription: 'DETECT & FIX \nERRORS',
-                route: '/detect',
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.symmetric(
+                      vertical: screenHeight * 0.02,
+                      horizontal: screenWidth * 0.05),
+                  children: [
+                    const ImageButton(
+                      imagePath: 'assets/Detect-Image.webp',
+                      text: 'DETECT',
+                      discription: 'DETECT & FIX \nERRORS',
+                      route: '/detect',
+                    ),
+                    SizedBox(height: screenHeight * 0.02),
+                    const ImageButton(
+                      imagePath: 'assets/Analyze-Image.webp',
+                      text: 'PHOTO FINISH',
+                      discription: 'LIVE PHOTO \nFINISH TIMING',
+                      route: '/mode',
+                    ),
+                    SizedBox(height: screenHeight * 0.02),
+                    const ImageButton(
+                      imagePath: 'assets/Predict-Image.webp',
+                      text: 'PREDICT',
+                      discription: 'PREDICT FUTURE \nPERFORMANCES',
+                      route: '/predict',
+                    ),
+                    SizedBox(height: screenHeight * 0.02),
+                    const ImageButton(
+                      imagePath: 'assets/Calculate-Image.webp',
+                      text: 'CALCULATE',
+                      discription: 'CALCULATE YOUR \nPOINTS',
+                      route: '/calculate',
+                    ),
+                    SizedBox(height: screenHeight * 0.02),
+                    const ImageButton(
+                      imagePath: 'assets/session.webp',
+                      text: 'SESSIONS',
+                      discription: 'Add Your Daily \nSessions',
+                      route: '/results',
+                    ),
+                    SizedBox(height: screenHeight * 0.02),
+                    const ImageButton(
+                      imagePath: 'assets/Chatbot-girl.webp',
+                      text: 'CHATBOT',
+                      discription: 'Have you Meet \nMika?',
+                      route: '/chatbot',
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 10),
-              const ImageButton(
-                imagePath: 'assets/Analyze-Image.webp',
-                text: 'PHOTO FINISH',
-                discription: 'LIVE PHOTO \nFINISH TIMING',
-                route: '/mode',
-              ),
-              const SizedBox(height: 10),
-              const ImageButton(
-                imagePath: 'assets/Predict-Image.webp',
-                text: 'PREDICT',
-                discription: 'PREDICT FUTURE \nPERFORMANCES',
-                route: '/predict',
-              ),
-              const SizedBox(height: 10),
-              const ImageButton(
-                imagePath: 'assets/Calculate-Image.webp',
-                text: 'CALCULATE',
-                discription: 'CALCULATE YOUR \nPOINTS',
-                route: '/calculate',
-              ),
-              const SizedBox(height: 10),
-              const ImageButton(
-                imagePath: 'assets/session.webp',
-                text: 'SESSIONS',
-                discription: 'Add Your Daily \nSessions',
-                route: '/results',
-              ),
-              const SizedBox(height: 10),
-              const ImageButton(
-                imagePath: 'assets/Chatbot-girl.webp',
-                text: 'CHATBOT',
-                discription: 'Have you Meet \nMika?',
-                route: '/chatbot',
-              ),
-              const Spacer(),
-              const Spacer(),
             ],
           ),
           AssistiveBall(),

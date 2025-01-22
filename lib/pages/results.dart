@@ -22,7 +22,7 @@ class _ResultsState extends State<Results> {
   }  
 
   Future<void> fetchResults() async {
-    final url = Uri.parse('http://192.168.199.124:8000/api/getresult');
+    final url = Uri.parse('http://192.168.43.170:8000/api/getresult');
     try {
       final response = await http.post(
         url,
@@ -56,7 +56,7 @@ class _ResultsState extends State<Results> {
       return;
     }
 
-    final url = Uri.parse('http://192.168.199.124:8000/api/results');
+    final url = Uri.parse('http://192.168.43.170:8000/api/results');
     try {
       final response = await http.post(
         url,
